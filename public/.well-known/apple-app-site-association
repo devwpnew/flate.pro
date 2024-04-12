@@ -1,0 +1,31 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "4KXX47QC8W.flate.pro",
+        "paths": [
+          "*"
+        ],
+        "components": [
+          {
+            "/": "*"
+          },
+          {
+            "?": "appstore"
+          }
+        ]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": [
+      "4KXX47QC8W.flate.pro"
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "4KXX47QC8W.flate.pro"
+    ]
+  }
+}

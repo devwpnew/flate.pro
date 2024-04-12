@@ -1,0 +1,721 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-Italic.eot');
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+    url('../public/fonts/OpenSans-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-Italic.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-Italic.woff') format('woff'),
+    url('../public/fonts/OpenSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-Regular.eot');
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+    url('../public/fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-Regular.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-Regular.woff') format('woff'),
+    url('../public/fonts/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-BoldItalic.eot');
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+    url('../public/fonts/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-BoldItalic.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-BoldItalic.woff') format('woff'),
+    url('../public/fonts/OpenSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-SemiBold.eot');
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+    url('../public/fonts/OpenSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-SemiBold.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-SemiBold.woff') format('woff'),
+    url('../public/fonts/OpenSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-ExtraBoldItalic.eot');
+  src: local('Open Sans ExtraBold Italic'), local('OpenSans-ExtraBoldItalic'),
+    url('../public/fonts/OpenSans-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-ExtraBoldItalic.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-ExtraBoldItalic.woff') format('woff'),
+    url('../public/fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-LightItalic.eot');
+  src: local('Open Sans Light Italic'), local('OpenSans-LightItalic'),
+    url('../public/fonts/OpenSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-LightItalic.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-LightItalic.woff') format('woff'),
+    url('../public/fonts/OpenSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-Bold.eot');
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+    url('../public/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-Bold.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-Bold.woff') format('woff'),
+    url('../public/fonts/OpenSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-SemiBoldItalic.eot');
+  src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'),
+    url('../public/fonts/OpenSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-SemiBoldItalic.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-SemiBoldItalic.woff') format('woff'),
+    url('../public/fonts/OpenSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-ExtraBold.eot');
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+    url('../public/fonts/OpenSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-ExtraBold.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-ExtraBold.woff') format('woff'),
+    url('../public/fonts/OpenSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  src: url('../public/fonts/OpenSans-Light.eot');
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+    url('../public/fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/OpenSans-Light.woff2') format('woff2'),
+    url('../public/fonts/OpenSans-Light.woff') format('woff'),
+    url('../public/fonts/OpenSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  scroll-behavior: smooth;
+  color: #1F1F1F;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2563EB #EFF1F4;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #EFF1F4;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #EFF1F4;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #EFF1F4;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #2563EB;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #286BFF;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #1E4FBC;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+a {
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+a:hover {
+  @apply text-blue
+}
+
+* {
+  box-sizing: border-box;
+}
+
+div.swiper-button-next {
+  right: 0;
+}
+
+div.swiper-button-prev {
+  left: 0;
+}
+
+.swiper:hover div.swiper-button-next,
+.swiper:hover div.swiper-button-prev {
+  opacity: 1;
+  transition: .2s ease-in-out;
+}
+
+div.swiper-button-next,
+div.swiper-button-prev {
+  height: 100%;
+  width: 10%;
+  top: 0;
+  background: rgba(49, 49, 49, .3);
+  margin: 0;
+  opacity: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+div.swiper-button-next::after,
+div.swiper-button-prev::after {
+  color: #ffffff;
+  opacity: .7;
+  font-size: 35px;
+}
+
+.dashed {
+  background-image: url("data:image/svg+xml,%3Csvg width='212' height='1' viewBox='0 0 212 1' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline y1='0.5' x2='212' y2='0.5' stroke='%23DFDFDF' stroke-dasharray='4 4'/%3E%3C/svg%3E%0A");
+}
+
+.dashed-gradient {
+  /* height: 100px; */
+  width: 100%;
+  background-image: linear-gradient(to right, #4BA5F8 50%, transparent 50%), linear-gradient(to right, #4BA5F8 50%, transparent 50%), linear-gradient(to bottom, #4BA5F8 50%, transparent 50%), linear-gradient(to bottom, #4BA5F8 50%, transparent 50%);
+  background-position: left top, left bottom, left top, right top;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
+}
+
+.dashed-repeating-gradient {
+  width: 100%;
+  background-image: repeating-linear-gradient(to right, #4BA5F8 0%, #4BA5F8 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to right, #4BA5F8 0%, #4BA5F8 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #4BA5F8 0%, #4BA5F8 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #4BA5F8 0%, #4BA5F8 50%, transparent 50%, transparent 100%);
+  background-position: left top, left bottom, left top, right top;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
+}
+
+[id] {
+  scroll-margin-top: 120px;
+}
+
+.ellipsis {
+  /* min-height: 54px; */
+  max-height: 54px;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.test {
+  -webkit-line-clamp: 11;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis.ellipsis-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+.b-contain *,
+.b-contain *::before,
+.b-contain *::after {
+  box-sizing: content-box !important;
+}
+
+.b-contain input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.b-contain span {
+  line-height: 1.5;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+@media (max-width: 768px) {
+  .areas-dialog .b-contain span {
+    font-size: 0.9rem;
+  }
+}
+
+.b-contain {
+  display: table;
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  margin-bottom: 0rem;
+}
+
+.b-contain input[type="checkbox"] ~ .b-input {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background: #fff;
+  transition: background 250ms;
+  border: 1px solid #C4C4C4;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b-contain input[type="radio"] ~ .b-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background: #fff;
+  transition: background 250ms;
+  border: 1px solid #C4C4C4;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b-contain input[type="checkbox"] ~ .b-input::after {
+  content: "";
+  /* position: absolute; */
+  display: none;
+  left: 4px;
+  top: 2px;
+  width: 0.15rem;
+  height: 0.3rem;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transition: background 250ms;
+  transform: rotate(45deg);
+}
+
+.b-contain input[type="radio"] ~ .b-input::after {
+  content: "";
+  /* position: absolute; */
+  display: none;
+  left: 1px;
+  top: 1px;
+  width: 7px;
+  height: 7px;
+  border-radius: 3rem;
+  background: #ffffff;
+  transition: background 250ms;
+}
+
+.b-contain input[type="checkbox"]:disabled ~ .b-input::after {
+  border-color: #ffffff;
+}
+
+.b-contain input:checked ~ .b-input::after,
+.b-contain input ~ .b-input.active::after {
+  display: block;
+}
+
+/* .b-contain:hover input[type="checkbox"]:not([disabled]) ~ .b-input,
+.b-contain input[type="checkbox"]:focus ~ .b-input {
+  background: #fff;
+  border-color: #4BA5F8;
+} */
+
+/* .b-contain:hover input[type="radio"]:not([disabled]) ~ .b-input,
+.b-contain input[type="radio"]:focus ~ .b-input {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+} */
+
+/* .b-contain input:focus ~ .b-input {
+  box-shadow: 0 0 0 2px #60a5fa;
+} */
+
+.b-contain input[type="checkbox"]:checked ~ .b-input,
+.b-contain input ~ .b-input.active {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+}
+
+.b-contain input[type="radio"]:checked ~ .b-input,
+.b-contain input ~ .b-input.active {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+}
+
+.b-contain input[type="checkbox"]:disabled ~ .b-input,
+.b-contain input[type="radio"]:disabled ~ .b-input {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.b-contain input[type="radio"]:disabled ~ .b-input::after {
+  background: #ffffff;
+}
+
+/* .b-contain:hover input[type="checkbox"]:not([disabled]):checked ~ .b-input,
+.b-contain input[type="checkbox"]:checked:focus ~ .b-input {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+} */
+
+/* .b-contain:hover input[type="radio"]:not([disabled]):checked ~ .b-input,
+.b-contain input[type="radio"]:checked:focus ~ .b-input {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+} */
+
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  outline: none;
+}
+
+
+.FileUploader {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 100% !important;
+  height: 100% !important;
+}
+
+.FileUploader--disabled {
+  pointer-events: none;
+}
+
+.FileUploader input,
+.FileUploader span,
+.FileUploader svg {
+  display: none !important;
+}
+
+.shadow-design {
+  box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ymaps[class*="search__suggest"] {
+  display: none;
+} */
+
+.ymaps-2-1-79-map-copyrights-promo {
+  display: none;
+}
+
+ymaps[class*="controls__control_toolbar"] {
+  display: none;
+}
+
+ymaps[class*="balloon"] {
+  display: none;
+}
+
+.loader-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  z-index: 199;
+}
+
+.loader div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #2563eb;
+  border-radius: 50%;
+  animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #2563eb transparent transparent transparent;
+}
+
+.loader div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loader div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  background: #ebebed;
+  border-radius: 4px;
+  color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.preloader:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: translateX(-4em) skewX(-45deg);
+}
+
+.preloader:before {
+  animation: move-light 1s infinite ease-in-out;
+}
+
+@keyframes move-light {
+  from {
+    transform: translateX(-4em) skewX(-45deg);
+  }
+
+  to {
+    transform: translateX(20em) skewX(-45deg);
+  }
+}
+
+.preloader-invisible {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-invisible {
+  position: relative;
+  display: inline-block;
+}
+
+/* .angle-png::after {
+  content: " ";
+  background: url('/public/d-app.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+} */
+
+
+.pswp img {
+  /* max-width: 90% !important; */
+  max-width: 1200px !important;
+  width: auto;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+  .pswp img {
+    width: 100%;
+  }
+}
+
+.pswp__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.admin-content {
+  width: calc(100% - 244px);
+}
+
+.table-container {
+  padding: 10px;
+  padding-bottom: 20px;
+  background: #F8FAFC;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin: 10px 0;
+  overflow-x: scroll;
+  /* width: 935px; */
+  /* width: calc(100% - 244px); */
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+}
+
+.table th {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666666;
+  padding: 6px 20px;
+  text-align: left;
+}
+
+.table tbody tr:nth-child(2n -1) {
+  background: #fff;
+}
+
+.table td {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1F1F1F;
+  padding: 6px 20px;
+  border-bottom: 1px solid #E5E7EB;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.table td > * {
+  display: block;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  overflow: hidden;
+}
+
+.bg-bluefeatured {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #4BA5F8;
+}
+
+.blur {
+  backdrop-filter: blur(5px);
+  width: 100%;
+}
+
+.input {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background: #fff;
+  transition: background 250ms;
+  border: 1px solid #C4C4C4;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input:before {
+  content: "";
+  /* position: absolute; */
+  display: block;
+  left: 4px;
+  top: 2px;
+  width: 0.15rem;
+  height: 0.3rem;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transition: background 250ms;
+  transform: rotate(45deg);
+}
+
+.input.active {
+  background: #4BA5F8;
+  border-color: #4BA5F8;
+}

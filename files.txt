@@ -1,0 +1,1 @@
+[["property_product_galery",{"size":42949,"filepath":"C:\\Users\\Chib\\Desktop\\projects\\flate\\images\\upload\\2022-11-23\\1a72240d2e9b0f8922b9a2400.jpg","newFilename":"1a72240d2e9b0f8922b9a2400.jpg","mimetype":"image/jpeg","mtime":"2022-11-23T10:32:42.080Z","originalFilename":"c619856b1c76207ec08889101.jpg"}]]

@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "flate.pro",
+      "sha256_cert_fingerprints":
+        ["B6:7E:85:DF:4D:DE:6C:CC:4D:62:35:3A:EA:57:62:93:7E:6C:89:F5:73:BA:47:A1:3B:96:B8:D5:DF:77:51:58"]
+    }
+  }
+]

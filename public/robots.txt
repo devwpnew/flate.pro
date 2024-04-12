@@ -1,0 +1,10 @@
+User-Agent: *
+Disallow: /user
+Disallow: /search
+Disallow: /rules
+Disallow: /policy
+Disallow: /oferta
+Disallow: /agree
+Disallow: *?*
+Sitemap: https://flate.pro/sitemap.xml
+Host: https://flate.pro

@@ -6,7 +6,6 @@ import yamapPlacehodler from "public/yamap-placeholder.jpg";
 import { useEffect, useRef, useState } from "react";
 
 export default function PostYandexMap({
-  map,
   address,
   hideAddress,
   containerClassName,
@@ -29,10 +28,6 @@ export default function PostYandexMap({
     const arr = stirng.split(",");
     return [parseFloat(arr[0]), parseFloat(arr[1])];
   };
-
-  if (map) {
-    setCoordinates(formateCoorditates(map));
-  }
 
   const ymapsObject = useRef(null);
 
@@ -69,7 +64,6 @@ export default function PostYandexMap({
         >
           <Map
             modules={["control.ZoomControl", "control.FullscreenControl"]}
-            key={map}
             width={"100%"}
             state={stateValues}
             onLoad={(instace) => {

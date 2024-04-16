@@ -128,9 +128,7 @@ export default function PostTemplate({ product }) {
                   </span>
                   <span>
                     {getProductPriceSquares(product)} руб. за{" "}
-                    {slug && slug === "land"
-                      ? "сотку"
-                      : "м2"}
+                    {slug && slug === "land" ? "сотку" : "м2"}
                   </span>
                 </div>
 
@@ -177,15 +175,13 @@ export default function PostTemplate({ product }) {
 
             {/* START JK INFORMATION */}
 
-            {slug && slug === "flats" &&
-            product?.rc_link ? (
+            {slug && slug === "flats" && product?.rc_link ? (
               <PostJkInfo rc_link={product?.rc_link} />
             ) : (
               <>
-                {slug && slug === "flats" &&
-                  product?.building_link && (
-                    <PostJkInfo building_link={product?.building_link} />
-                  )}
+                {slug && slug === "flats" && product?.building_link && (
+                  <PostJkInfo building_link={product?.building_link} />
+                )}
               </>
             )}
 
@@ -196,7 +192,6 @@ export default function PostTemplate({ product }) {
               containerClassName={"mb-2 mb:mb-5"}
               zoom={15}
               address={product.properties && product.properties.product_address}
-              map={product.map_coordinates}
             />
             {/* END YANDEX MAP */}
 

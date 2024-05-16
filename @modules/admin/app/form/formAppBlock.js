@@ -7,6 +7,7 @@ import PreloaderWithBackdrop from "@modules/common/components/preloader/preloade
 import { Dialog } from "@headlessui/react";
 import DialogWrapper from "@modules/common/components/dialog/dialogWrapper";
 import DialogMessage from "@modules/common/components/dialog/dialogMessage";
+import Textarea from "@modules/common/components/textarea/textarea";
 
 const names = {
   need_update_title: "Заголовок",
@@ -94,22 +95,41 @@ export default function FormAppAppBlock() {
   const inputs = [];
 
   for (const key in names) {
-    inputs.push(
-      <Input
-        onChange={(e) => {
-          setForm((prevState) => ({
-            ...prevState,
-            [key]: e.target.value,
-          }));
-        }}
-        value={form[key]}
-        required={true}
-        topTitle={names[key]}
-        style={"py-2.5 mb-5"}
-        placeholder={names[key]}
-        name={key}
-      />
-    );
+    if (key == "need_update_desc") {
+      inputs.push(
+        <Textarea
+          onChange={(e) => {
+            setForm((prevState) => ({
+              ...prevState,
+              [key]: e.target.value,
+            }));
+          }}
+          value={form[key]}
+          required={true}
+          topTitle={names[key]}
+          style={"py-2.5 mb-5"}
+          placeholder={names[key]}
+          name={key}
+        />
+      );
+    } else {
+      inputs.push(
+        <Input
+          onChange={(e) => {
+            setForm((prevState) => ({
+              ...prevState,
+              [key]: e.target.value,
+            }));
+          }}
+          value={form[key]}
+          required={true}
+          topTitle={names[key]}
+          style={"py-2.5 mb-5"}
+          placeholder={names[key]}
+          name={key}
+        />
+      );
+    }
   }
 
   return (

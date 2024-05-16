@@ -107,14 +107,14 @@ export default function SettingsSelectNewPhone({ user, name, ...other }) {
             placeholder="Номер телефона"
             name={name}
             options={options}
-            isCanDelete={true}
+            isCanDelete={false}
             deleteAction={deleteAction}
             {...other}
           />
         )}
       </div>
 
-      <div className="mt-2.5">
+      {/* <div className="mt-2.5">
         {isAddNewPhone && !success ? (
           <div className="relative h-[115px]">
             {isLoading ? (
@@ -165,7 +165,7 @@ export default function SettingsSelectNewPhone({ user, name, ...other }) {
             )}
           </>
         )}
-      </div>
+      </div> */}
     </>
   );
 }

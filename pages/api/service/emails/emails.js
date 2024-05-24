@@ -38,11 +38,11 @@ export default EMAILS = {
         return res
     },
 
-    report: async function sendReportEmail(product = '0', user = 0, host){
+    report: async function sendReportEmail(product = '0', user = 0, text = '', host){
         const mailFields = {
             subject: `Новая жалоба на ${product ? 'товар' : 'пользователя'}`,
             template: "abuse",
-            data: { product, user },
+            data: { product, user, text },
             to: 'abuse@flate.pro',
             from: 'abuse@flate.pro',
         }

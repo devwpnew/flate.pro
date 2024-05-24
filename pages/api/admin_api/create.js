@@ -144,7 +144,7 @@ export default async (req, res) => {
                 slug += `-${addQuery}`
                 const resUpdate = await updateItems(itemTable, {id: addQuery}, {slug: slug} )
                 res.status(200).json({ itemId: getItem.id, resUpdate: resUpdate })
-            }else{
+            } else {
                 res.status(200).json({ itemId: getItem.id })
             }
         }

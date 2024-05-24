@@ -30,6 +30,7 @@ export default function ProductContainerWithFetch({
   isShowMap = false,
   isHideSort = false,
   sortCallback,
+  sortProps = {},
   sectionId,
 }) {
   const activeCity = useSelector((state) => state.userCity.value);
@@ -130,7 +131,9 @@ export default function ProductContainerWithFetch({
             )}
 
             <div className="hidden md:flex items-center lg:flex-nowrap gap-[5px] md:gap-[14px]">
-              {!isHideSort && <ProductsSortSelect callback={sortCallback} />}
+              {!isHideSort && (
+                <ProductsSortSelect callback={sortCallback} {...sortProps} />
+              )}
 
               {isShowMap && !isLoading ? (
                 <ProductsShowOnMap type="white" products={products} />

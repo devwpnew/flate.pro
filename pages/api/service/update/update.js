@@ -58,12 +58,12 @@ export default UPDATE = {
       }
       const getProds = await API.get.product.list(getProdsFields)
       if (Array.isArray(getProds) && getProds.length) {
-        const testUpd = await Promise.all(
+        const resUpd = await Promise.all(
           getProds.map(async (elem) => {
             return await API.update.product({ id: elem.id, ...update })
           })
         )
-        console.log('testUpd', testUpd)
+        return resUpd
       }
     } catch (Error) {
       console.error({Error})
@@ -104,8 +104,6 @@ export default UPDATE = {
     const res = { full: '', name: '' };
 
     res.full = await API.update.item(data);
-
-    console.log('res', res)
 
     if (res?.full?.data?.error) {
       throw { error: res.full.data.error };

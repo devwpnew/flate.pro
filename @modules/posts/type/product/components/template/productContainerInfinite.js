@@ -31,6 +31,7 @@ export default function ProductContainerInfinite({
   layout,
   isHideSort,
   sortCallback,
+  sortProps = {},
 }) {
   const router = useRouter();
 
@@ -140,7 +141,9 @@ export default function ProductContainerInfinite({
               {title && title}
             </H2>
             <div className="mb-2 md:mb-0 md:flex items-center lg:flex-nowrap gap-[5px] md:gap-[14px]">
-              {!isHideSort && <ProductsSortSelect callback={sortCallback} />}
+              {!isHideSort && (
+                <ProductsSortSelect callback={sortCallback} {...sortProps} />
+              )}
             </div>
           </div>
         </>

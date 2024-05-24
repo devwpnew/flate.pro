@@ -27,6 +27,20 @@ const sortValues = {
     "NULLS,DESC": "DESC NULLS FIRST",
 }
 
+const filterValues = {
+    "null": "IS NULL",
+    "NULL": "IS NULL",
+
+    "!null": "IS NOT NULL",
+    "!NULL": "IS NOT NULL"
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+  }
+
 export function formatDateToDB(date) {
     return date.toISOString().split('.')[0] + "Z"
 }
@@ -43,23 +57,31 @@ export function filterToString(filter = false) {
                 if (Array.isArray(filter[field])) {
                     addValue = `${field} = ANY( ARRAY[`
                     filter[field].map((val, index) => {
-                        // console.log({val, type: , is: isNumeric(val)})
-                        addValue += typeof val == 'number' ? `${val}` : `'${val}'`
+                        // console.log({val, type: typeof val, is: isNumeric(val)})
+                        addValue += (typeof val == 'number' || isNumeric(val)) ? `${val}` : `'${val}'`
                         if (index != filter[field].length - 1) {
                             addValue += `, `
                         }
                     })
                     addValue += `] )`
                 } else {
-                    if (filter[field].from) {
-                        addValue = `${field} >= ${filter[field].from}`
-                    }
-                    if (filter[field].to) {
-                        addValue = `${field} <= ${filter[field].to}`
+                    if(filter[field]?.from && filter[field]?.to) {
+                        addValue = `${field} >= ${filter[field].from} AND ${field} <= ${filter[field].to}`
+                    } else {
+                        if (filter[field].from) {
+                            addValue = `${field} >= ${filter[field].from}`
+                        }
+                        if (filter[field].to) {
+                            addValue = `${field} <= ${filter[field].to}`
+                        }
                     }
                 }
             } else {
-                addValue = `${field} = '${filter[field]}'`;
+                if(filterValues[filter[field]]) {
+                    addValue = `${field} ${filterValues[filter[field]]}`;
+                } else {
+                    addValue = `${field} = '${filter[field]}'`;
+                }
             }
             if (filterStr != '') {
                 filterStr += ` AND ${addValue}`

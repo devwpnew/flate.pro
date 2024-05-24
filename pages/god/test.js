@@ -1,61 +1,27 @@
-import Button from "@modules/common/components/button/button";
-import Container from "@modules/common/components/container/container";
 import axios from "axios";
 import useUser from "hooks/useUser";
-import { useRouter } from "next/router";
 import api from "pages/api/service/api";
 
 import { useEffect, useState } from "react";
 
 export default function TestAdminIndex(data) {
 
-  const router = useRouter();
+  const [result, setResult] = useState();
 
   useUser(data.user);
 
-  const testFunction = async () => {
-    // const test = await imagesModel.createFromPath('http://localhost:3000/_next/static/media/logo.6b861529.svg')
-    
-
-  }
-
-  useEffect(() => {
+  useEffect(() => {  
     (async () => {
-
-      // console.log('num', usersModel.defaultLimit)
-
-      // const filter = {
-      //   id: {
-      //     from: 900
-      //   }
-      // }
-
-      // const sort = {id: 'ASC'}
-
-      // const limit = 30;
-
-      // const page = 1;
-
-      // const test = await usersModel.getAdminList(filter, sort, limit, page);
-
-      // console.log({test})
-      // const test = await selectionModel.countForUser(89)
-      // console.log('test', test)
-      // const test = await axios.post('https://flate.pro/api/v2/selection_product/add', {
-      //   fields: {
-      //     name: 'test',
-      //     selection: 88,
-      //     product_id: 1
-      //   }
-      // })
-      // console.log({test})
+      const test = await api.add.pushMessageByUser('tit', 'txt', 1115)
+      setResult(test)
+      console.log({test})     
     })();
   }, []);
 
   return (
-    <Container>
-      <Button onClick={testFunction}>test</Button>
-    </Container>
+    <>
+      <pre>{JSON.stringify(result, null, 2)}</pre>
+    </>
   );
 }
 

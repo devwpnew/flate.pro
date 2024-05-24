@@ -2,7 +2,11 @@ import axios from "axios";
 
 import API from "../api";
 import FormData from "form-data";
-import { generateProductName, reGenerateProductImage } from "helpers/productFunctions";
+import {
+  generateProductName,
+  reGenerateProductImage,
+  reGenerateProductSquarePrice,
+} from "helpers/productFunctions";
 let domen = false;
 
 let ADD = {};
@@ -11,7 +15,7 @@ export default ADD = {
     try {
       if (data.window_host) {
         domen = data.window_host;
-      } else if (typeof window != 'undefined') {
+      } else if (typeof window != "undefined") {
         domen = window.location.origin;
       }
 
@@ -40,20 +44,28 @@ export default ADD = {
       }
       if (fields.get("email")) {
         fields.set("email", fields.get("email").toLowerCase());
-        const checkExistEmail = await API.get.user({ filter: { email: fields.get("email") }, limit: 1 })
+        const checkExistEmail = await API.get.user({
+          filter: { email: fields.get("email") },
+          limit: 1,
+        });
         if (checkExistEmail && checkExistEmail.id) {
-          return { error: 'Данный Email уже зарегистрирован' }
+          return { error: "Данный Email уже зарегистрирован" };
         }
       }
-      if (fields.get('phone')) {
-        const checkExistPhone = await API.get.user({ filter: { phone: fields.get('phone') }, limit: 1 })
+      if (fields.get("phone")) {
+        const checkExistPhone = await API.get.user({
+          filter: { phone: fields.get("phone") },
+          limit: 1,
+        });
         if (checkExistPhone && checkExistPhone.id) {
-          return { error: "Пользователь с таким номером телефона уже зарегистрирован" }
+          return {
+            error: "Пользователь с таким номером телефона уже зарегистрирован",
+          };
         }
       }
-      fields.set("table", "users")
-      fields.set("date_registered", new Date())
-      resFields = fields
+      fields.set("table", "users");
+      fields.set("date_registered", new Date());
+      resFields = fields;
     } else {
       if (fields.password) {
         const hash = API.auth.generateSaltHash(fields.password);
@@ -62,22 +74,30 @@ export default ADD = {
       }
       if (fields.email) {
         fields.email = fields.email.toLowerCase();
-        const checkExistEmail = await API.get.user({ filter: { email: fields.email }, limit: 1 })
+        const checkExistEmail = await API.get.user({
+          filter: { email: fields.email },
+          limit: 1,
+        });
         if (checkExistEmail && checkExistEmail.id) {
-          return { error: 'Данный Email уже зарегистрирован' }
+          return { error: "Данный Email уже зарегистрирован" };
         }
       }
       if (fields.phone) {
-        const checkExistPhone = await API.get.user({ filter: { phone: fields.phone }, limit: 1 })
+        const checkExistPhone = await API.get.user({
+          filter: { phone: fields.phone },
+          limit: 1,
+        });
         if (checkExistPhone && checkExistPhone.id) {
-          return { error: "Пользователь с таким номером телефона уже зарегистрирован" }
+          return {
+            error: "Пользователь с таким номером телефона уже зарегистрирован",
+          };
         }
       }
       fields.date_registered = new Date();
       resFields = {
         table: "users",
         ...fields,
-      }
+      };
     }
     const data = await API.add.item(resFields);
     if (data) {
@@ -88,7 +108,7 @@ export default ADD = {
     let idAdd;
 
     if (!addFavorites) {
-      return { error: "addFavorites нечитаем (массив или id)" }
+      return { error: "addFavorites нечитаем (массив или id)" };
     }
 
     const user = await API.get.user({ filter: { id: user_id }, limit: 1 });
@@ -141,23 +161,29 @@ export default ADD = {
     let addRcFields = false;
     let getCity = false;
     if (cityName) {
-      getCity = await API.get.cities({ filter: { name: cityName }, limit: 1 })
+      getCity = await API.get.cities({ filter: { name: cityName }, limit: 1 });
     }
 
-    const publishedValue = await API.get.setting('rcs_moderation') == 'N' ? '1' : '0'
+    const publishedValue =
+      (await API.get.setting("rcs_moderation")) == "N" ? "1" : "0";
 
     if (fields instanceof FormData) {
       addRcFields = fields;
-      addRcFields.append('published', publishedValue)
-      addRcFields.append('table', 'rcs')
+      addRcFields.append("published", publishedValue);
+      addRcFields.append("table", "rcs");
 
-      if (typeof getCity != undefined && getCity && !getCity.error && getCity.id) {
-        addRcFields.append('city_link', getCity.id)
+      if (
+        typeof getCity != undefined &&
+        getCity &&
+        !getCity.error &&
+        getCity.id
+      ) {
+        addRcFields.append("city_link", getCity.id);
       }
     } else {
-      fields.published = publishedValue
+      fields.published = publishedValue;
       if (getCity && !getCity.error) {
-        fields.city_link = getCity.id
+        fields.city_link = getCity.id;
       }
       addRcFields = {
         table: "rcs",
@@ -165,13 +191,13 @@ export default ADD = {
       };
     }
 
-    if (typeof window != 'undefined') {
+    if (typeof window != "undefined") {
       domen = window.location.origin;
     }
 
     const data = await API.add.item(addRcFields);
-    const isRcModerationOn = await API.get.setting('rcs_moderation')
-    if (data && data.itemId && isRcModerationOn == 'Y') {
+    const isRcModerationOn = await API.get.setting("rcs_moderation");
+    if (data && data.itemId && isRcModerationOn == "Y") {
       API.sendEmailNotification.newRc(data.itemId, domen);
     }
     return data;
@@ -180,63 +206,73 @@ export default ADD = {
   product: async function addProduct(sendData) {
     try {
       if (sendData instanceof FormData) {
-        sendData.append("table", "product")
-        sendData.append("published", "0")
+        sendData.append("table", "product");
+        sendData.append("published", "0");
 
-        if (sendData.get('building_address')) {
-          const buildingAddress = sendData.get('building_address');
+        if (sendData.get("building_address")) {
+          const buildingAddress = sendData.get("building_address");
 
           const createBuildingFields = {
             name: buildingAddress,
+          };
+          if (sendData.get("city_link")) {
+            createBuildingFields.city_link = sendData.get("city_link");
           }
-          if (sendData.get('city_link')) {
-            createBuildingFields.city_link = sendData.get('city_link')
-          }
-          if (sendData.get('area_link')) {
-            createBuildingFields.area_link = sendData.get('area_link')
+          if (sendData.get("area_link")) {
+            createBuildingFields.area_link = sendData.get("area_link");
           }
 
-          const getExistBuilding = await API.get.buildings({ filter: createBuildingFields, limit: 1 }, true);
+          const getExistBuilding = await API.get.buildings(
+            { filter: createBuildingFields, limit: 1 },
+            true
+          );
           if (getExistBuilding && getExistBuilding.id) {
-            sendData.append('building_link', getExistBuilding.id)
+            sendData.append("building_link", getExistBuilding.id);
           } else {
-            const sendCreateBuilding = await API.add.building(createBuildingFields);
+            const sendCreateBuilding = await API.add.building(
+              createBuildingFields
+            );
 
             if (sendCreateBuilding && sendCreateBuilding.itemId) {
-              sendData.append('building_link', sendCreateBuilding.itemId)
+              sendData.append("building_link", sendCreateBuilding.itemId);
             }
           }
         }
 
-        if (!sendData.get('name')) {
+        if (!sendData.get("name")) {
           const newName = await generateProductName(sendData);
-          sendData.append('name', newName.trim())
+          sendData.append("name", newName.trim());
         }
       } else {
-        sendData.table = "product"
-        sendData.published = "0"
+        sendData.table = "product";
+        sendData.published = "0";
 
         if (sendData?.building_address) {
           const buildingAddress = sendData.building_address;
 
           const createBuildingFields = {
             name: buildingAddress,
-          }
+          };
           if (sendData?.city_link) {
-            createBuildingFields.city_link = sendData.city_link
+            createBuildingFields.city_link = sendData.city_link;
           }
           if (sendData?.area_link) {
-            createBuildingFields.area_link = sendData.area_link
+            createBuildingFields.area_link = sendData.area_link;
           }
 
-          const getExistBuilding = await API.get.buildings({ filter: createBuildingFields, limit: 1 }, true);
+          const getExistBuilding = await API.get.buildings(
+            { filter: createBuildingFields, limit: 1 },
+            true
+          );
           if (getExistBuilding && getExistBuilding.id) {
-            sendData.building_link = getExistBuilding.id
+            sendData.building_link = getExistBuilding.id;
           } else {
-            const sendCreateBuilding = await API.add.building(createBuildingFields);
+            const sendCreateBuilding = await API.add.building(
+              createBuildingFields
+            );
 
             if (sendCreateBuilding && sendCreateBuilding.itemId) {
-              sendData.building_link = sendCreateBuilding.itemId
+              sendData.building_link = sendCreateBuilding.itemId;
             }
           }
         }
@@ -245,36 +281,38 @@ export default ADD = {
 
         if (!sendData?.name) {
           const newName = await generateProductName(sendData);
-          sendData.name = newName.trim()
+          sendData.name = newName.trim();
         }
       }
 
       const res = {};
-      res.full = await API.add.item(sendData)
+      res.full = await API.add.item(sendData);
 
-      if (typeof window != 'undefined') {
+      if (typeof window != "undefined") {
         domen = window.location.origin;
       }
 
-      const isProdModerationOn = await API.get.setting('product_moderation')
+      const isProdModerationOn = await API.get.setting("product_moderation");
 
       if (res.full && res.full.itemId) {
-        res.genImage = await reGenerateProductImage(res.full.itemId)
-        if (isProdModerationOn == 'Y') {
-          API.sendEmailNotification.newProduct(res.full.itemId, domen)
+        res.genImage = await reGenerateProductImage(res.full.itemId);
+        res.genPriceSquare = await reGenerateProductSquarePrice(
+          res.full.itemId
+        );
+        if (isProdModerationOn == "Y") {
+          API.sendEmailNotification.newProduct(res.full.itemId, domen);
         }
       }
       return res;
-
     } catch (error) {
-      return ({ Error: error });
+      return { Error: error };
     }
   },
   building: async function addBuilding(fields) {
     let addBuildingFields = false;
     if (fields instanceof FormData) {
       addBuildingFields = fields;
-      addBuildingFields.append('table', 'buildings')
+      addBuildingFields.append("table", "buildings");
     } else {
       addBuildingFields = {
         table: "buildings",
@@ -290,7 +328,7 @@ export default ADD = {
     let addNewsFields = false;
     if (fields instanceof FormData) {
       addNewsFields = fields;
-      addNewsFields.append('table', 'news')
+      addNewsFields.append("table", "news");
     } else {
       addNewsFields = {
         table: "news",
@@ -306,7 +344,7 @@ export default ADD = {
     let addCityFields = false;
     if (fields instanceof FormData) {
       addCityFields = fields;
-      addCityFields.append('table', 'cities')
+      addCityFields.append("table", "cities");
     } else {
       addCityFields = {
         table: "cities",
@@ -322,7 +360,7 @@ export default ADD = {
     let addCityFields = false;
     if (fields instanceof FormData) {
       addCityFields = fields;
-      addCityFields.append('table', 'areas')
+      addCityFields.append("table", "areas");
     } else {
       addCityFields = {
         table: "areas",
@@ -375,7 +413,7 @@ export default ADD = {
 
       const dialogueExist = await API.get.dialogue({
         filter: { from_user, to_user, product },
-        limit: 1
+        limit: 1,
       });
 
       let dialogue = dialogueExist?.id;
@@ -408,22 +446,41 @@ export default ADD = {
     }
   },
 
-  newsNotification: async function addNewsNotification(news_id, previewText, host) {
-    let res = {}
-    res.Notification = await API.add.globalNotification({ news_id, text: previewText, window_host: host })
+  newsNotification: async function addNewsNotification(
+    news_id,
+    previewText,
+    host
+  ) {
+    let res = {};
+    res.Notification = await API.add.globalNotification({
+      news_id,
+      text: previewText,
+      window_host: host,
+    });
     if (res?.Notification?.itemId) {
-      res.sendEmail = await API.sendEmailNotification.newsNotification(news_id, host)
+      res.sendEmail = await API.sendEmailNotification.newsNotification(
+        news_id,
+        host
+      );
     }
-    return res
+    return res;
   },
 
-  mainNotification: async function addMainNotification(title, text, window_host) {
+  mainNotification: async function addMainNotification(
+    title,
+    text,
+    window_host
+  ) {
     let res = {};
-    res.notif = await API.add.globalNotification({ title, text })
-    res.mail = await API.sendEmailNotification.mainNotification(title, text, domen);
+    res.notif = await API.add.globalNotification({ title, text });
+    res.mail = await API.sendEmailNotification.mainNotification(
+      title,
+      text,
+      domen
+    );
     if (window_host) {
       domen = window_host;
-    } else if (typeof window != 'undefined') {
+    } else if (typeof window != "undefined") {
       domen = window.location.origin;
     }
     // res.smsNotif = await axios.post(
@@ -434,13 +491,19 @@ export default ADD = {
     //     fields: { user_id: "all" }
     //   }
     // );
-    return res
+    return res;
   },
 
-  personalNotification: async function addPersonalNotification(fields, template) {
+  personalNotification: async function addPersonalNotification(
+    fields,
+    template
+  ) {
     try {
-      const prod_id = typeof fields.product_id == 'object' ? fields.product_id.id : fields.product_id
-      const prod = await API.get.product.byID(prod_id)
+      const prod_id =
+        typeof fields.product_id == "object"
+          ? fields.product_id.id
+          : fields.product_id;
+      const prod = await API.get.product.byID(prod_id);
 
       if (template) {
         const resTemplate = notificationTemplates(prod, template);
@@ -454,16 +517,16 @@ export default ADD = {
       }
 
       if (!fields.text) {
-        return { error: "Текст уведомления обязателен" }
+        return { error: "Текст уведомления обязателен" };
       }
       if (!fields.user_id && !prod?.user_id) {
-        return { error: "ID пользователя обязателен" }
+        return { error: "ID пользователя обязателен" };
       }
 
       const createPersNotif = {
-        table: 'personal_notifications',
-        ...fields
-      }
+        table: "personal_notifications",
+        ...fields,
+      };
 
       let response = {};
 
@@ -471,7 +534,7 @@ export default ADD = {
 
       if (fields.window_host) {
         domen = fields.window_host;
-      } else if (typeof window != 'undefined') {
+      } else if (typeof window != "undefined") {
         domen = window.location.origin;
       }
 
@@ -479,14 +542,26 @@ export default ADD = {
         if (template) {
           const pushTemplate = pushNotificationTemplates(prod, template);
           if (pushTemplate) {
-            API.add.pushMessageByUser(pushTemplate.title, pushTemplate.desc, prod.user_id)
+            API.add.pushMessageByUser(
+              pushTemplate.title,
+              pushTemplate.desc,
+              prod.user_id
+            );
           }
         } else {
-          response.push = API.add.pushMessageByUser(fields.title, fields.text, fields.user_id);
+          response.push = API.add.pushMessageByUser(
+            fields.title,
+            fields.text,
+            fields.user_id
+          );
         }
 
-        if (template == 'unpublish') {
-          response.EmailUnpub = await API.sendEmailNotification.unpublish(fields.product_id, fields.user_id, domen)
+        if (template == "unpublish") {
+          response.EmailUnpub = await API.sendEmailNotification.unpublish(
+            fields.product_id,
+            fields.user_id,
+            domen
+          );
           // response.SmsUnpub = await axios.post(
           //   `${domen}/api/user/sendSmsText`,
           //   {
@@ -496,8 +571,12 @@ export default ADD = {
           //   }
           // );
         }
-        if (template == 'unprem') {
-          response.EmailUnprem = await API.sendEmailNotification.unprem(fields.product_id, fields.user_id, domen)
+        if (template == "unprem") {
+          response.EmailUnprem = await API.sendEmailNotification.unprem(
+            fields.product_id,
+            fields.user_id,
+            domen
+          );
           // response.SmsUnprem = await axios.post(
           //   `${domen}/api/user/sendSmsText`,
           //   {
@@ -507,36 +586,45 @@ export default ADD = {
           //   }
           // );
         }
-        if (template == 'sendEdit') {
-          response.EmailSendEdit = await API.sendEmailNotification.sendEditProduct(fields.product_id, fields.user_id, fields.text, domen)
+        if (template == "sendEdit") {
+          response.EmailSendEdit =
+            await API.sendEmailNotification.sendEditProduct(
+              fields.product_id,
+              fields.user_id,
+              fields.text,
+              domen
+            );
         }
       }
 
       return response;
     } catch (Error) {
-      return { Error }
+      return { Error };
     }
   },
 
   globalNotification: async function addGlobalNotification(fields) {
-    const getUsers = await API.get.user({ filter: {}, limit: 'all' });
+    const getUsers = await API.get.user({ filter: {}, limit: "all" });
 
-    const responses = Promise.all(getUsers.map(async (user) => {
-      const persFields = { ...{ user_id: user.id }, ...fields }
-      return await API.add.personalNotification(persFields)
-    }));
+    const responses = Promise.all(
+      getUsers.map(async (user) => {
+        const persFields = { ...{ user_id: user.id }, ...fields };
+        return await API.add.personalNotification(persFields);
+      })
+    );
 
     return responses;
   },
 
   task: async function addTask(fields) {
     const createTaskFields = {
-      table: 'tasks',
-      ...fields
-    }
+      table: "tasks",
+      ...fields,
+    };
     const response = await API.add.item(createTaskFields);
     if (createTaskFields?.status == 1) {
-      const test = await API.sendEmailNotification.feedback(createTaskFields)
+      // console.log({createTaskFields})
+      const test = await API.sendEmailNotification.feedback(createTaskFields);
       // console.log({ test })
     }
     return response;
@@ -548,82 +636,88 @@ export default ADD = {
       const response = await API.add.item(data);
       return response;
     } else {
-      return { Error: 'Поддерживается только FormData' }
+      return { Error: "Поддерживается только FormData" };
     }
   },
 
   userAdditionalPhone: async function addUserAdditionalPhone(phone, user) {
     const isReged = await API.auth.isUserRegistered(phone);
     if (isReged) {
-      return { error: "Этот номер телефона уже зарегистрирован" }
+      return { error: "Этот номер телефона уже зарегистрирован" };
     }
 
-    const userId = typeof user == 'object' ? user.id : user
-    const arUser = await API.get.user({ filter: { id: userId }, limit: 1 })
+    const userId = typeof user == "object" ? user.id : user;
+    const arUser = await API.get.user({ filter: { id: userId }, limit: 1 });
 
     if (arUser.phone == phone) {
-      return { error: 'Данный номер телефона уже используется как главный' }
+      return { error: "Данный номер телефона уже используется как главный" };
     }
 
     let additionalPhones = [];
 
     if (Array.isArray(arUser.additional_phones)) {
       additionalPhones = arUser.additional_phones;
-      additionalPhones.push(phone)
+      additionalPhones.push(phone);
     }
 
     const updateFields = {
       id: userId,
-      additional_phones: additionalPhones
-    }
+      additional_phones: additionalPhones,
+    };
 
     const res = await API.update.user(updateFields);
-    return res
+    return res;
   },
 
   report: async function addReport(fields) {
-
     const resFields = fields;
 
-    resFields.user_id = typeof fields.user_id == 'object' ? fields.user_id.id : fields.user_id
+    resFields.user_id =
+      typeof fields.user_id == "object" ? fields.user_id.id : fields.user_id;
 
     const createTaskFields = {
-      table: 'reports',
-      ...fields
-    }
+      table: "reports",
+      ...fields,
+    };
     const response = await API.add.item(createTaskFields);
     if (!response.error) {
-
-      if (typeof window != 'undefined') {
+      if (typeof window != "undefined") {
         domen = window.location.origin;
       }
 
       let prod = false,
         user = false;
 
-      if (typeof fields.product == 'object') {
-        prod = fields.product
+      if (typeof fields.product == "object") {
+        prod = fields.product;
       } else {
-        prod = await API.get.product.list({ filter: { id: fields.product }, limit: 1 });
+        prod = await API.get.product.list({
+          filter: { id: fields.product },
+          limit: 1,
+        });
       }
 
-      if (typeof fields.user_id == 'object') {
-        user = fields.user_id
+      if (typeof fields.user_id == "object") {
+        user = fields.user_id;
       } else {
-        user = await API.get.user({ filter: { id: fields.user_id }, limit: 1 })
+        user = await API.get.user({ filter: { id: fields.user_id }, limit: 1 });
       }
-      await API.sendEmailNotification.report(prod, user, domen ? domen : fields.window_host)
+      await API.sendEmailNotification.report(
+        prod,
+        user,
+        fields.text,
+        domen ? domen : fields.window_host
+      );
     }
     return response;
   },
 
   token: async function addToken(token, window_host) {
-
     const data = {
       window_host,
       table: "push_tokens",
       token: token,
-    }
+    };
 
     const response = await API.add.item(data);
 
@@ -632,130 +726,160 @@ export default ADD = {
 
   pushMessageAll: async function addPushMessageAll(title, text) {
     const tokensArr = await API.get.allTokens();
-    const results = tokensArr.map(async (arToken) => {
-      const res = await API.add.pushMessageByToken(title, text, arToken.token)
-      return res
-    })
-    return results
+
+    const arTokens = tokensArr.map((data) => {
+      return data.token;
+    });
+
+    const arTokensChunks = arTokens.reduce((result, item, index) => {
+      const chunkIndex = Math.floor(index / 100);
+
+      if (!result[chunkIndex]) {
+        result[chunkIndex] = [];
+      }
+
+      result[chunkIndex].push(item);
+
+      return result;
+    }, []);
+
+    const results = await Promise.all(
+      arTokensChunks.map(async (tokens) => {
+        await new Promise((res) => {
+          setTimeout(() => res(), 500);
+        });
+
+        return await API.add.pushMessageByToken(title, text, tokens);
+      })
+    );
+
+    return results;
   },
 
   pushMessageByToken: async function addPushMessageByToken(title, text, token) {
     if (!token) {
-      return { Error: 'token обязателен' }
+      return { Error: "token обязателен" };
     }
 
-    return await API.add.pushMessage(title, text, token)
+    return await API.add.pushMessage(title, text, token);
   },
 
   pushMessageByUser: async function addPushMessageByUser(title, text, userid) {
     try {
-
-      const id = typeof userid == 'object' ? userid.id : userid
+      const id = typeof userid == "object" ? userid.id : userid;
 
       if (!userid) {
-        return { Error: 'Userid обязателен' }
+        return { Error: "Userid обязателен" };
       }
 
-      const expoPushToken = await API.get.tokenRowByUserId(id)
+      const expoPushToken = await API.get.tokenRowsByUserId(id);
+
+      const arTokens = expoPushToken.map((data) => {
+        return data.token;
+      });
 
       if (!expoPushToken) {
-        return { Error: 'Токен не был получен' }
+        return { Error: "Токен не был получен" };
       }
 
-      return await API.add.pushMessage(title, text, expoPushToken.token)
+      return await API.add.pushMessage(title, text, arTokens);
     } catch (e) {
-      return { Error: e }
+      return { Error: e };
     }
   },
 
   pushMessage: async function addPushMesage(title, text, token) {
     try {
-
       const message = {
         to: token,
-        sound: 'default',
+        sound: "default",
         title: title,
         body: text,
         // data: { someData: 'goes here' },
       };
 
-      const res = await fetch('https://exp.host/--/api/v2/push/send', {
+      console.log(message, "message");
+
+      const res = await fetch("https://exp.host/--/api/v2/push/send", {
         mode: "no-cors",
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Accept-encoding': 'gzip, deflate',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Accept-encoding": "gzip, deflate",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(message),
       });
 
       return res;
     } catch (e) {
-      return { Error: e }
+      return { Error: e };
     }
   },
 
   image: async function addImage(path) {
     try {
       const imageFields = {
-        table: 'images',
-        path
-      }
+        table: "images",
+        path,
+      };
 
       const response = await API.add.item(imageFields);
       // console.log('response', response)
 
       return response;
-
     } catch (e) {
-      return { Error: e }
+      return { Error: e };
     }
-  }
-
+  },
 };
 
 const notificationTemplates = function (prod, template) {
-  if (template == 'unpublish') {
+  if (template == "unpublish") {
     return {
-      title: `У объявления ${prod ? prod.name : ''} закончился срок размещения`,
-      text: `Вы можете возобновить показ объявления или оно будет полностью удалено через 30 дней`
-    }
-  } else if (template == 'unprem') {
+      title: `У объявления ${prod ? prod.name : ""} закончился срок размещения`,
+      text: `Вы можете возобновить показ объявления или оно будет полностью удалено через 30 дней`,
+    };
+  } else if (template == "unprem") {
     return {
-      title: `У объявления ${prod ? prod.name : ''} закончился срок платного размещения`,
-      text: `Для продления требуется оплата`
-    }
-  } else if (template == 'sendEdit') {
+      title: `У объявления ${
+        prod ? prod.name : ""
+      } закончился срок платного размещения`,
+      text: `Для продления требуется оплата`,
+    };
+  } else if (template == "sendEdit") {
     return {
-      text: `Ваше объявление ${prod ? prod.name : ''} отклонено`,
-    }
-  }
-  else if (template == 'prodModComplete') {
+      text: `Ваше объявление ${prod ? prod.name : ""} отклонено`,
+    };
+  } else if (template == "prodModComplete") {
     return {
-      text: `Ваше объявление ${prod ? prod.name : ''} успешно прошло модерацию`,
-    }
+      text: `Ваше объявление ${prod ? prod.name : ""} успешно прошло модерацию`,
+    };
   }
 
-  return false
-}
+  return false;
+};
 
 const pushNotificationTemplates = function (prod, template) {
-  if (template == 'unpublish') {
+  if (template == "unpublish") {
     return {
       title: "Срок размещения закончился.",
-      desc: `Срок размещения объявления ${prod ? prod.name : ''} закончился. Подтвердите актуальность вашего предложения. Это займет всего 10 секунд.`
-    }
-  } else if (template == 'unprem') {
+      desc: `Срок размещения объявления ${
+        prod ? prod.name : ""
+      } закончился. Подтвердите актуальность вашего предложения. Это займет всего 10 секунд.`,
+    };
+  } else if (template == "unprem") {
     return {
       title: "Изменился статус объявления",
-      desc: `У объявления ${prod ? prod.name : ''} закончился срок платного размещения`
-    }
-  } else if (template == 'sendEdit') {
+      desc: `У объявления ${
+        prod ? prod.name : ""
+      } закончился срок платного размещения`,
+    };
+  } else if (template == "sendEdit") {
     return {
       title: "Изменился статус объявления",
-      desc: `Ваше объявление ${prod ? prod.name : ''} отклонено`
-    }
+      desc: `Ваше объявление ${prod ? prod.name : ""} отклонено`,
+    };
   }
   // else if (template == 'prodModComplete') {
   //   return {
@@ -765,4 +889,4 @@ const pushNotificationTemplates = function (prod, template) {
   // }
 
   return false;
-}
+};

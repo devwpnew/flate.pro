@@ -128,7 +128,9 @@ export default function PostTemplate({ product }) {
                   </span>
                   <span>
                     {getProductPriceSquares(product)} руб. за{" "}
-                    {slug && slug === "land" ? "сотку" : "м2"}
+                    {slug && slug === "land"
+                      ? "сотку"
+                      : "м2"}
                   </span>
                 </div>
 
@@ -175,13 +177,15 @@ export default function PostTemplate({ product }) {
 
             {/* START JK INFORMATION */}
 
-            {slug && slug === "flats" && product?.rc_link ? (
+            {slug && slug === "flats" &&
+            product?.rc_link ? (
               <PostJkInfo rc_link={product?.rc_link} />
             ) : (
               <>
-                {slug && slug === "flats" && product?.building_link && (
-                  <PostJkInfo building_link={product?.building_link} />
-                )}
+                {slug && slug === "flats" &&
+                  product?.building_link && (
+                    <PostJkInfo building_link={product?.building_link} />
+                  )}
               </>
             )}
 

@@ -133,7 +133,7 @@ export default function ReviewForm({ onClose }) {
                 icon={el.icon}
                 title={el.title}
                 value={el.value}
-                name="rating"
+                name="vote"
                 key={el.value}
                 setIsItemActive={setActiveVoteValue}
               />
@@ -148,7 +148,7 @@ export default function ReviewForm({ onClose }) {
             </div>
 
             <TextareaRequired
-              name={"text"}
+              name={"text_why"}
               style={`bg-greylight ${
                 error ? "border-red" : "border-greyC4"
               } py-2.5`}
@@ -160,7 +160,7 @@ export default function ReviewForm({ onClose }) {
             <div className="text-lg mb-2.5">Есть идея?</div>
 
             <Textarea
-              name={"text2"}
+              name={"text_idea"}
               style={"bg-greylight border-greyC4 py-2.5"}
               placeholder={"Что мы можем улучшить для вас?"}
             />
@@ -170,7 +170,7 @@ export default function ReviewForm({ onClose }) {
             <div className="text-lg mb-2.5">Как мы можем с вами связаться?</div>
 
             <Textarea
-              name={"text3"}
+              name={"contact"}
               style={"bg-greylight border-greyC4 py-2.5"}
               placeholder={
                 "Если это необходимо. Если нет, можете оставить поле пустым."

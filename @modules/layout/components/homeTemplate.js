@@ -33,7 +33,7 @@ export default function HomeTemplate({
   const [sortObj, setSortObj] = useState({
     name: "По умолчанию",
     id: "date_published",
-    sort: { date_created: "DESC" },
+    sort: { date_sort: "DESC"},
   });
 
   const [ssrData, setSsrData] = useState({});
@@ -203,6 +203,7 @@ export default function HomeTemplate({
                 callback={setProducts}
                 isHideSort={false}
                 sortCallback={(v) => setSortObj(v)}
+                sortProps={{ defaultValue: "date_created-DESC" }}
               />
             </div>
           </div>

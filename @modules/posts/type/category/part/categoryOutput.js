@@ -23,6 +23,7 @@ import useFilterFields from "hooks/filter/useFilterFields";
 import getLayout from "helpers/getLayout";
 import { setFilterGlobalFields } from "store/global/filter/filterGlobalFields";
 import ProductContainerInfinite from "../../product/components/template/productContainerInfinite";
+import axios from "axios";
 
 export default function CategoryOutput({
   isRow,
@@ -249,15 +250,13 @@ export default function CategoryOutput({
       reqFields["filter"]["rc_link"] = isSearchByRc;
     }
 
-    if (isSearchByBuilding) {
+    if (isSearchByBuilding) { 
       reqFields["filter"]["building_link"] = isSearchByBuilding;
     }
 
-    // console.log("reqFields", reqFields);
-
     const response = await API.get.product.list(reqFields);
-
-    setProducts(response);
+ 
+    setProducts(response);  
     setIsLoadingNew(false);
 
     // console.log(reqFields, "first fetch");
@@ -299,7 +298,7 @@ export default function CategoryOutput({
         {isSearchByUser && (
           <UserInformation key={isSearchByUser} userId={isSearchByUser} />
         )}
-        {/* FOR RC */}
+        {/* FOR RC */} 
         {isSearchByRc && (
           <>
             <RcInformation key={isSearchByRc} rcId={isSearchByRc} />

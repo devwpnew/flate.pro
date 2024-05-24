@@ -760,7 +760,24 @@ export default GET = {
     return data
   },
 
-  tokenRowByUserId: async function getTokenRowByUserId(userId) {
+  tokenRowsByUserId: async function (userId) {
+    try {
+      if(!userId) {
+        return {error: 'userId обязателен'}
+      }
+
+      const data = await API.get.data({
+        table: 'push_tokens',
+        filter: { user_id: userId }
+      })
+  
+      return data
+    } catch (e) {
+      return {Error: e}
+    }
+  },
+
+  tokenRowByUserId: async function (userId) {
     try {
       if(!userId) {
         return {error: 'userId обязателен'}

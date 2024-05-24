@@ -47,6 +47,23 @@ export async function reGenerateProductImage(product) {
     }
 }
 
+export async function reGenerateProductSquarePrice(product) {
+    if (!product) {
+        return { error: 'Товар обязателен' }
+    }
+    const getProd = (typeof product == 'object' ? product : await API.get.product.byID(product))
+    if(getProd?.section_relation && getProd.section_relation[0].id == 3) {
+        const price = getProd.product_price;
+        const area = getProd.living_squares
+        if(price && area) {
+            if(!getProd?.flats_price_for_m || getProd?.flats_price_for_m != price/area) { 
+                const res = await API.update.product({ id: getProd.id, flats_price_for_m: price/area })
+                return res
+            }
+        }
+    }
+}
+
 export async function generateProductName(data) {
     try {
         if (data instanceof FormData || typeof data == 'object') {
@@ -224,6 +241,7 @@ export async function regenerateProductInfo(prod) {
         res.slug = await reGenerateProductCode(prod);
         res.image = await reGenerateProductImage(prod);
         res.prem = await checkproductPremium(prod);
+        res.price_m = await reGenerateProductSquarePrice(prod);
 
         return res
     } catch (e) {

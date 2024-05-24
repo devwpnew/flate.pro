@@ -49,7 +49,7 @@ const sortFields = [
   // },
 ];
 
-export default function ProductsSortSelect({ callback }) {
+export default function ProductsSortSelect({ callback, ...props }) {
   const router = useRouter();
 
   const specialSortFields = [
@@ -85,6 +85,7 @@ export default function ProductsSortSelect({ callback }) {
         }
         style={"h-12 py-[0] px-[6px] h-[30px]"}
         callback={callback}
+        {...props}
       />
     </div>
   );

@@ -38,7 +38,7 @@ export default function ProductItemGrid({ user, product }) {
               }}
             >
               <div className="block">
-                <div className="rounded overflow-hidden mb-2.5 lg:w-[220px] lg:h-[160px]">
+                <div className="rounded overflow-hidden mb-2.5 lg:w-full lg:h-[160px]">
                   <Image
                     className="object-cover object-center h-full"
                     src={getProductImageSrc(product)}

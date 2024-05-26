@@ -34,7 +34,7 @@ export default function Hero({ productsAmount }) {
       }}
       className="py-3 md:py-8 lg:pt-[65px] lg:pb-[82px]"
     >
-      <Container>
+      {/* <Container>
         <h1 className="text-white text-2xl md:text-3xl w-full font-bold mb-2.5 md:mb-5 inline-flex items-center">
           {productsCount.isLoading ? (
             <div className="inline-block h-[36px] md:h-[45px] w-2/3 lg:w-1/3 ">
@@ -50,7 +50,7 @@ export default function Hero({ productsAmount }) {
           Найдите лучшее
         </span>
         <SearchForm />
-      </Container>
+      </Container> */}
     </div>
   );
 }

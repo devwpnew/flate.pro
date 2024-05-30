@@ -414,13 +414,13 @@ export default function EditRcsTemplate({ rcId }) {
                         />
                       </div>
 
-                      <div className="font-bold mb-2.5 text-sm">Строитель</div>
+                      <div className="font-bold mb-2.5 text-sm">Застройщик</div>
                       <div className="mb-5">
                         <Input
                           style={"w-full h-11 border-greyborder border "}
                           name={"builder"}
                           defaultValue={rc && rc.builder}
-                          placeholder={"Строитель"}
+                          placeholder={"Застройщик"}
                           onChange={changeFields}
                         />
                       </div>

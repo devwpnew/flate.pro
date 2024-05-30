@@ -72,7 +72,7 @@ export default function Layout({ children, layoutParams, ...props }) {
           >
             {children}
           </main>
-          <ButtonReview />
+          {/* <ButtonReview /> */}
           <ButtonToTop />
           <Footer />
 

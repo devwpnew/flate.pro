@@ -212,11 +212,11 @@ export default function HomeTemplate({
                         </div>
                     </div>
 
-                    <div className="py-5 md:py-8 lg:py-12">
+                    {/* <div className="py-5 md:py-8 lg:py-12">
                         <Sidebar title={"Новости"}>
                             <NewsContainer news={ssrNews} />
                         </Sidebar>
-                    </div>
+                    </div> */}
                 </div>
             </Container>
         </MotionContainer>

@@ -21,42 +21,46 @@ export default function PostUserInfo({ product }) {
   );
 
   return (
-    <div className="flex flex-col gap-2.5 mb-4 py-4 border-greyborder border-t-[1px] border-b-[1px]">
-      <span className="text-grey text-sm">Контактное лицо</span>
+    <div className="mt-5 flex flex-col gap-2.5 mb-4 py-">
       <div className="flex items-center gap-2.5">
         <div className="w-[70px] h-[70px]">
           <UserAvatar
-            className="text-4xl"
+            className=""
             userOwner={product.user_id}
             userName={product.user_id && product.user_id.user_name}
           />
         </div>
         <div className="flex flex-col">
-          <span className="font-bold">
-            <UserName name={product.user_id && product.user_id.user_name} />
-          </span>
+          <span className="text-grey text-xs mb-2">Контактное лицо</span>
+
+          <div className="flex gap-3 items-center">
+            <UserName className="font-bold" name={product.user_id && product.user_id.user_name} />
+
+            {userProductsCount.isLoading ? (
+              <div className="w-full h-[20px]">
+                <Preloader />
+              </div>
+            ) : (
+              <Link
+                href={`/users/${product.user_id.sef_code || product.user_id.id}`}
+              >
+                <a className="text-sm block cursor-pointer text-[#1479F5] bg-[#ECF2F8] hover:bg-[#1479F5]/20 py-1 px-3  rounded-full">
+                  {userProductsCount.products.count &&
+                    `${userProductsCount.products.count} ${declension(
+                      userProductsCount.products.count,
+                      ["объявление", "объявления", "объявлений"]
+                    )}`}
+                </a>
+              </Link>
+            )}
+
+          </div>
           {/* {product.user_id && (
             <span className="text-sm text-grey">
               {product.user_id.user_agency}
             </span>
           )} */}
-          {userProductsCount.isLoading ? (
-            <div className="w-full h-[20px]">
-              <Preloader />
-            </div>
-          ) : (
-            <Link
-              href={`/users/${product.user_id.sef_code || product.user_id.id}`}
-            >
-              <a className="text-sm block cursor-pointer hover:text-bluelight leading-5">
-                {userProductsCount.products.count &&
-                  `${userProductsCount.products.count} ${declension(
-                    userProductsCount.products.count,
-                    ["объявление", "объявления", "объявлений"]
-                  )}`}
-              </a>
-            </Link>
-          )}
+          
         </div>
       </div>
     </div>

@@ -67,26 +67,26 @@ export default function PostHeaderButtons({ product }) {
   // console.log(product);
 
   return (
-    <div className="mb-2 md:mb-5">
+    <div className="">
       <div className="relative">
         <AdminToolsButton
           user={user}
           product={product}
-          className="absolute top-0 right-2.5 cursor-pointer z-1"
+          className="absolute top-[37px] md:top-0 right-0 cursor-pointer z-1 text-white p-2 rounded-full border-0 bg-[#C842DE]"
         />
 
-        <div className="text-sm mt-0 md:mt-5 mb-2 md:mb-4">{getProductAddress(product)}</div>
+        {/* <div className="text-sm text-[#000]/50 mb-4">{getProductAddress(product)}</div> */}
 
-        {!isLoading ? (
+        {/* {!isLoading ? (
           <H1>{product.name}</H1>
         ) : (
           <div className="w-1/2 h-[40px]">
             <Preloader />
           </div>
-        )}
+        )} */}
       </div>
 
-      <div className="hidden md:flex flex-nowrap justify-between	items-center gap-2.5 my-4">
+      <div className="hidden md:flex flex-nowrap justify-between	items-center gap-2.5">
         <div className="flex items-center gap-2.5 w-full max-w-[450px]">
           {!isLoading ? (
             <>
@@ -101,7 +101,7 @@ export default function PostHeaderButtons({ product }) {
                 </ButtonFavorite>
               </div>
 
-              {isShowLink() ? (
+              {/* {isShowLink() ? (
                 <ButtonWithIcon
                   onClick={openRcInBlank}
                   type="white"
@@ -112,16 +112,16 @@ export default function PostHeaderButtons({ product }) {
                 </ButtonWithIcon>
               ) : (
                 ""
-              )}
+              )} */}
 
-              <div className="max-w-[132px] w-full">
+              {/* <div className="max-w-[132px] w-full">
                 <ButtonShare
                   className="whitespace-nowrap py-1 px-2"
                   type="white"
                 >
                   Поделиться
                 </ButtonShare>
-              </div>
+              </div> */}
             </>
           ) : (
             <div className="w-full h-[40px]">
@@ -130,7 +130,7 @@ export default function PostHeaderButtons({ product }) {
           )}
         </div>
 
-        <div className="flex justify-between items-center items-center">
+        <div className="flex justify-between items-center">
           {/* <div className="text-sm">{getProductDate(product)}</div> */}
           <div className="flex flex-row gap-2.5 lg:hidden">
             <div className="text-sm">№ {product.id}</div>

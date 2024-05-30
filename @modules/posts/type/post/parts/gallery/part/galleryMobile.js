@@ -27,7 +27,7 @@ export default function GalleryMobile({ images, srcUrl }) {
   const galleryContent = JSON.parse(images).map((src, index, arr) => {
     return (
       <SwiperSlide key={`${index}${src}`}>
-        <div className="relative" style={{
+        <div className="relative overflow-hidden rounded-[10px]" style={{
           height: galleryContainer?.current ? (3/4) * galleryContainer.current.offsetWidth  -30 : ""
         }}>
           <div
@@ -73,12 +73,12 @@ export default function GalleryMobile({ images, srcUrl }) {
           {galleryContent}
         </Swiper>
         <div className="absolute left-[50%] mr-[-50%] -translate-x-2/4	 -translate-y-2/4	 bottom-1 z-50">
-          <span className="text-sm text-white">
+          <div className="flex items-center gap-2.5 px-3 py-1 rounded-full bg-white">
             {curSlideNum}/{amountSlides}
-          </span>
+          </div>
         </div>
       </div>
       <div className="mb-2.5"></div>
     </>
   );
-}
+} 

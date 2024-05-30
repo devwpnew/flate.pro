@@ -24,9 +24,9 @@ export default function UserAvatar({
   const name = userName ? userName : user.user_name;
   return (
     <div
-      className={`flex items-center justify-center w-full h-full rounded-full overflow-hidden cursor-pointer ${
-        isAdmin ? "bg-white" : "bg-bluelight2"
-      } ${className ? className : ""}`}
+      className={`flex items-center justify-center rounded-full overflow-hidden cursor-pointer ${
+        isAdmin ? "bg-white" : "bg-blue/15"
+      } ${className ? className : "w-full h-full"}`}
       onClick={onClick}
     >
       {user && user.user_avatar ? (
@@ -53,7 +53,7 @@ export default function UserAvatar({
           </Item>
         </Gallery>
       ) : (
-        <div className={`${isAdmin ? "text-blue" : "text-white"}`}>
+        <div className={`${isAdmin ? "text-blue" : "text-white text-3xl"}`}>
           {createAvatar(name)}
           {/* <svg
             width="34"

@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import OutsideAlerter from "hooks/useOutsideAlerter";
 import AdminTools from "../part/adminTools";
+import { BsThreeDots } from "react-icons/bs";
+
+
 
 import moreDotsIcon from "public/icons/more-dots-icon.svg";
 
@@ -34,11 +37,12 @@ export default function AdminToolsButton({
             onClick={() => setShowAdminTools(!showAdminTools)}
             className={className}
           >
-            <Image
+            <BsThreeDots />
+            {/* <Image
               src={moreDotsIcon.src}
               width={moreDotsIcon.width}
               height={moreDotsIcon.height}
-            />
+            /> */}
           </div>
           <div className={showAdminTools ? "block" : "hidden"}>
             <AdminTools

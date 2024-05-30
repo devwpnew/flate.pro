@@ -11,29 +11,29 @@ import PreloaderSpinner from "@modules/common/components/preloader/preloaderSpin
 import useUser from "hooks/useUser";
 
 export default function Favorites({ data }) {
-  const user = useUser(data.user, "/user/profile/auth");
-  
-  return (
-    <>
-      {user ? (
+    const user = useUser(data.user, "/user/profile/auth");
+
+    return (
         <>
-          <FavoritesTemplate />
+            {user ? (
+                <>
+                    <FavoritesTemplate />
+                </>
+            ) : (
+                <Container>
+                    <div className="flex flex-row items-center justify-center h-full">
+                        <PreloaderSpinner />
+                    </div>
+                </Container>
+            )}
         </>
-      ) : (
-        <Container>
-          <div className="flex flex-row items-center justify-center h-full">
-            <PreloaderSpinner />
-          </div>
-        </Container>
-      )}
-    </>
-  );
+    );
 }
 export async function getServerSideProps(context) {
-  require("dotenv").config();
-  const { req, res } = context;
+    require("dotenv").config();
+    const { req, res } = context;
 
-  const user = await api.auth.isUserAuthorized(req, res);
+    const user = await api.auth.isUserAuthorized(req, res);
 
-  return { props: { data: { user } } };
+    return { props: { data: { user } } };
 }

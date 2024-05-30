@@ -25,47 +25,59 @@ import slideArrowClose from "public/icons/slide-arrow-left.svg";
 import RightSlideWrapper from "@modules/common/components/rightSlide/rightSlideWrapper";
 import SettingsContent from "../../settings/template/settingsContent";
 
+
+import { GoBell } from "react-icons/go";
+
+
 import getLayout from "helpers/getLayout";
 export default function UserActions({ isAdmin }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const { MOBILE } = getLayout();
+    const [isOpen, setIsOpen] = useState(false);
+    const { MOBILE } = getLayout();
 
-  return (
-    <div className="flex flex-col gap-2.5">
-      <Link href="/user/profile/items">
-        <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
-          <div className="flex items-center gap-2.5">
-            <UserItemsButton icon={itemsIcon} />
-            <span className="text-sm cursor-pointer">Мои объявления</span>
-          </div>
+    return (
+        <div className="flex flex-col bg-[#ECF2F8] md:bg-transparent rounded-[20px]">
+            <div className="px-[10px] pt-[20px] pb-[10px] border-b-[1px] border-white">
+                <Link href="/user/profile/items">
+                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                        <div className="flex items-center gap-2.5">
+                            <UserItemsButton icon={itemsIcon} />
+                            <span className="text-sm cursor-pointer">
+                                Все объявления
+                            </span>
+                        </div>
 
-          {MOBILE && (
-            <Image
-              src={rightArrowIcon.src}
-              width={rightArrowIcon.width}
-              height={rightArrowIcon.height}
-            />
-          )}
-        </a>
-      </Link>
+                        {MOBILE && (
+                            <Image
+                                src={rightArrowIcon.src}
+                                width={rightArrowIcon.width}
+                                height={rightArrowIcon.height}
+                            />
+                        )}
+                    </a>
+                </Link>
+            </div>
 
-      <Link href="/user/profile/favorites">
-        <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
-          <div className="flex items-center gap-2.5">
-            <UserFavoriteButton icon={favoriteIcon} />
-            <span className="text-sm cursor-pointer">Избранное</span>
-          </div>
-          {MOBILE && (
-            <Image
-              src={rightArrowIcon.src}
-              width={rightArrowIcon.width}
-              height={rightArrowIcon.height}
-            />
-          )}
-        </a>
-      </Link>
+            <div className="px-[10px] py-[10px] border-b-[1px] border-white">
+                <Link href="/user/profile/favorites">
+                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                        <div className="flex items-center gap-2.5">
+                            <UserFavoriteButton icon={favoriteIcon} />
+                            <span className="text-sm cursor-pointer">
+                                Избранное
+                            </span>
+                        </div>
+                        {MOBILE && (
+                            <Image
+                                src={rightArrowIcon.src}
+                                width={rightArrowIcon.width}
+                                height={rightArrowIcon.height}
+                            />
+                        )}
+                    </a>
+                </Link>
+            </div>
 
-      <Link href="/user/profile/messages">
+            {/* <Link href="/user/profile/messages">
         <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
           <div className="flex items-center gap-2.5">
             <UserMessagesButton icon={messagesIcon} />
@@ -79,25 +91,45 @@ export default function UserActions({ isAdmin }) {
             />
           )}
         </a>
-      </Link>
+      </Link> */}
 
-      <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
-        <div className="flex items-center gap-2.5">
-          <UserHelpButton icon={helpIcon} />
-          <Link href="/help">
-            <a className="text-sm cursor-pointer">Помощь</a>
-          </Link>
-        </div>
-        {MOBILE && (
-          <Image
-            src={rightArrowIcon.src}
-            width={rightArrowIcon.width}
-            height={rightArrowIcon.height}
-          />
-        )}
-      </div>
+            <div className="px-[10px] py-[10px] border-b-[1px] border-white">
+                <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                    <div className="flex items-center gap-2.5">
+                        <GoBell className="text-[20px]" />
+                        <Link href="/user/profile/messages?notifications=1">
+                            <a className="text-sm cursor-pointer">Уведомления</a>
+                        </Link>
+                    </div>
+                    {MOBILE && (
+                        <Image
+                            src={rightArrowIcon.src}
+                            width={rightArrowIcon.width}
+                            height={rightArrowIcon.height}
+                        />
+                    )}
+                </div>
+            </div>
 
-      <Link href="/user/profile/selections">
+            <div className="px-[10px] py-[10px] border-b-[1px] border-white">
+                <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                    <div className="flex items-center gap-2.5">
+                        <UserHelpButton icon={helpIcon} />
+                        <Link href="/help">
+                            <a className="text-sm cursor-pointer">Помощь</a>
+                        </Link>
+                    </div>
+                    {MOBILE && (
+                        <Image
+                            src={rightArrowIcon.src}
+                            width={rightArrowIcon.width}
+                            height={rightArrowIcon.height}
+                        />
+                    )}
+                </div>
+            </div>
+
+            {/* <Link href="/user/profile/selections">
         <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
           <div className="flex items-center gap-2.5">
             <svg
@@ -127,9 +159,9 @@ export default function UserActions({ isAdmin }) {
             />
           )}
         </div>
-      </Link>
+      </Link> */}
 
-      {/* <Link href="/user/profile/subscribe">
+            {/* <Link href="/user/profile/subscribe">
         <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
           <div className="flex items-center gap-2.5">
             <UserSubscribeButton icon={subscribeIcon} />
@@ -145,41 +177,45 @@ export default function UserActions({ isAdmin }) {
         </a>
       </Link> */}
 
-      <Link href="/user/profile/settings">
-        <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight cursor-pointer">
-          <div className="flex items-center gap-2.5">
-            <UserSettingsButton
-              icon={settingsIcon}
-              activeIcon={settingsActiveIcon}
-              onClick={() => setIsOpen((isOpen) => !isOpen)}
-            />
-            <span className="text-sm cursor-pointer">Настройки</span>
-          </div>
-          {MOBILE && (
-            <Image
-              src={rightArrowIcon.src}
-              width={rightArrowIcon.width}
-              height={rightArrowIcon.height}
-            />
-          )}
-        </a>
-      </Link>
+            <div className="px-[10px] py-[10px] border-b-[1px] border-white">
+                <Link href="/user/profile/settings">
+                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight cursor-pointer">
+                        <div className="flex items-center gap-2.5">
+                            <UserSettingsButton
+                                icon={settingsIcon}
+                                activeIcon={settingsActiveIcon}
+                                onClick={() => setIsOpen((isOpen) => !isOpen)}
+                            />
+                            <span className="text-sm cursor-pointer">
+                                Настройки
+                            </span>
+                        </div>
+                        {MOBILE && (
+                            <Image
+                                src={rightArrowIcon.src}
+                                width={rightArrowIcon.width}
+                                height={rightArrowIcon.height}
+                            />
+                        )}
+                    </a>
+                </Link>
+            </div>
 
-      <RightSlideWrapper state={isOpen}>
-        <SettingsContent>
-          <button onClick={() => setIsOpen((isOpen) => !isOpen)}>
-            <Image
-              src={slideArrowClose.src}
-              width={slideArrowClose.width}
-              height={slideArrowClose.height}
-            />
-          </button>
-        </SettingsContent>
-      </RightSlideWrapper>
+            <RightSlideWrapper state={isOpen}>
+                <SettingsContent>
+                    <button onClick={() => setIsOpen((isOpen) => !isOpen)}>
+                        <Image
+                            src={slideArrowClose.src}
+                            width={slideArrowClose.width}
+                            height={slideArrowClose.height}
+                        />
+                    </button>
+                </SettingsContent>
+            </RightSlideWrapper>
 
-      <div className="flex items-center gap-2.5 py-4 border-y border-greyborder">
-        <UserAuthButton icon={authIcon} />
-      </div>
-    </div>
-  );
+            <div className="px-[10px] pt-[10px] pb-[20px] border-b-[1px] border-white">
+                <UserAuthButton icon={authIcon} />
+            </div>
+        </div>
+    );
 }

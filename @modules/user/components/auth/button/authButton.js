@@ -1,5 +1,7 @@
 import api from "pages/api/service/api";
 
+import { BsDoorOpen } from "react-icons/bs";
+
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { deleteCookie } from "cookies-next";
@@ -31,21 +33,23 @@ export default function AuthButton({ icon, width, height }) {
       {user ? (
         <button
           onClick={() => setIsShowDialog(true)}
-          className="flex items-center justify-between gap-2.5 cursor-pointer"
+          className="flex items-center justify-between gap-2.5 cursor-pointer opacity-50"
         >
-          <Image
+          {/* <Image
             src={icon.src}
             width={width ? width : icon.width}
             height={height ? height : icon.height}
-          />
-          <div className={`text-sm ${router.pathname.includes('admin') ? 'text-white' : "text-primary font-semibold"}`}>Выйти</div>
+          /> */}
+          <BsDoorOpen className="ml-[5px]" />
+          
+          <div className={`text-sm ${router.pathname.includes('admin') ? 'text-white' : "text-primary"}`}>Выйти</div>
         </button>
       ) : (
         <LinkWrap
           href={"/user/profile/auth"}
-          className={`flex items-center justify-center rounded h-10 w-[65px] bg-greyF3 hover:bg-bluelighter active:bg-bluefocus transition-all`}
+          className={`flex items-center justify-center rounded-[10px] h-10 w-[80px] bg-[#1479F5] hover:bg-blue active:bg-bluefocus transition-all`}
         >
-          <span className={`text-sm ${router.pathname.includes('admin') ? 'text-white' : "text-primary font-semibold"}`}>Вход</span>
+          <span className={`text-sm ${router.pathname.includes('admin') ? 'text-white' : "text-white"}`}>Вход</span>
         </LinkWrap>
       )}
 

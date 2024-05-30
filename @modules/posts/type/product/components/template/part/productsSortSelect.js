@@ -49,7 +49,7 @@ const sortFields = [
   // },
 ];
 
-export default function ProductsSortSelect({ callback, ...props }) {
+export default function ProductsSortSelect({ callback }) {
   const router = useRouter();
 
   const specialSortFields = [
@@ -76,16 +76,15 @@ export default function ProductsSortSelect({ callback, ...props }) {
   ];
 
   return (
-    <div className="w-auto">
+    <div className="w-auto min-w-[180px]">
       <SelectNoAutocomplete
         options={
           router.pathname === "/user/profile/items"
             ? [...sortFields, ...specialSortFields]
             : sortFields
         }
-        style={"h-12 py-[0] px-[6px] h-[30px]"}
+        style={"h-10 py-[10px] px-[16px] rounded-[10px]"}
         callback={callback}
-        {...props}
       />
     </div>
   );

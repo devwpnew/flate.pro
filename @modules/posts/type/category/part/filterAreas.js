@@ -55,7 +55,7 @@ export default function FilterAreas({ filter, setFilter, isSidebar }) {
     <>
       {router.pathname !== "/rcs/[id]" && (
         <div
-          className={`flex flex-col md:w-[32%] lg:w-[24%]  ${
+          className={`flex flex-col  ${
             isSidebar ? "lg:w-[100%]" : ""
           }`}
         >

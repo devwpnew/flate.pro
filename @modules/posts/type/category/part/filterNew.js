@@ -28,7 +28,8 @@ export default function FilterNew({
   productsAmountLoading,
 }) {
   const router = useRouter();
-  const showFilter = useSelector((state) => state.filterVisibility.value);
+  //const showFilter = useSelector((state) => state.filterVisibility.value);
+  const showFilter = useSelector((state) => true);
 
   const dispatch = useDispatch();
   const { DESKTOP, MOBILE } = getLayout();
@@ -114,6 +115,9 @@ export default function FilterNew({
     startFilter(filter);
   };
 
+
+  
+    
   useEffect(() => {
     dispatch(setFilterVisibility(DESKTOP));
 
@@ -124,8 +128,7 @@ export default function FilterNew({
     // }
   }, [DESKTOP, productsAmount]);
 
-  console.log(isSidebar);
-
+  
   return (
     <>
       <AnimatePresence>
@@ -134,37 +137,40 @@ export default function FilterNew({
             {...motionParams.dropdownParams}
             onSubmit={onFilterSubmit}
             key={filterId}
-            className={`bg-greylight py-4 lg:shadow rounded ${
+            className={`lg:shadow rounded ${
               isSidebar &&
-              "bg-greylight lg:shadow-none rounded-none py-[20px] lg:border-b border-greyborder"
+              "lg:shadow-none rounded-none"
             }`}
           >
-            <Container className={isSidebar ? "w-full px-[15px] lg:px-0" : ""}>
+            <Container className={isSidebar ? "w-full border border-greyborder px-[20px] py-[25px] rounded-[20px]" : ""}>
               <div className={`flex flex-col gap-2 ${isSidebar && "mb-2"}`}>
                 <div
-                  className={`flex flex-col md:flex-row md:flex-wrap gap-y-[24px] gap-x-[12px] ${
+                  className={`flex flex-col md:flex-row md:flex-wrap gap-y-[16px] gap-x-[12px] ${
                     isSidebar ? "flex-col" : "justify-between"
                   }`}
                 >
-                  <FilterDefaultFields
-                    setFilter={setFilter}
-                    filter={filter}
-                    isSidebar={isSidebar}
-                  />
 
-                  <FilterFields
-                    props={propsFields}
-                    ranges={rangeFields}
-                    setFilter={setFilter}
-                    filter={filter}
-                    isSidebar={isSidebar}
-                  />
+					<FilterAreas
+						isSidebar={isSidebar}
+						setFilter={setFilter}
+						filter={filter}
+					/>
 
-                  <FilterAreas
-                    isSidebar={isSidebar}
-                    setFilter={setFilter}
-                    filter={filter}
-                  />
+					<FilterDefaultFields
+						setFilter={setFilter}
+						filter={filter}
+						isSidebar={false}
+					/>
+
+					<FilterFields
+						props={propsFields}
+						ranges={rangeFields}
+						setFilter={setFilter}
+						filter={filter}
+						isSidebar={isSidebar}
+					/>
+
+                  
 
                   {!isSidebar && (
                     <div
@@ -191,6 +197,7 @@ export default function FilterNew({
                   startFilter={onFilterSubmit}
                 />
               </div>
+              
             </Container>
           </motion.form>
         )}

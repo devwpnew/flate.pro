@@ -14,7 +14,7 @@ export default function Sidebar({
   // const curYear = new Date().getFullYear();
   return (
     <div
-      className={`${containerClassName ? containerClassName : "hidden lg:block rounded min-w-[235px] w-[235px]"}`}
+      className={`${containerClassName ? containerClassName : "hidden lg:block rounded min-w-[230px] w-[230px]"}`}
     >
       {title && (
         <div className="border-b border-greyborder w-full mb-[11px]">
@@ -25,16 +25,16 @@ export default function Sidebar({
       )}
 
       <aside
-        className="lg:p-2 rounded bg-greylight border border-greyborder"
-        style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
+        className="lg:p-2 rounded-[20px] border border-greyborder"
+        //style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
       >
         {children}
-        {!hideFooter && (
+        {/* {!hideFooter && (
           <div className="hidden lg:block pt-[20px]">
-            {/* <p className="block my-5 text-grey text-sm">
+            <p className="block my-5 text-grey text-sm">
               © 2011—{curYear} flate.pro — сделано в России. Жильё с гарантией.
-            </p> */}
-            {/* <Link href="/agree/">
+            </p>
+            <Link href="/agree/">
               <a className="mb-1.5 underline text-grey block text-sm">
                 Пользовательское соглашение
               </a>
@@ -48,7 +48,7 @@ export default function Sidebar({
               <a className="mb-1.5 underline text-grey block text-sm">
                 Оплачивая услуги на сайте, вы принимаете оферту
               </a>
-            </Link> */}
+            </Link>
             <Link href="/marketing/">
               <a className="lg:block text-primary text-sm mb-1">
                 Реклама на сайте
@@ -58,9 +58,9 @@ export default function Sidebar({
               <a className="lg:block text-primary text-sm ">Помощь</a>
             </Link>
           </div>
-        )}
+        )} */}
 
-        <Banner Component={BannerSidebar} type={"sidebar-banner"} id={3} />
+        {/* <Banner Component={BannerSidebar} type={"sidebar-banner"} id={3} /> */}
       </aside>
     </div>
   );

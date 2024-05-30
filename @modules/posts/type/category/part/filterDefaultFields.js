@@ -36,9 +36,7 @@ export default function FilterDefaultFields({ filter, isSidebar, setFilter }) {
     <>
       {!isSidebar && (
         <div
-          className={`flex flex-col md:w-[32%] lg:w-[24%]  ${
-            isSidebar ? "lg:w-[100%]" : ""
-          }`}
+          className={`flex flex-col w-full`}
         >
           {/* {!isSidebar && (
             <span className="hidden md:block text-grey text-sm">Тип</span>

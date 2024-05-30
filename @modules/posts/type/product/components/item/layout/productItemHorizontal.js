@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import thumb from "public/post-image.jpg";
+import thumb from 'public/post-image.jpg';
 import ButtonFavorite from "@modules/common/components/button/buttonFavorite";
 
 import getProductUrl from "helpers/formatters/product/getProductUrl";
@@ -51,7 +51,7 @@ export default function ProductItemHorizontal({ product, user }) {
           >
             <div className="flex flex-col md:flex-row md:flex-wrap cursor-pointer">
               <div
-                className="text-blue text-sm font-bold md:w-full block group-hover:text-bluelight underline-offset-2  ellipsis ellipsis-clamp-2"
+                className="text-blue text-sm font-bold md:w-full block group-hover:text-bluelight underline-offset-2 ellipsis ellipsis-clamp-2"
                 style={{
                   minHeight: "40px",
                   maxheight: "40px",

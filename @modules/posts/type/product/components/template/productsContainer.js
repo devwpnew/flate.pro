@@ -12,90 +12,95 @@ import sortProducts from "helpers/products/sortProducts";
 import ButtonShare from "@modules/common/components/button/buttonShare";
 
 export default function ProductContainer({
-  title,
-  products,
-  hotDeals,
-  isLoading,
-  preloaderAmount,
-  layout,
-  containerClassName,
-  isTitleLoading,
-  fallbackComponent,
-  hideUserInfo,
-  callback,
-  sortCallback,
-  isShareButton,
-  shareButtonLink,
-  shareButtonText,
-  isModeration,
+    title,
+    products,
+    hotDeals,
+    isLoading,
+    preloaderAmount,
+    layout,
+    containerClassName,
+    isTitleLoading,
+    fallbackComponent,
+    hideUserInfo,
+    callback,
+    sortCallback,
+    isShareButton,
+    shareButtonLink,
+    shareButtonText,
+    isModeration,
 }) {
-  return (
-    <div className="flex flex-col items-start w-full gap-2.5">
+    return (
+        <div className="flex flex-col items-start w-full gap-2.5">
+            <div className="w-full">
+                <div className="flex flex-wrap justify-between items-center">
+                    {title && (
+                        <>
+                            {!isTitleLoading && !isLoading ? (
+                                <>
+                                    <H2
+                                        className={"pb-[0px]"}
+                                        style={{ marginBottom: 0 }}
+                                    >
+                                        {title}
+                                    </H2>
+                                </>
+                            ) : (
+                                <div className="w-full h-11">
+                                    <Preloader />
+                                </div>
+                            )}
+                        </>
+                    )}
 
-      <div className="w-full">
-        <div className="pb-[4px] border-b border-greyborder flex flex-wrap items-end justify-between items-center">
-          {title && (
-            <>
-              {!isTitleLoading && !isLoading ? (
-                <>
-                  <H2 className={"pb-[0px]"} style={{ marginBottom: 0 }}>
-                    {title}
-                  </H2>
-                </>
-              ) : (
-                <div className="w-full h-11">
-                  <Preloader />
+                    {isShareButton && (
+                        <ButtonShare
+                            type="green"
+                            shareButtonLink={shareButtonLink}
+                        >
+                            {shareButtonText}
+                        </ButtonShare>
+                    )}
+
+                    {/* <ProductsSortSelect callback={sortCallback} /> */}
                 </div>
-              )}
-            </>
-          )}
+            </div>
 
-          {isShareButton && (
-            <ButtonShare type="green" shareButtonLink={shareButtonLink}>
-              {shareButtonText}
-            </ButtonShare>
-          )}
+            {!products && !isLoading ? <>{fallbackComponent}</> : <></>}
 
-          <ProductsSortSelect callback={sortCallback} />
+            <div
+                className={
+                    containerClassName
+                        ? containerClassName
+                        : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 lg:gap-1 w-full"
+                }
+            >
+                {!isLoading &&
+                    products &&
+                    products.length !== 0 &&
+                    products.map((product) => (
+                        <ProductItem
+                            key={`${randomInteger()}${product.id}`}
+                            product={product}
+                            hotDeal={hotDeals}
+                            layout={layout}
+                            hideUserInfo={hideUserInfo}
+                            isModeration={isModeration}
+                        />
+                    ))}
+
+                {isLoading && (
+                    <>
+                        <ProductPreloader
+                            className={
+                                layout === "row" ||
+                                layout === "settings" ||
+                                (layout === "favorite" && "w-full h-[205px]")
+                            }
+                            amount={preloaderAmount}
+                        />
+                    </>
+                )}
+            </div>
         </div>
-      </div>
-
-      {!products && !isLoading ? <>{fallbackComponent}</> : <></>}
-
-      <div
-        className={
-          containerClassName
-            ? containerClassName
-            : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 gap-2.5 lg:gap-1 w-full"
-        }
-      >
-        {!isLoading &&
-          products &&
-          products.length !== 0 &&
-          products.map((product) => (
-            <ProductItem
-              key={`${randomInteger()}${product.id}`}
-              product={product}
-              hotDeal={hotDeals}
-              layout={layout}
-              hideUserInfo={hideUserInfo}
-              isModeration={isModeration}
-            />
-          ))}
-
-        {isLoading && (
-          <>
-            <ProductPreloader
-              className={
-                layout === "row" ||
-                layout === "settings" ||
-                (layout === "favorite" && "w-full h-[205px]")
-              }
-              amount={preloaderAmount}
-            />
-          </>
-        )}
-      </div>
-    </div>
-  );
+    );
 }

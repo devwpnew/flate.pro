@@ -12,8 +12,7 @@ import ButtonFavorite from "@modules/common/components/button/buttonFavorite";
 import Preloader from "@modules/common/components/preloader/preloader";
 import AdminToolsButton from "../part/admitToolsButton";
 
-import thumb from "public/post-image.jpg";
-
+import thumb from 'public/post-image.jpg';
 import useProductsCount from "hooks/products/useProductsCount";
 
 import declension from "helpers/formatters/declension";
@@ -119,7 +118,7 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
                             : "м2"}
                         </span>
                       </div>
-                      <span className="block w-full text-primary text-xs block mb-1">
+                      <span className="block w-full text-primary text-xs mb-1">
                         {getProductAddress(product)}
                       </span>
                     </div>

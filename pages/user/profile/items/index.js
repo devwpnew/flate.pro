@@ -9,27 +9,27 @@ import { isUserAuthorized } from "pages/api/user/auth";
 import useUser from "hooks/useUser";
 import api from "pages/api/service/api";
 export default function Items({ data }) {
-  const user = useUser(data.user, "/user/profile/auth");
+    const user = useUser(data.user, "/user/profile/auth");
 
-  return (
-    <>
-      {user ? (
-        <ItemsTemplate />
-      ) : (
-        <Container>
-          <div className="flex flex-row items-center justify-center h-full">
-            <PreloaderSpinner />
-          </div>
-        </Container>
-      )}
-    </>
-  );
+    return (
+        <>
+            {user ? (
+                <ItemsTemplate />
+            ) : (
+                <Container>
+                    <div className="flex flex-row items-center justify-center h-full">
+                        <PreloaderSpinner />
+                    </div>
+                </Container>
+            )}
+        </>
+    );
 }
 export async function getServerSideProps(context) {
-  require("dotenv").config();
-  const { req, res } = context;
+    require("dotenv").config();
+    const { req, res } = context;
 
-  const user = await api.auth.isUserAuthorized(req, res);
+    const user = await api.auth.isUserAuthorized(req, res);
 
-  return { props: { data: { user } } };
+    return { props: { data: { user } } };
 }

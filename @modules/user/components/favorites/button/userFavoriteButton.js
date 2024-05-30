@@ -7,6 +7,9 @@ import LinkWrap from "@modules/common/components/link/linkWrap";
 import activeIcon from "public/icons/heart-blue-filled.svg";
 import Tooltip from "@modules/common/components/tooltip/tooltip";
 
+
+import { BsHeart } from "react-icons/bs";
+
 import api from "pages/api/service/api";
 import { useDispatch } from "react-redux";
 import { setFavorites, getFavorites } from "store/global/user/userFavorites";
@@ -67,7 +70,7 @@ export default function UserFavoriteButton({ icon, width, height, title }) {
       href="/user/profile/favorites"
       className="flex items-center justify-center w-5 h-5 relative"
     >
-      {router.asPath.split("/").includes("favorites") ? (
+      {/* {router.asPath.split("/").includes("favorites") ? (
         <Image
           src={activeIcon.src}
           width={width ? width : activeIcon.width}
@@ -79,6 +82,13 @@ export default function UserFavoriteButton({ icon, width, height, title }) {
           width={width ? width : icon.width}
           height={height ? height : icon.height}
         />
+      )} */}
+
+
+      {router.asPath.split("/").includes("favorites") ? (
+        <BsHeart className="text-blue" />
+      ) : (
+        <BsHeart />
       )}
 
       <div className="hidden">

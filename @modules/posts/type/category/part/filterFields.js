@@ -10,11 +10,15 @@ export default function FilterFields({ props, ranges, setFilter, filter }) {
   }
   const propsRes = useFilterProps(propsToFetch);
   const template = [];
+
+
+
+
   for (const property in props) {
     const { isSidebar, Component, title, style, initialOption, isShow, value } =
       props[property];
-    console.log(isSidebar);
-    const getOptions = () => {
+
+      const getOptions = () => {
       if (initialOption && propsRes.data[property]) {
         return [initialOption, ...propsRes.data[property]];
       }
@@ -25,11 +29,13 @@ export default function FilterFields({ props, ranges, setFilter, filter }) {
 
       return [];
     };
+
+    
     template.push(
       <>
         {isShow && (
           <div
-            className={`flex flex-col md:w-[32%] lg:w-[24%]  ${
+            className={`flex flex-col lg:w-[100%]  ${
               isSidebar ? "lg:w-[100%]" : ""
             }`}
           >
@@ -78,7 +84,7 @@ export default function FilterFields({ props, ranges, setFilter, filter }) {
       <>
         {isShow && (
           <div
-            className={`flex flex-col md:w-[32%] lg:w-[24%]  ${
+            className={`flex flex-col  ${
               isSidebar ? "lg:w-[100%]" : ""
             }`}
           >

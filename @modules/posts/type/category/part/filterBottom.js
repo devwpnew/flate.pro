@@ -17,12 +17,12 @@ export default function FilterBottom({
   return (
     <div className="pt-2">
       <div
-        className={`md:flex md:items-center md:w-full gap-[18px] ${
+        className={`md:flex md:items-center md:w-full ${
           isSidebar ? "md:justify-center flex-col" : "md:justify-between"
         }`}
       >
         {isSidebar && (
-          <Button onClick={startFilter} type="white" className={"p-2"}>
+          <Button onClick={startFilter} type="blue" className={"p-2"}>
             Показать
           </Button>
         )}

@@ -2,6 +2,8 @@ import API from "pages/api/service/api";
 import { useSelector } from "react-redux";
 import { useState, useEffect, useMemo, useLayoutEffect } from "react";
 
+import Image from "next/image";
+import Link from "next/link";
 import MotionContainer from "@modules/common/components/container/motionContainer";
 import Hero from "@modules/hero/components/hero";
 import Sidebar from "@modules/sidebar/components/sidebar";
@@ -33,7 +35,7 @@ export default function HomeTemplate({
     const [sortObj, setSortObj] = useState({
         name: "По умолчанию",
         id: "date_published",
-        sort: { date_sort: "DESC" },
+        sort: { date_created: "DESC" },
     });
 
     const [ssrData, setSsrData] = useState({});
@@ -134,29 +136,37 @@ export default function HomeTemplate({
 
     return (
         <MotionContainer>
-            {!DESKTOP && (
+            {/* {!DESKTOP && (
                 <Container>
                     <MenuWithIcons />
                 </Container>
-            )}
+            )} */}
 
-            <Hero desktop={DESKTOP} />
+            <div className="h-[20px] md:h-[40px]"></div>
+
+            <Hero 
+                desktop={DESKTOP}
+            />
+
+            <div className="h-[20px] md:h-[40px]"></div>
+
+
+            
+
+
+
 
             <Container>
-                <div className="flex flex-row gap-x-2">
+                <div className="flex flex-row">
                     <div className="flex-grow">
+                        
+                        
                         {ssrPremiumProducts && activeCity.id == 5 && (
-                            <div className="relative pt-5 md:pt-8 lg:pt-[42px] lg:bg-transparent">
+                            <div className="relative lg:bg-transparent mx-[-10px] md:mx-0">
                                 <ProductContainerWithFetch
                                     isTitleLoading={false}
-                                    title={`Премиум размещение – ${
-                                        ssrPremiumProductsCount?.count
-                                            ? ssrPremiumProductsCount.count
-                                            : 0
-                                    }`}
-                                    productsCount={
-                                        ssrPremiumProductsCount?.count
-                                    }
+                                    title={`Премиум размещение`}
+                                    productsCount={ssrPremiumProductsCount?.count}
                                     products={premiumProducts}
                                     hotDeals={true}
                                     isLoading={isLoadingPremium}
@@ -165,17 +175,30 @@ export default function HomeTemplate({
                                     limit={premPLimit}
                                     startFrom={startFrom}
                                     callback={setPremiumProducts}
-                                    isHideSort={true}
-                                    isShowMap={true}
+                                    isHideSort={false}
+                                    isShowMap={false}
+                                    bgClassName={`
+                                        bg-[#ECF2F8]
+                                        rounded-tl-[0px] md:rounded-tl-[20px] rounded-[20px] 
+                                        pt-[20px] pb-[10px] px-[10px]
+                                        md:p-[30px]
+                                        w-full
+                                    `}
                                 />
                             </div>
                         )}
 
+
+
+                        <div className="h-[20px] md:h-[40px]"></div>
+
+
+
                         <div
                             className={
                                 ssrPremiumProducts && activeCity.id == 5
-                                    ? "lg:mb-3 w-full"
-                                    : "relative pt-5 md:pt-8 lg:pt-[42px] lg:bg-transparent"
+                                    ? "w-full"
+                                    : "relative lg:bg-transparent"
                             }
                         >
                             {!ssrPremiumProducts || !premiumProducts ? (
@@ -185,7 +208,7 @@ export default function HomeTemplate({
                                             "text-primary text-xl md:text-[28px] font-semibold pb-[4px]"
                                         }
                                     >
-                                        Премиум размещение - 0
+                                        Премиум размещение 0
                                     </H2>
                                 </div>
                             ) : (
@@ -194,7 +217,8 @@ export default function HomeTemplate({
 
                             <ProductContainerInfinite
                                 isTitleLoading={productsCount?.isLoading}
-                                title={`Новые предложения – ${productsCount?.products?.count}`}
+                                title={`Свежие`}
+                                productsCount={productsCount?.products?.count}
                                 products={products}
                                 hotDeals={false}
                                 isLoading={isLoadingNew}
@@ -204,10 +228,8 @@ export default function HomeTemplate({
                                 startFrom={startFrom}
                                 callback={setProducts}
                                 isHideSort={false}
+                                isShowMap={true}
                                 sortCallback={(v) => setSortObj(v)}
-                                sortProps={{
-                                    defaultValue: "date_created-DESC",
-                                }}
                             />
                         </div>
                     </div>

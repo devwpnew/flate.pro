@@ -24,19 +24,19 @@ function MyApp({ Component, pageProps, router }) {
             <link
               rel="apple-touch-icon"
               sizes="180x180"
-              href="/favicon-(60x60).png"
+              href="/favicon.svg"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="60x60"
-              href="/favicon-(60x60).png"
+              href="/favicon.svg"
             />
             <link
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href="/favicon-(16x16).png"
+              href="/favicon.svg"
             />
             <link rel="manifest" href="/manifest.json" />
           </Head>

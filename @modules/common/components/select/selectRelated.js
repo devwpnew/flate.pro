@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-import Input from "../input/input";
+import Input from "../input/inputGray";
 
 import OutsideAlerter from "hooks/useOutsideAlerter";
 import SelectRelatedOption from "./part/selectRelatedOption";
@@ -70,7 +70,7 @@ export default function SelectRelated({
       <div className="relative w-full group">
         <Input
           style={`${style}`}
-          inputStyle={"bg-transparent"}
+          inputStyle={"bg-transparent text-center placeholder:text-backdrop/60"}
           placeholder={placeholder}
           onChange={inputOnChange}
           topTitle={topTitle}

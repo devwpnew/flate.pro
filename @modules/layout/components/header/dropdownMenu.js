@@ -64,7 +64,7 @@ export default function DropdownMenu() {
       <div onMouseOver={hoverHandler} onMouseLeave={hoverHandler}>
         <OutsideAlerter action={() => setIsShow(false)}>
           <div
-            className={`flex items-center gap-2 group rounded transition-all p-[2px] ${
+            className={`flex items-center group rounded transition-all truncate justify-end ${
               isShow
                 ? "bg-bluelighter shadow"
                 : "hover:bg-bluelighter hover:shadow"
@@ -72,15 +72,8 @@ export default function DropdownMenu() {
           >
             <Link href={"/user/profile/items"}>
               <a className="flex flex-row items-center gap-2">
-                <div className="w-[30px] h-[30px]">
-                  <UserAvatar
-                    onClick={(ev) => {
-                      ev.preventDefault();
-                      router.push("/user/profile/items");
-                    }}
-                  />
-                </div>
-                <div className="w-[40px] overflow-hidden text-ellipsis">
+                
+                <div className="w-fit overflow-hidden text-sm pr-1">
                   <UserName name={user.user_name} />
                 </div>
                 <Image
@@ -89,6 +82,15 @@ export default function DropdownMenu() {
                   width={arrowBottom.width}
                   height={arrowBottom.height}
                 />
+
+                <div className="w-[30px] h-[30px]">
+                  <UserAvatar
+                    onClick={(ev) => {
+                      ev.preventDefault();
+                      router.push("/user/profile/items");
+                    }}
+                  />
+                </div>
               </a>
             </Link>
           </div>
@@ -98,7 +100,7 @@ export default function DropdownMenu() {
               <motion.div
                 {...motionParams.dropdownParams}
                 className={
-                  "px-[18px] py-[15px] flex flex-col absolute top-[37px] left-0 bg-white rounded shadow-lg"
+                  "px-[18px] py-[15px] flex flex-col absolute top-[30px] right-0 bg-white rounded shadow-lg"
                 }
               >
                 {user &&
@@ -162,7 +164,27 @@ export default function DropdownMenu() {
                     </span>
                   </DropdownLink>
                 </div>
+
                 <div>
+                  <DropdownLink href="/user/profile/messages?notifications=1">
+                    <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">
+                      <svg
+                        className="fill-greyA0 group-hover:fill-blue"
+                        width="18"
+                        height="16"
+                        viewBox="0 0 18 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M9.41328 0.727051C4.77147 0.727051 0.863281 3.82657 0.863281 7.81259C0.863281 10.0256 2.09041 12.0797 4.17891 13.4174L2.80958 15.0159C2.45522 15.4296 2.85934 16.0524 3.40113 15.9049L7.65115 14.7475C12.9072 15.6586 17.9633 12.3676 17.9633 7.81262C17.9633 3.82732 14.056 0.727051 9.41328 0.727051Z" />
+                      </svg>
+                      <span>Уведомления</span>
+                    </span>
+                  </DropdownLink>
+                </div>
+
+
+                {/* <div>
                   <DropdownLink href="/user/profile/messages/">
                     <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">
                       <svg
@@ -178,8 +200,8 @@ export default function DropdownMenu() {
                       <span>Сообщения</span>
                     </span>
                   </DropdownLink>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <DropdownLink href="/user/profile/selections/">
                     <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">
                       <svg
@@ -202,7 +224,7 @@ export default function DropdownMenu() {
                       <span>Подборки</span>
                     </span>
                   </DropdownLink>
-                </div>
+                </div> */}
                 {/* <div>
                   <DropdownLink href="/user/profile/subscribe/">
                     <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">

@@ -62,13 +62,13 @@ export default function LocationButton({ icon, arrowIcon, width, height }) {
               <div className="relative">
                 <Listbox.Button>
                   <div
-                    className={`flex items-center gap-2 cursor-pointer relative left-[-10px] px-[10px] py-[6px] rounded-md group hover:bg-greyF3 active:bg-bluelighter ${
+                    className={`flex items-center gap-2 cursor-pointer relative px-[10px] py-[6px] rounded-md group hover:bg-greyF3 active:bg-bluelighter ${
                       isOpen && "text-blue bg-bluelighter"
                     }`}
                   >
                     {icon && <Icon isDesktop={DESKTOP} />}
 
-                    <span className={`text-base transition-all text-sm`}>
+                    <span className={`transition-all text-sm font-bold`}>
                       {selected && selected.name}
                     </span>
 

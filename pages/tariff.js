@@ -13,7 +13,7 @@ import SEO from "@modules/common/components/seo/seo";
 export default function Tariff({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

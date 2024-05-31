@@ -13,7 +13,7 @@ import aboutImg from 'public/about.jpeg'
 export default function About({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   const router = useRouter();
 

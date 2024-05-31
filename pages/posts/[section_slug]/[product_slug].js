@@ -12,8 +12,7 @@ import getProductPrice from "helpers/formatters/product/getProductPrice";
 function Post({ data }) {
   const user = useUser(data.user);
   const product = data.ssrProduct;
-  const section = data.ssrSection
-  
+  const section = data.ssrSection;
 
   // console.log(user);
 
@@ -22,7 +21,9 @@ function Post({ data }) {
       <SEO
         title={product.name || product.meta_title}
         description={product.name || product.meta_description}
-        descriptionFull={product.product_price ? getProductPrice(product) + ' руб' : false}
+        descriptionFull={
+          product.product_price ? getProductPrice(product) + " руб" : false
+        }
         image={getProductImageSrc(product)}
         url={"https://flate.pro" + getProductUrl(product)}
         price={product.product_price}
@@ -85,7 +86,7 @@ export async function getServerSideProps(context) {
       ssrProduct,
       window_host
     );
-    
+
     if (updateCount) {
       cookieSeenProds.push(ssrProduct.id);
       setCookie("products_viewed", cookieSeenProds, {

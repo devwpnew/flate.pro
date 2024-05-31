@@ -5,7 +5,7 @@ import CategoryTemplate from "@modules/posts/type/category/template/categoryTemp
 import useUser from "hooks/useUser";
 
 export default function Search(data) {
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

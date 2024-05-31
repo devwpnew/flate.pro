@@ -12,7 +12,7 @@ import FavoritesEmpty from "@modules/posts/type/product/components/part/favorite
 import FallbackDevelopment from "@modules/common/components/fallback/FallbackDevelopment";
 export default function Requests({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

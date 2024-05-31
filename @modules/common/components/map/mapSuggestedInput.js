@@ -24,9 +24,11 @@ export default function MapSuggestedInput({
     if (Array.isArray(coordinates) && coordinates.length === 2) {
       const coordinatesObj = {
         latitude: coordinates[0],
-        longitude: coordinates[1]
+        longitude: coordinates[1],
       };
-      handleMapCoordinatesChange(coordinatesObj);
+      const coordinatesJson = JSON.stringify(coordinatesObj);
+
+      handleMapCoordinatesChange(coordinatesJson);
 
       setYaCoords(coordinates);
     }

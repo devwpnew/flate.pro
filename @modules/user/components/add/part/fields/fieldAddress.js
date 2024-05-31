@@ -84,12 +84,10 @@ export default function FieldAddress({
           }
 
           if (rcInfo?.coordinates) {
+            const coordsJson = JSON.stringify(rcInfo.coordinates);
             setForm({
               ...form,
-              map_coordinates: {
-                latitude: parseInt(rcInfo.coordinates.latitude),
-                longitude: parseInt(rcInfo.coordinates.longitude),
-              },
+              map_coordinates: coordsJson,
             });
           }
         }

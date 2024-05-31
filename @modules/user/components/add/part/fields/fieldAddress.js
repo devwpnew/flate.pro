@@ -84,7 +84,13 @@ export default function FieldAddress({
           }
 
           if (rcInfo?.coordinates) {
-            setForm({ ...form, map_coordinates: rcInfo.coordinates });
+            setForm({
+              ...form,
+              map_coordinates: {
+                latitude: parseInt(rcInfo.coordinates.latitude),
+                longitude: parseInt(rcInfo.coordinates.longitude),
+              },
+            });
           }
         }
       } catch (error) {
@@ -100,8 +106,8 @@ export default function FieldAddress({
   };
 
   const handleMapCoordinatesChange = (coords) => {
-    if(!coords) return;
-    
+    if (!coords) return;
+
     setForm({ ...form, map_coordinates: coords });
   };
 
@@ -121,7 +127,7 @@ export default function FieldAddress({
   }, [microAreaId]);
 
   // console.log(building);
-  console.log(form?.map_coordinates);
+  console.log(form);
 
   return (
     <div className="">

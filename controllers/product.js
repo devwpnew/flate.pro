@@ -314,7 +314,7 @@ const productController = {
 
                 arResults.push({ squares_from: 0, squares_to: 45, name: '1к 0-45 м²', filter: arFilters['0_45'] })
                 arResults.push({ squares_from: 45, squares_to: 60, name: '2к 45-60 м²', filter: arFilters['45_60'] })
-                arResults.push({ squares_from: 60, squares_to: 80, name: '2к 60-80 м²', filter: arFilters['60_80'] })
+                arResults.push({ squares_from: 60, squares_to: 80, name: '3к 60-80 м²', filter: arFilters['60_80'] })
                 arResults.push({ squares_from: 80, name: 'от 80 м²', filter: arFilters['80'] })
             }
 

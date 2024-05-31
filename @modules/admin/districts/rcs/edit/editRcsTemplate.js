@@ -207,6 +207,12 @@ export default function EditRcsTemplate({ rcId }) {
     }
   };
 
+  const handleMapCoordinatesChange = (coords) => {
+    if (!coords) return;
+    const coordsJson = JSON.stringify(coords);
+    setFields({ ...fields, coordinates: coordsJson });
+  };
+
   const [defValueParent, setDefValueParent] = useState(null);
   const [defValue, setDefValue] = useState(null);
 
@@ -399,6 +405,9 @@ export default function EditRcsTemplate({ rcId }) {
                           inputId={"suggest-address"}
                           address={mapAddress}
                           setAddress={setMapAddress}
+                          handleMapCoordinatesChange={
+                            handleMapCoordinatesChange
+                          }
                         />
                       </div>
 

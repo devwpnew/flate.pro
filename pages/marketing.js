@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 export default function Marketing({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   const router = useRouter();
 

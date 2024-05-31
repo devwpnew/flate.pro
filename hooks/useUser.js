@@ -11,13 +11,15 @@ export default function useUser(user, redirectBefore, redirectAfter) {
   const userSettled = useSelector((state) => state.userLogin.value);
 
   useEffect(() => {
-    if (!user) {
+    const noUser = !user || Object.entries(user).length === 0;
+
+    if (noUser) {
       if (redirectBefore) {
         router.push(redirectBefore);
       }
     }
 
-    if(user?.Error) {
+    if (user?.Error) {
       if (redirectBefore) {
         router.push(redirectBefore);
       }

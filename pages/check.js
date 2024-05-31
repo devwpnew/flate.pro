@@ -16,7 +16,7 @@ export default function Agree({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
   const [status, setStatus] = useState("idle");
   const [userLastLoginDate, setUserLastLoginDate] = useState("");
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   const handleFormSubmit = async (e) => {
     setStatus("loading");

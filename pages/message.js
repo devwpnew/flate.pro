@@ -13,7 +13,7 @@ import tmpPhoto1 from "public/news-photo1.jpeg";
 
 export default function Message({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
   const router = useRouter();
 
   function openWaInBlank(e) {

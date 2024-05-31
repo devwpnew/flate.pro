@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 
 export default function Sochi({ data }) {
   const router = useRouter();
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
   const dispatch = useDispatch();
 
   useEffect(() => {

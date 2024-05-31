@@ -12,7 +12,7 @@ import ReviewModal from "@modules/common/components/modals/review/reviewModal";
 export default function Contacts({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
   const [isOpenModal, openModal] = useState(false);
 
   return (

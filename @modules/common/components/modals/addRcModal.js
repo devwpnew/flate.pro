@@ -23,7 +23,7 @@ export default function AddRcModal({
 }) {
   const dispatch = useDispatch();
   const fetchState = useSelector((state) => state.fetchTrigger.value);
-  
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(false);
@@ -35,7 +35,7 @@ export default function AddRcModal({
   const [microAreasList, setMicroAreasList] = useState(null);
   const [areasParentsList, setAreasParentsList] = useState(null);
   const [citiesList, setCitiesList] = useState(null);
-  
+
   const [rcCity, setRcCity] = useState(false);
   const [rcForm, setRcForm] = useState({});
 
@@ -129,6 +129,12 @@ export default function AddRcModal({
       setError(res.error);
       // console.log(res);
     }
+  };
+
+  const handleMapCoordinatesChange = (coords) => {
+    if (!coords) return;
+    const coordsJson = JSON.stringify(coords);
+    onRcFormChange("coordinates", coordsJson);
   };
 
   // console.log(selectedParentArea, 'selectedParentArea');
@@ -237,11 +243,14 @@ export default function AddRcModal({
                 address={rcAddress}
                 setAddress={setRcAddress}
                 setCity={setRcCity}
+                handleMapCoordinatesChange={handleMapCoordinatesChange}
               />
             </div>
 
             <div className="h-[37px] w-[102px] self-end">
-              <Button type={'button'} onClick={sendRcForm}>Далее</Button>
+              <Button type={"button"} onClick={sendRcForm}>
+                Далее
+              </Button>
             </div>
           </div>
         </div>

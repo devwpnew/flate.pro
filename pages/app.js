@@ -20,7 +20,7 @@ import Image from "next/image";
 export default function Contacts({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

@@ -14,7 +14,7 @@ export default function Rc({ data }) {
   const rcPage = rcLink && rcLink[0];
   const rcId = rcLink && rcLink[0].id;
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   // useEffect(() => {
   //   if (!rcId) {

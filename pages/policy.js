@@ -9,7 +9,7 @@ import api from "./api/service/api";
 export default function Policy({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

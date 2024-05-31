@@ -8,7 +8,7 @@ import HelpTemplate from "@modules/user/components/help/template/helpTemplate";
 import useUser from "hooks/useUser";
 
 export default function Help({ data }) {
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   return (
     <>

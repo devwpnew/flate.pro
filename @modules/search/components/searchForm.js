@@ -126,7 +126,7 @@ export default function SearchForm() {
           isNotMainPage && "md:w-2/3"
         } flex flex-col lg:flex-row flex-grow lg:w-auto lg:gap-1 lg:pb-[7px] lg:pt-[16px]`}
       >
-        <div className="flex flex-col md:flex-row gap-2 lg:mb-2 md:gap-1 lg:mb-0 w-full">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-1 lg:mb-0 w-full">
           <div className="flex flex-col gap-2 md:flex-row mb:w-full md:gap-1 md:w-full">
             <div
               className={`${

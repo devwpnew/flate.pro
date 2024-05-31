@@ -41,7 +41,7 @@ export default function ProductItemFavorite({ user, product }) {
                             </div>
                         )}
 
-                        <div className="absolute top-1 right-1 md:top-2.5 md:right-2.5 lg:top-[18px] lg:right-[18px] z-10 md:hidden lg:flex lg:right-0 lg:flex-row lg:gap-2.5 lg:items-start">
+                        <div className="absolute top-1 right-1 md:top-2.5 md:right-2.5 lg:top-[18px] z-10 md:hidden lg:flex lg:right-0 lg:flex-row lg:gap-2.5 lg:items-start">
                             {user && product.id && (
                                 <ButtonFavorite
                                     user={user}

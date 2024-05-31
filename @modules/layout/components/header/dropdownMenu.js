@@ -281,7 +281,7 @@ export default function DropdownMenu() {
                   </DropdownLink>
                 </div>
                 <button
-                  className={`whitespace-nowrap text-sm text-grey block pt-2.5 border-t border-greyborder flex items-center gap-2.5 group`}
+                  className={`whitespace-nowrap text-sm text-grey pt-2.5 border-t border-greyborder flex items-center gap-2.5 group`}
                   onClick={() => setIsShowDialog(true)}
                 >
                   <svg

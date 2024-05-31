@@ -101,7 +101,7 @@ export default function UserFavoriteButton({ icon, width, height, title }) {
           </div>
         ) : (
           <div
-            className="hidden absolute right-[-1px] top-[-1px] bg-red rounded-full w-3 h-3 text-white text-exs flex justify-center items-center"
+            className="hidden absolute right-[-1px] top-[-1px] bg-red rounded-full w-3 h-3 text-white text-exs justify-center items-center"
             id="favCounter"
           ></div>
         )}

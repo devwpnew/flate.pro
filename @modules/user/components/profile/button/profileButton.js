@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LinkWrap from "@modules/common/components/link/linkWrap";
+import { BsFillPersonFill } from "react-icons/bs";
 
-export default function ProfileButton({ icon, activeIcon, width, height }) {
+
+
+export default function ProfileButton({ icon, activeIcon, width, height, className }) {
   const href = "/user/profile";
   const router = useRouter();
 
@@ -14,24 +17,16 @@ export default function ProfileButton({ icon, activeIcon, width, height }) {
   return (
     <LinkWrap
       href={href}
-      className="flex items-center justify-center min-w-5 min-h-5"
       onClick={handleClick}
     >
-      <div className="flex flex-col items-center h-[53px] w-[50px] justify-between pt-2">
+      <div>
         {router.asPath.split("/").includes("profile") ? (
-          <Image
-            src={activeIcon.src}
-            width={width ? width : activeIcon.width}
-            height={height ? height : activeIcon.height}
-          />
+          <BsFillPersonFill className={className} />
         ) : (
-          <Image
-            src={icon.src}
-            width={width ? width : icon.width}
-            height={height ? height : icon.height}
-          />
+          <BsFillPersonFill className={className} />
         )}
-        <span className="text-exs text-greymiddle">Профиль</span>
+
+        <p className="text-[.7rem]">Профиль</p>
       </div>
     </LinkWrap>
   );

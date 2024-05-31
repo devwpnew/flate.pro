@@ -502,7 +502,7 @@ export default function FilterCommertion({
                           className="relative w-full"
                           onClick={() => setAreaModal(true)}
                         >
-                          <div className="flex px-2.5 border-greyborder hover:border-blue border rounded bg-white relative w-full overflow-hidden before:text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 cursor-pointer w-full h-12 hover:shadow-lg">
+                          <div className="flex px-2.5 border-greyborder hover:border-blue border rounded bg-white relative overflow-hidden before:text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 cursor-pointer w-full h-12 hover:shadow-lg">
                             <Input
                               style="w-full border-none text-md leading-5 text-gray-900 focus:ring-0 outline-none cursor-pointer bg-white"
                               placeholder={"Любой"}
@@ -628,7 +628,7 @@ export default function FilterCommertion({
                               className="relative w-full"
                               onClick={() => setAreaModal(true)}
                             >
-                              <div className="flex px-2.5 border-greyborder hover:border-blue border rounded bg-white relative w-full overflow-hidden before:text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 cursor-pointer w-full h-12 hover:shadow-lg">
+                              <div className="flex px-2.5 border-greyborder hover:border-blue border rounded bg-white relative w-full overflow-hidden before:text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 cursor-pointer h-12 hover:shadow-lg">
                                 <Input
                                   style="w-full border-none text-md leading-5 text-gray-900 focus:ring-0 outline-none cursor-pointer bg-white"
                                   placeholder={"Любой"}

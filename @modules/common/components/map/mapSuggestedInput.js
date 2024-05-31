@@ -23,8 +23,8 @@ export default function MapSuggestedInput({
   const onCoordinatesChange = (coordinates) => {
     if (Array.isArray(coordinates) && coordinates.length === 2) {
       const coordinatesObj = {
-        latitude: coordinates[0].toString(),
-        longitude: coordinates[1].toString(),
+        latitude: coordinates[0],
+        longitude: coordinates[1]
       };
       handleMapCoordinatesChange(coordinatesObj);
 

@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export default function Rules({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
 
-  const user = useUser(data.user, "/user/profile/auth");
+  const user = useUser(data.user);
 
   return (
     <>

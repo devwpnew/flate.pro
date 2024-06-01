@@ -103,7 +103,7 @@ export default function PostSidebar({ product }) {
         <div className="flex justify-between gap-2 mb-[25px]">
           <div className="flex items-center gap-5">
             <div className="text-sm">№ {product.id}</div>
-            <PostViewed product={product} />
+            {/* <PostViewed product={product} /> */}
           </div>
 
           <span className="text-sm">{getProductDate(product)}</span>

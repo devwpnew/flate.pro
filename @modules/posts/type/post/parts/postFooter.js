@@ -16,7 +16,7 @@ export default function PostFooter({ product }) {
         <div className="flex gap-3 items-center text-sm text-[#000]/40 justify-between md:justify-normal">
           <p>{getProductDate(product)}</p>
           <p>№ {product.id}</p>
-          <PostViewed product={product} />
+          {/* <PostViewed product={product} /> */}
         </div>
 
 

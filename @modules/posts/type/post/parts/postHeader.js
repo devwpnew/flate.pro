@@ -134,7 +134,7 @@ export default function PostHeaderButtons({ product }) {
           {/* <div className="text-sm">{getProductDate(product)}</div> */}
           <div className="flex flex-row gap-2.5 lg:hidden">
             <div className="text-sm">№ {product.id}</div>
-            <PostViewed />
+            {/* <PostViewed /> */}
           </div>
         </div>
       </div>

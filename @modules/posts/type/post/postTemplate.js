@@ -483,7 +483,7 @@ export default function PostTemplate({ product }) {
                     <div className="hidden justify-between items-center mb-5">
                         <div className="text-sm">{getProductDate(product)}</div>
                         <div className="text-sm">№ {product.id}</div>
-                        <PostViewed product={product} />
+                        {/* <PostViewed product={product} /> */}
                     </div>
 
                     <div className="hidden flex-col gap-2.5 mb-5 md:mb-10">

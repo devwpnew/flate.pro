@@ -6,7 +6,7 @@ import useUser from "hooks/useUser";
 import FourOhFour from "pages/404";
 
 export default function IndexCategory({ data }) {
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   const section = data?.ssrSection;
   const sectionId = section?.id;

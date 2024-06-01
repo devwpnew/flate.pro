@@ -8,6 +8,7 @@ import useUser from "hooks/useUser";
 import { useSelector } from "react-redux";
 export default function Oferta({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();
+  
   const user = useUser(data.user);
   
   return (

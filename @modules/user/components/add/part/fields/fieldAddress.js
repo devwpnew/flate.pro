@@ -54,9 +54,13 @@ export default function FieldAddress({
 
   useEffect(() => {
     (async function getRcInfo() {
+      if (!rcId) {
+        return;
+      }
+
       setRcInfoIsLoading(true);
       setIsMapLoading(true);
-      if (rcId) {
+      try {
         const response = await api.get.rcs({
           window_host: window.location.origin,
           filter: {
@@ -69,9 +73,26 @@ export default function FieldAddress({
         });
 
         if (response) {
-          setRcInfo(response[0]);
-          setMapAddress(response[0].address);
+          const rcInfo = response[0];
+
+          if (!rcInfo) return;
+
+          setRcInfo(rcInfo);
+
+          if (rcInfo?.address) {
+            setMapAddress(rcInfo.address);
+          }
+
+          if (rcInfo?.coordinates) {
+            const coordsJson = JSON.stringify(rcInfo.coordinates);
+            setForm({
+              ...form,
+              map_coordinates: coordsJson,
+            });
+          }
         }
+      } catch (error) {
+        console.log(error);
       }
       setIsMapLoading(false);
       setRcInfoIsLoading(false);
@@ -80,6 +101,12 @@ export default function FieldAddress({
 
   const handleAddressChange = (ev) => {
     setMapAddress(ev.target.value);
+  };
+
+  const handleMapCoordinatesChange = (coords) => {
+    if (!coords) return;
+
+    setForm({ ...form, map_coordinates: coords });
   };
 
   useEffect(() => {
@@ -98,7 +125,7 @@ export default function FieldAddress({
   }, [microAreaId]);
 
   // console.log(building);
-
+  console.log(form);
 
   return (
     <div className="">
@@ -179,6 +206,7 @@ export default function FieldAddress({
           // setCity={setRcCity}
           setBuilding={setBuilding}
           setPreName={setPreName}
+          handleMapCoordinatesChange={handleMapCoordinatesChange}
         />
       )}
 

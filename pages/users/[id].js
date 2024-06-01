@@ -15,7 +15,7 @@ import SEO from "@modules/common/components/seo/seo";
 import declension from "helpers/formatters/declension";
 
 export default function User({ data }) {
-  const user = useUser(data.user);
+  const user = useUser(data.user, "/user/profile/auth");
 
   const userLink = data.userLink;
   const userPage = userLink && userLink[0];

@@ -11,6 +11,7 @@ export default function MapSuggestedInput({
   setCity,
   setBuilding,
   setPreName,
+  handleMapCoordinatesChange = () => {},
 }) {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,8 +20,23 @@ export default function MapSuggestedInput({
   const ymapsObject = useRef(null);
   const searchControlRef = useRef(null);
 
+  const onCoordinatesChange = (coordinates) => {
+    if (Array.isArray(coordinates) && coordinates.length === 2) {
+      const coordinatesObj = {
+        latitude: coordinates[0],
+        longitude: coordinates[1],
+      };
+      const coordinatesJson = JSON.stringify(coordinatesObj);
+
+      handleMapCoordinatesChange(coordinatesJson);
+
+      setYaCoords(coordinates);
+    }
+  };
+
   const onPlacemarkDragend = async (e) => {
-    setYaCoords(e.originalEvent.target.geometry.getCoordinates());
+    const coordinates = e.originalEvent.target.geometry.getCoordinates();
+    onCoordinatesChange(coordinates);
     // ==============
     if (!ymapsObject.current) return;
 
@@ -42,26 +58,20 @@ export default function MapSuggestedInput({
       const foundGeometries = searchControlRef.current.getResultsArray();
       const indexSelectedGeometry = searchControlRef.current.getSelectedIndex();
       const selectedItem = foundGeometries[indexSelectedGeometry];
-      setYaCoords(selectedItem.geometry.getCoordinates());
+
+      const coordinates = selectedItem.geometry.getCoordinates();
+
+      onCoordinatesChange(coordinates);
+
       setAddress(selectedItem.properties.get("text"));
     }
   };
 
-  const changeCoords = (coords) => {
-    setYaCoords(coords);
+  const onMapClick = (e) => {
+    const coordinates = e.get("coords");
+
+    onCoordinatesChange(coordinates);
   };
-
-  let workPlace = [
-    [43.5855, 39.7231],
-    [43.5855, 39.7231],
-  ];
-
-  if (city != 5) {
-    workPlace = [
-      [45.0402, 38.976],
-      [45.0402, 38.976],
-    ];
-  }
 
   const loadSuggest = async (ymaps) => {
     const suggestView = new ymaps.SuggestView(inputId, {
@@ -70,9 +80,8 @@ export default function MapSuggestedInput({
 
     suggestView.events.add("select", async (e) => {
       const address = e.get("item").displayName;
-      // console.log(address);
       const coords = await getGeo(address, ymaps);
-      setYaCoords(coords);
+      onCoordinatesChange(coords);
     });
   };
 
@@ -147,6 +156,18 @@ export default function MapSuggestedInput({
     })();
   }, [rcInfo, ymapsObject?.current]);
 
+  let workPlace = [
+    [43.5855, 39.7231],
+    [43.5855, 39.7231],
+  ];
+
+  if (city != 5) {
+    workPlace = [
+      [45.0402, 38.976],
+      [45.0402, 38.976],
+    ];
+  }
+
   return (
     <>
       {isLoading && (
@@ -181,7 +202,7 @@ export default function MapSuggestedInput({
             zoom: 15,
             controls: ["zoomControl"],
           }}
-          onClick={(e) => changeCoords(e.get("coords"))}
+          onClick={onMapClick}
         >
           <Placemark
             key={yaCoords.toString()}

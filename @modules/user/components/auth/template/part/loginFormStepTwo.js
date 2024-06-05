@@ -32,12 +32,12 @@ export default function LoginFormStepTwo({
     <form onSubmit={(ev) => {ev.preventDefault(); smsCheckStepHandler();}}>
       <div className="text-2xl font-semibold mb-5 text-center">
         
-        {retrySmsSended ? "Введите код из смс" : "Звоним вам, введите последние 4 цифры номера"}
+        {retrySmsSended ? "Введите код из смс" : "Введите последние 4 цифры номера"}
         
       </div>
 
       <div className="text-sm mb-2 text-center">
-        <span className="text-grey">{retrySmsSended ? "Отправили смс на" : "Звоним на"}</span>
+        <span className="text-grey">{retrySmsSended ? "Отправили смс на " : "Звоним на "}</span>
         <span className="text-primary font-semibold">{userPhone}</span>
       </div>
 
@@ -51,7 +51,7 @@ export default function LoginFormStepTwo({
       </div>
 
       <div className={`md:w-[230px] mx-auto flex justify-center ${retrySmsSended ? 'lg:justify-center': 'lg:justify-start'} flex-row items-center mb-[26px] gap-2`}>
-      {retrySmsSended ? "" : <span className="text-[18px] text-grey whitespace-nowrap">+7(•••) •••</span>}
+      {retrySmsSended ? "" : <span className="text-[14px] text-grey whitespace-nowrap">+7(•••) •••</span>}
 
         <ReactCodeInput
           type="number"
@@ -61,7 +61,7 @@ export default function LoginFormStepTwo({
             width: 29,
             height: 35,
             background: "#FFFFFF",
-            border: "1px solid #E5E7EB",
+            border: "1px solid #ссс",
             borderRadius: "4px",
             marginRight: 5,
             MozAppearance: "textfield",

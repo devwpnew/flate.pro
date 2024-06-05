@@ -681,8 +681,7 @@ export default function EditRcsTemplate({ rcId }) {
 
                                                     <div>
                                                         <div className="font-bold mb-2.5 text-sm">
-                                                            Ссылка на
-                                                            презентацию
+                                                            Ссылка на презентацию
                                                         </div>
                                                         <div>
                                                             <Input
@@ -782,7 +781,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                                         rc.sales_name
                                                                     }
                                                                     placeholder={
-                                                                        "Имя менеджера"
+                                                                        "Имя"
                                                                     }
                                                                     onChange={
                                                                         changeFields
@@ -844,7 +843,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                                         changeFields
                                                                     }
                                                                     name={
-                                                                        "status"
+                                                                        "sales_whatsapp"
                                                                     }
                                                                     defaultValue={
                                                                         "Нет"

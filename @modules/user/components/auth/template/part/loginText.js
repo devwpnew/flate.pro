@@ -10,17 +10,12 @@ import googleplay from "public/googleplay.png";
 import appPreviewBanner from "public/appPreviewBanner.png";
 
 export default function LoginText() {
-  return (
-    <div className="hidden md:block order-1">
-      <div className="text-center mt-[29px] mb-[10px] lg:mt-0">
-        <H2 className={"lg:font-bold sm:mb-0"}>Скачайте Приложение</H2>
-      </div>
-      <div className="w-[385px] mx-auto mb-[22px] text-center text-md">
-        <p>Вся база недвижимости у вас в кармане</p>
-      </div>
+    return (
+        <div className="hidden md:block order-1">
+            
 
-      {/* <Link href={'/app'}> */}
-      <div className="flex items-center justify-center gap-[18px] mb-[30px]">
+            {/* <Link href={'/app'}> */}
+            {/* <div className="flex items-center justify-center gap-[18px] mb-[30px]">
         <a
           href="https://apps.apple.com/ru/app/flate/id6458738854"
           target="_blank"
@@ -43,17 +38,17 @@ export default function LoginText() {
             className="cursor-pointer"
           />
         </a>
-      </div>
-      {/* </Link> */}
+      </div> */}
+            {/* </Link> */}
 
-      <div className="hidden lg:flex justify-center mb-20 max-w-[443px]">
-        <Image
-          src={appPreviewBanner.src}
-          width={appPreviewBanner.width}
-          height={appPreviewBanner.height}
-          className="mx-auto"
-        />
-      </div>
-    </div>
-  );
+            <div className="hidden lg:flex justify-center max-w-[340px]">
+                <Image
+                    src={appPreviewBanner.src}
+                    width={appPreviewBanner.width}
+                    height={appPreviewBanner.height}
+                    className="mx-auto"
+                />
+            </div>
+        </div>
+    );
 }

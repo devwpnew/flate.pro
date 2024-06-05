@@ -192,15 +192,15 @@ export default function ProductContainerWithFetch({
                     productsCount > 4 &&
                     hasMore && (
                         <div
-                            className={"h-12 w-full mt-[15px]"}
+                            className={"h-10 mt-3 w-full"}
                             onClick={getMorePost}
                         >
                             <Button
                                 className={
-                                    "bg-greyextralight group border border-x-bluefocus h-10"
+                                    "bg-blue group border border-x-bluefocus h-10 px-5"
                                 }
                             >
-                                <span className="text-blue group-hover:text-white">
+                                <span className="text-white">
                                     Показать еще
                                 </span>
                             </Button>

@@ -87,6 +87,7 @@ export default function FieldAddress({
             const coordsJson = JSON.stringify(rcInfo.coordinates);
             setForm({
               ...form,
+              rc_link: rcInfo.id,
               map_coordinates: coordsJson,
             });
           }
@@ -108,11 +109,6 @@ export default function FieldAddress({
 
     setForm({ ...form, map_coordinates: coords });
   };
-
-  useEffect(() => {
-    if (!rcId || rcId == "null") return;
-    setForm({ ...form, rc_link: rcId });
-  }, [rcId]);
 
   useEffect(() => {
     if (!areaId || areaId == "null") return;

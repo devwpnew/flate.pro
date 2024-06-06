@@ -28,7 +28,7 @@ export default function addForm({ product }) {
   const router = useRouter();
 
   const user = useSelector((state) => state.userLogin.value);
-  
+
   const isAdmin = user.user_group?.id === 1 || user.user_group?.id === 5;
   const productSectionId = product?.section_relation[0].id;
   const initialSectionId = productSectionId ? productSectionId : null;
@@ -52,11 +52,12 @@ export default function addForm({ product }) {
     ev.preventDefault();
     setScrollToEl(false);
 
-
     const test = {};
     formData.forEach((value, key) => {
       test[key] = value;
     });
+
+    console.log(test);
     // console.log("sendedformdata", test);
 
     const isValid = validateAddForm(formData, sectionId, product);
@@ -69,7 +70,7 @@ export default function addForm({ product }) {
       if (product) {
         // console.log("update");
         res = await api.update.product(formData);
-        // console.log("update res", res);
+        console.log("update res", res);
       } else {
         // console.log("create");
         res = await api.add.product(formData);
@@ -108,7 +109,6 @@ export default function addForm({ product }) {
     const resultFormData = new FormData();
     const formData = new FormData(formRef.current);
     formData.forEach((value, key) => {
-
       switch (key) {
         case "property_product_phone":
           const phone = value.replace(/[^0-9]/g, "").replace(/(\..*)\./g, "$1");
@@ -143,11 +143,7 @@ export default function addForm({ product }) {
 
     for (const key in form) {
       if (product) {
-        if (
-          form[key] &&
-          key !== "rc_link" &&
-          key !== "property_product_galery"
-        ) {
+        if (form[key] && key !== "property_product_galery") {
           resultFormData.append(key, form[key]);
         }
       } else {
@@ -201,14 +197,13 @@ export default function addForm({ product }) {
     document.getElementById(scrollToEl)?.scrollIntoView({
       behavior: "smooth",
     });
-
   }, [scrollToEl]);
 
   useEffect(() => {
-    if(user.user_group.id === 6) {
+    if (user.user_group.id === 6) {
       router.push("/");
     }
-  }, [user])
+  }, [user]);
 
   // console.log(product);
   // console.log(product?.user_id);
@@ -238,7 +233,12 @@ export default function addForm({ product }) {
 
             {sectionId && (
               <>
-                <FieldStatus sectionId={sectionId} form={form} setForm={setForm} product={product}/>
+                <FieldStatus
+                  sectionId={sectionId}
+                  form={form}
+                  setForm={setForm}
+                  product={product}
+                />
 
                 {sectionId === 7 || sectionId === 6 ? (
                   <div id="name">
@@ -248,7 +248,13 @@ export default function addForm({ product }) {
                   ""
                 )}
 
-                {user?.user_group?.id === 5 && <FieldPremium form={form} setForm={setForm} product={product}/>}
+                {user?.user_group?.id === 5 && (
+                  <FieldPremium
+                    form={form}
+                    setForm={setForm}
+                    product={product}
+                  />
+                )}
               </>
             )}
           </div>
@@ -279,7 +285,12 @@ export default function addForm({ product }) {
                 className="border-b border-greyborder pb-[30px] mb-[30px]"
                 id="about"
               >
-                <FieldAbout sectionId={sectionId} product={product} form={form} setForm={setForm} />
+                <FieldAbout
+                  sectionId={sectionId}
+                  product={product}
+                  form={form}
+                  setForm={setForm}
+                />
               </div>
 
               <div
@@ -329,7 +340,10 @@ export default function addForm({ product }) {
                 className="border-b border-greyborder pb-[30px] mb-[30px]"
                 id="contacts"
               >
-                <FieldContacts product={product} user={product?.user_id ? product?.user_id : user} />
+                <FieldContacts
+                  product={product}
+                  user={product?.user_id ? product?.user_id : user}
+                />
               </div>
 
               <div className="flex gap-2.5">

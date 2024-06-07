@@ -71,6 +71,7 @@ export default UPDATE = {
   },
 
   product: async function updateProduct(data) {
+    console.log('updated —————————————')
     const curDate = new Date()
 
     if (data instanceof FormData) {

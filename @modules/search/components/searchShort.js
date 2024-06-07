@@ -81,14 +81,14 @@ export default function SearchForm(className) {
         })();
     }, [activeCity]);
     // AREAS
-    useEffect(() => {
-      if (areaIds) {
-        setFilter({
-          ...filter,
-          area_link: areaIds,
-        });
-      }
-    }, [areaIds]);
+    // useEffect(() => {
+    //   if (areaIds) {
+    //     setFilter({
+    //       ...filter,
+    //       area_link: areaIds,
+    //     });
+    //   }
+    // }, [areaIds]);
 
     useEffect(() => {
       if (filterFields?.area_link) {

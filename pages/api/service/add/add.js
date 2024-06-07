@@ -215,6 +215,15 @@ export default ADD = {
                 if (sendData.get("building_address")) {
                     const buildingAddress = sendData.get("building_address");
 
+
+
+
+                    // const rcsExist = await API.get.findRcsByAddress(buildingAddress);
+                    // console.log(rcsExist)
+
+
+
+
                     const createBuildingFields = {
                         name: buildingAddress,
                     };

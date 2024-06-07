@@ -514,7 +514,7 @@ export default function SettingsForm({
                         }`}
                     >
                         <div className="text-xs">Добавьте фото профиля</div>
-                        <label className="h-11 flex justify-center text-sm text-white w-full h-full rounded md:text-black font-normal bg-blue  hover:underline underline-offset-2">
+                        <label className="flex justify-center text-sm text-white w-full h-full rounded md:text-black font-normal bg-blue  hover:underline underline-offset-2">
                             <div className="px-[13px] flex items-center justify-center gap-2.5">
                                 <div>
                                     <Image

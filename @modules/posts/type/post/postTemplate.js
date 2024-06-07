@@ -68,6 +68,21 @@ export default function PostTemplate({ product }) {
 
     const slug = product?.section_relation[0]?.slug;
 
+
+
+
+
+    const extractStreetAndHouse = (address) => {
+        const regex = /, ([^,]+), (\d+\w?)(?:$|,)/;
+        const match = address.match(regex);
+        if (match) {
+          return [match[1], match[2]];
+        }
+        return [];
+      }
+
+
+
     return (
         <>
             {/* START POST */}
@@ -291,7 +306,11 @@ export default function PostTemplate({ product }) {
 
 
 
-
+                            {/* {product?.properties?.product_address ? (
+                                <div>{JSON.stringify(extractStreetAndHouse(product?.properties?.product_address))}</div>
+                            ) : (
+                                <div>нет Адрес</div>
+                            )} */}
 
 
 

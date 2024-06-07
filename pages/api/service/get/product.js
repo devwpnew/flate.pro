@@ -1,5 +1,8 @@
 import API from "../api";
 
+import cache from 'memory-cache';
+const CACHE_DURATION = 120000; // кеш на 1 минуту
+
 const prodTable = 'product'
 const daysPublish = 30
 
@@ -7,12 +10,24 @@ let PRODUCT = {}
 export default PRODUCT = {
 
     list: async function getProducts(fields) {
+
         const productsFields = {
             table: prodTable,
             ...fields,
         };
 
-        const data = await API.get.data(productsFields);
+        const cacheKey = JSON.stringify(productsFields);
+        let data = cache.get(cacheKey);
+
+
+        if (!data) {
+            data = await API.get.data(productsFields);
+            if (data) {
+                cache.put(cacheKey, data, CACHE_DURATION);
+            }
+        }
+
+        //const data = await API.get.data(productsFields);
 
         return data ? data : false;
     },

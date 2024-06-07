@@ -6,34 +6,54 @@ import API from '../api'
 import PRODUCT from "./product";
 import api from "../api";
 
+import cache from 'memory-cache';
+const CACHE_DURATION = 3600000; // кеш на 1 час
+
 let domen = false;
 
 const userSelectFieldsList = ['id', 'user_name', 'phone', 'email', 'user_group', 'date_registered', 'date_paid_to', 'paid', 'user_description', 'user_last_name', 'favorites', 'email_confirmed', 'phone_confirmed', 'email_confirmation', 'user_avatar', 'user_agency', 'default_city', 'professional_confirmation', 'sef_code', 'additional_phones', 'product_count', 'last_login_date', 'paid', 'date_paid', 'date_paid_to', 'date_notifications_read'];
 
 let GET = {};
 export default GET = {
-  data: async function getData(fields) {
-    try {
-      if (fields.window_host) {
-        domen = fields.window_host;
-      } else if (typeof window != 'undefined') {
-        domen = window.location.origin;
-      }
-      const res = await axios.post(
-        `${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
-        fields
-      );
-
-      if (res.data.error) {
-        return { error: res.data.error }
-      }
-      const data = res.data;
-
-      return data;
-    } catch (error) {
-      return error;
-    }
-  },
+  
+	data: async function getData(fields) {
+		try {
+			let domen;
+			if (fields.window_host) {
+				domen = fields.window_host;
+			} else if (typeof window !== 'undefined') {
+				domen = window.location.origin;
+			}
+		
+			// Generate a unique cache key based on the fields
+			const cacheKey = JSON.stringify(fields);
+		
+			// Try to get the cached data
+			const cachedData = cache.get(cacheKey);
+			if (cachedData) {
+				console.log('—— Using cache');
+				return cachedData;
+			}
+		
+			const res = await axios.post(
+				`${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
+				fields
+			);
+		
+			if (res.data.error) {
+				return { error: res.data.error };
+			}
+		
+			const data = res.data;
+		
+			// Cache the data
+			cache.put(cacheKey, data, CACHE_DURATION);
+		
+			return data;
+		} catch (error) {
+			return { error: error.message };
+		}
+	},
 
   activeCity: async function getActiveCity() {
     const fromCookie = getCookie("city");

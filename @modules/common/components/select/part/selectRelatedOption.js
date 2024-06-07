@@ -19,7 +19,7 @@ export default function SelectRelatedOption({ option }) {
   // }, []);
 
   return (
-    <Link href={`/rcs/${option.id}`}>
+    <Link href={`/${option.url}/${option.id}`}>
       <div
         className={`relative flex items-center select-none py-2 px-[6px] mx-[6px] mb-[2px] rounded-md cursor-pointer transition-all text-blue hover:bg-greyF3 hover:text-primary focus:bg-bluelighter`}
         value={option}

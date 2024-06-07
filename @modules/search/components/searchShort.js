@@ -40,7 +40,7 @@ export default function SearchForm(className) {
         section_relation: 3,
     });
 
-    const [rcList, serRcList] = useState(false);
+    const [rcList, setRcList] = useState(false);
 
     // SECTIONS
     useEffect(() => {
@@ -71,10 +71,31 @@ export default function SearchForm(className) {
                 limit: "all",
             });
 
+
+            if (rcList) {
+                rcList.forEach((item) => {
+                    item.url = "rcs";
+                });
+            }
+
+            const buildingsList = await API.get.buildings({
+                filter: {
+                    city_link: activeCity.id,
+                },
+                limit: "all",
+            });
+
+			if (buildingsList) {
+                buildingsList.forEach((item) => {
+                    item.url = "building";
+                });
+            }
+
+
             if (rcList?.length > 0) {
-                serRcList(rcList);
+                setRcList([...rcList, ...buildingsList]);
             } else {
-                serRcList([{ name: "", id: null }]);
+                setRcList([{ name: "", id: null }]);
             }
 
             setLoading(false);
@@ -91,11 +112,11 @@ export default function SearchForm(className) {
     // }, [areaIds]);
 
     useEffect(() => {
-      if (filterFields?.area_link) {
-        setAreaIds(filterFields?.area_link);
-      } else {
-        setAreaIds(false);
-      }
+        if (filterFields?.area_link) {
+            setAreaIds(filterFields?.area_link);
+        } else {
+            setAreaIds(false);
+        }
     }, [filterFields]);
 
     const startFilter = () => {
@@ -243,7 +264,9 @@ export default function SearchForm(className) {
                     Расширенный поиск
                 </p>
 
-                <div className="md:hidden bg-[#ECF2F8] h-10 w-10 rounded-full flex"><BsSliders className="text-md m-auto" /></div>
+                <div className="md:hidden bg-[#ECF2F8] h-10 w-10 rounded-full flex">
+                    <BsSliders className="text-md m-auto" />
+                </div>
             </a>
 
             {/* {isNotMainPage && !router.route.includes("/users/") ? (

@@ -51,7 +51,7 @@ export default function LoginContent({ data }) {
           </div> */}
 
 
-            <div className="text-center mt-9">
+            <div className="text-center mt-10 mb-7">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2">Скачайте Приложение</h1>
                 <div className="flex gap-5 px-[20px] md:px-0">
                     <div className="w-full">
@@ -70,9 +70,11 @@ export default function LoginContent({ data }) {
 
 
 
-          <div className="container mx-auto px-[15px] lg:flex lg:justify-between items-center lg:max-w-[800px] pt-5 pb-10">
-            <LoginForm data={data} />
-            <LoginText />
+          <div className="px-5">
+            <div className="bg-[#ECF2F8] rounded-2xl container mx-auto lg:flex lg:justify-between items-bottom lg:max-w-[700px]">
+              <LoginForm data={data} />
+              <LoginText />
+            </div>
           </div>
 
           {DESKTOP && <FooterMini />}

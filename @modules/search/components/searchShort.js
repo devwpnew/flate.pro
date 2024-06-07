@@ -72,7 +72,7 @@ export default function SearchForm(className) {
             });
 
 
-            if (rcList) {
+            if (rcList && rcList.length > 0) {
                 rcList.forEach((item) => {
                     item.url = "rcs";
                 });
@@ -85,7 +85,7 @@ export default function SearchForm(className) {
                 limit: "all",
             });
 
-			if (buildingsList) {
+			if (buildingsList && buildingsList.length > 0) {
                 buildingsList.forEach((item) => {
                     item.url = "building";
                 });
@@ -119,6 +119,9 @@ export default function SearchForm(className) {
         }
     }, [filterFields]);
 
+
+
+
     const startFilter = () => {
         dispatch(setFilterGlobalFields(filter));
         const isRow = router?.query?.row;
@@ -134,6 +137,9 @@ export default function SearchForm(className) {
             });
         }
     };
+
+
+
     const onSearchFormSubmit = (ev) => {
         ev.preventDefault();
         startFilter();

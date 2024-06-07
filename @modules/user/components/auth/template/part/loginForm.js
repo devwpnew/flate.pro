@@ -174,8 +174,8 @@ export default function LoginForm({ data }) {
   }, []);
 
   return (
-    <div className="order-2">
-      <div className="md:w-[336px] md:mx-auto md:bg-[#ECF2F8] pt-7 px-5 pb-3 md:pb-[30px] relative rounded-2xl">
+    <div className="order-2 p-7">
+      <div className="md:w-[336px] md:mx-auto">
         <PreloaderWithBackdrop isShow={isLoading} />
 
         {userId ? (

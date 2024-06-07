@@ -28,21 +28,44 @@ export default function SelectRelated({
                   if (query) {
                       const isEng = isEnglishString(query);
 
-                      if (isEng && option?.second_name) {
-                          return option.second_name
+                      function normalizeString(str) {
+                          return str
                               .toLowerCase()
-                              .replace(/\s+/g, "")
-                              .includes(
-                                  query.toLowerCase().replace(/\s+/g, "")
-                              );
-                      } else {
-                          return option.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "")
-                              .includes(
-                                  query.toLowerCase().replace(/\s+/g, "")
-                              );
+                              .replace(/улица|ул\.?/g, "") // Удаляем слова "улица" и "ул."
+                              .replace(/\s*,\s*/g, ", ") // Убираем лишние пробелы вокруг запятых
+                              .replace(/\s+/g, " ") // Заменяем множественные пробелы на один пробел
+                              .trim(); // Убираем пробелы в начале и конце строки
                       }
+
+					  function addCommaIfNecessary(query) {
+						let normalizedQuery = normalizeString(query);
+						
+						// Добавляем запятую, если в запросе есть пробел между улицей и номером дома
+						if (!normalizedQuery.includes(",")) {
+							const lastSpaceIndex = normalizedQuery.lastIndexOf(" ");
+							if (lastSpaceIndex !== -1) {
+								normalizedQuery = normalizedQuery.slice(0, lastSpaceIndex) + ", " + normalizedQuery.slice(lastSpaceIndex + 1);
+							}
+						}
+						
+						return normalizedQuery;
+					}
+
+					if (isEng && option?.second_name) {
+						// Нормализуем и вариант, и запрос для английского названия
+						const normalizedOption = normalizeString(option.second_name);
+						const normalizedQuery = addCommaIfNecessary(query);
+				
+						// Проверяем, содержит ли нормализованный вариант нормализованный запрос
+						return normalizedOption.includes(normalizedQuery);
+					} else {
+						// Нормализуем и вариант, и запрос для русского названия
+						const normalizedOption = normalizeString(option.name);
+						const normalizedQuery = addCommaIfNecessary(query);
+				
+						// Проверяем, содержит ли нормализованный вариант нормализованный запрос
+						return normalizedOption.includes(normalizedQuery);
+					}
                   }
               });
 

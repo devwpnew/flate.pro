@@ -37,3 +37,6 @@ yarn-error.log*
 #images
 /public/uploads
 images
+
+package-lock.json
+yarn.lock

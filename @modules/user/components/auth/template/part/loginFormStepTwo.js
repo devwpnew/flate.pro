@@ -30,9 +30,9 @@ export default function LoginFormStepTwo({
 
   return (
     <form onSubmit={(ev) => {ev.preventDefault(); smsCheckStepHandler();}}>
-      <div className="text-2xl font-semibold mb-5 text-center">
+      <div className="text-xl font-semibold text-center">
         
-        {retrySmsSended ? "Введите код из смс" : "Введите последние 4 цифры номера"}
+        {retrySmsSended ? "Введите код из смс" : "Введите последние 4 цифры"}
         
       </div>
 
@@ -41,7 +41,7 @@ export default function LoginFormStepTwo({
         <span className="text-primary font-semibold">{userPhone}</span>
       </div>
 
-      <div className="mb-[26px] text-center">
+      <div className="mb-[10px] text-center">
         <span
           className="text-grey hover:text-blue cursor-pointer text-xs"
           onClick={() => setUserId(false)}
@@ -88,7 +88,7 @@ export default function LoginFormStepTwo({
 
       <div className="text-red font-bold text-center mt-1">{smsError && smsError}</div>
 
-      <div className="mb-[26px] mt-[20px] text-center">
+      <div className="mb-[10px] mt-[10px] text-center">
         {isRetry ? (
           !retrySmsSended && (
             <span

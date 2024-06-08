@@ -71,7 +71,7 @@ export default UPDATE = {
   },
 
   product: async function updateProduct(data) {
-    console.log('updated —————————————')
+    
     const curDate = new Date()
 
     if (data instanceof FormData) {
@@ -102,6 +102,8 @@ export default UPDATE = {
 
     }
 
+    
+
     const res = { full: '', name: '' };
 
     res.full = await API.update.item(data);
@@ -110,7 +112,11 @@ export default UPDATE = {
       throw { error: res.full.data.error };
     }
 
+    console.log('before regenerateProductInfo')
+
     res.generate = await regenerateProductInfo(res.full.data.itemId)
+
+    console.log('product updated')
 
     return res
   },

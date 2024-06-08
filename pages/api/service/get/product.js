@@ -16,18 +16,18 @@ export default PRODUCT = {
             ...fields,
         };
 
-        const cacheKey = JSON.stringify(productsFields);
-        let data = cache.get(cacheKey);
+        // const cacheKey = JSON.stringify(productsFields);
+        // let data = cache.get(cacheKey);
 
 
-        if (!data) {
-            data = await API.get.data(productsFields);
-            if (data) {
-                cache.put(cacheKey, data, CACHE_DURATION);
-            }
-        }
+        // if (!data) {
+            // data = await API.get.data(productsFields);
+            // if (data) {
+            //     cache.put(cacheKey, data, CACHE_DURATION);
+            // }
+        //}
 
-        //const data = await API.get.data(productsFields);
+        const data = await API.get.data(productsFields);
 
         return data ? data : false;
     },

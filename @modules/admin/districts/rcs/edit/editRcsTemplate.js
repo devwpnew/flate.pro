@@ -20,6 +20,8 @@ import api from "pages/api/service/api";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
+import PhoneInput from "@modules/admin/districts/rcs/edit/part/phoneInput";
+
 export default function EditRcsTemplate({ rcId }) {
     const router = useRouter();
     const { MOBILE, DESKTOP, VARIANTS } = getLayout();
@@ -107,12 +109,18 @@ export default function EditRcsTemplate({ rcId }) {
         })();
     }, [rcId]);
 
+    
+
     const changeFields = (event, forceName = false, forceValue = false) => {
+        console.log("changeFields", event);
         let currentFields = fields;
 
         if (forceName && forceValue) {
             currentFields[forceName] = forceValue;
-        } else if (typeof event == "function") {
+        } else if (Array.isArray(event)) {
+            // Если событие - это массив телефонов
+            currentFields["sales_phones"] = event;
+        } else if (typeof event === "function") {
             const callbackEvent = event();
             if (callbackEvent) {
                 if (callbackEvent.name && callbackEvent.value != null) {
@@ -157,6 +165,9 @@ export default function EditRcsTemplate({ rcId }) {
                         formData.append("images", file);
                     });
                 }
+            }
+            else if (key === "sales_phones") {
+                formData.set(key, JSON.stringify(fields[key])); // Преобразование в JSON строку
             }
         }
 
@@ -230,14 +241,12 @@ export default function EditRcsTemplate({ rcId }) {
         }
     }, [rc]);
 
+    const [status, setStatus] = useState(rc?.status || "");
 
-	const [status, setStatus] = useState(rc?.status || '');
-
-	const handleStatusChange = (selectedStatus) => {
+    const handleStatusChange = (selectedStatus) => {
         setStatus(selectedStatus);
-        changeFields({ target: { name: 'status', value: selectedStatus } });
+        changeFields({ target: { name: "status", value: selectedStatus } });
     };
-
 
     // console.log(defValueParent, "defValueParent", defValue, "defValue");
     // console.log(rc);
@@ -518,27 +527,36 @@ export default function EditRcsTemplate({ rcId }) {
                                             </div>
 
                                             <div className="grid md:grid-cols-2 gap-5">
-												<div>
-													<div className="font-bold mb-2.5 text-sm">
-														Статус
-													</div>
-													<div>
-														<SelectNoAutocomplete
-															style="w-full h-[45px] border-greyborder border"
-															nullable={true}
-															options={[
-																{ name: "Не сдан", id: 2 },
-																{ name: "Сдан", id: 1 },
-															]}
-															addCallback={handleStatusChange}
-															name="status"
-															defaultValue={rc?.status}
-														/>
-													</div>
-												</div>
+                                                <div>
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Статус
+                                                    </div>
+                                                    <div>
+                                                        <SelectNoAutocomplete
+                                                            style="w-full h-[45px] border-greyborder border"
+                                                            nullable={true}
+                                                            options={[
+                                                                {
+                                                                    name: "Не сдан",
+                                                                    id: 2,
+                                                                },
+                                                                {
+                                                                    name: "Сдан",
+                                                                    id: 1,
+                                                                },
+                                                            ]}
+                                                            addCallback={
+                                                                handleStatusChange
+                                                            }
+                                                            name="status"
+                                                            defaultValue={
+                                                                rc?.status
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
 
-
-												{status.value === 1 && (
+                                                {status.value === 1 && (
                                                     <div>
                                                         <div className="font-bold mb-2.5 text-sm">
                                                             Год постройки
@@ -592,59 +610,154 @@ export default function EditRcsTemplate({ rcId }) {
                                                             />
                                                         </div>
                                                     </div>
-												)}
-                                                
+                                                )}
+                                            </div>
 
-												</div>
+                                            <div className="mb-5">
+                                                <div className="font-bold mb-2.5 text-sm">
+                                                    Варианты оплаты
+                                                </div>
+                                                <div>
+                                                    <Textarea
+                                                        name="payment_options"
+                                                        onChange={changeFields}
+                                                        defaultValue={
+                                                            rc &&
+                                                            rc.payment_options
+                                                        }
+                                                        style={
+                                                            "py-2.5 border-greyborder border rounded"
+                                                        }
+                                                        areaStyle={
+                                                            "rounded h-11"
+                                                        }
+                                                        placeholder={
+                                                            "Варианты оплаты"
+                                                        }
+                                                    />
+                                                </div>
+                                            </div>
 
-                                                <div className="mb-5">
+                                            <div className="grid md:grid-cols-2 gap-5">
+                                                <div>
                                                     <div className="font-bold mb-2.5 text-sm">
-                                                        Варианты оплаты
+                                                        Оформление
                                                     </div>
                                                     <div>
-                                                        <Textarea
-                                                            name="payment_options"
-                                                            onChange={
-                                                                changeFields
+                                                        <Input
+                                                            style={
+                                                                "w-full h-11 border-greyborder border "
                                                             }
+                                                            name={"execution"}
                                                             defaultValue={
                                                                 rc &&
-                                                                rc.payment_options
-                                                            }
-                                                            style={
-                                                                "py-2.5 border-greyborder border rounded"
-                                                            }
-                                                            areaStyle={
-                                                                "rounded h-11"
+                                                                rc.execution
                                                             }
                                                             placeholder={
-                                                                "Варианты оплаты"
+                                                                "Оформление"
+                                                            }
+                                                            onChange={
+                                                                changeFields
                                                             }
                                                         />
                                                     </div>
                                                 </div>
 
-											
+                                                <div>
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Комиссия
+                                                    </div>
+                                                    <div>
+                                                        <Input
+                                                            style={
+                                                                "w-full h-11 border-greyborder border "
+                                                            }
+                                                            name={"commission"}
+                                                            defaultValue={
+                                                                rc &&
+                                                                rc.commission
+                                                            }
+                                                            placeholder={
+                                                                "Комиссия"
+                                                            }
+                                                            onChange={
+                                                                changeFields
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Ссылка на презентацию
+                                                    </div>
+                                                    <div>
+                                                        <Input
+                                                            style={
+                                                                "w-full h-11 border-greyborder border "
+                                                            }
+                                                            name={
+                                                                "presentation_link"
+                                                            }
+                                                            defaultValue={
+                                                                rc &&
+                                                                rc.presentation_link
+                                                            }
+                                                            placeholder={
+                                                                "Ссылка на презентацию"
+                                                            }
+                                                            onChange={
+                                                                changeFields
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Ссылка на шахматку
+                                                    </div>
+                                                    <div>
+                                                        <Input
+                                                            style={
+                                                                "w-full h-11 border-greyborder border "
+                                                            }
+                                                            name={
+                                                                "checkerboard_link"
+                                                            }
+                                                            defaultValue={
+                                                                rc &&
+                                                                rc.checkerboard_link
+                                                            }
+                                                            placeholder={
+                                                                "Ссылка на шахматку"
+                                                            }
+                                                            onChange={
+                                                                changeFields
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-5 border border-[#d5d5d5] rounded-2xl p-5 mb-5">
+                                                <h3 className="font-bold mb-2.5 text-xl">
+                                                    Отдел продаж
+                                                </h3>
 
                                                 <div className="grid md:grid-cols-2 gap-5">
-                                                    <div>
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Оформление
-                                                        </div>
+                                                    {/* {JSON.stringify(
+                                                        rc.sales_phones
+                                                    )} */}
+
+                                                    <div className="flex gap-5 col-span-2">
                                                         <div>
-                                                            <Input
-                                                                style={
-                                                                    "w-full h-11 border-greyborder border "
-                                                                }
+                                                            <PhoneInput
                                                                 name={
-                                                                    "execution"
+                                                                    "sales_phones"
                                                                 }
-                                                                defaultValue={
-                                                                    rc &&
-                                                                    rc.execution
-                                                                }
-                                                                placeholder={
-                                                                    "Оформление"
+                                                                initialPhones={
+                                                                    rc.sales_phones
                                                                 }
                                                                 onChange={
                                                                     changeFields
@@ -655,7 +768,7 @@ export default function EditRcsTemplate({ rcId }) {
 
                                                     <div>
                                                         <div className="font-bold mb-2.5 text-sm">
-                                                            Комиссия
+                                                            Имя
                                                         </div>
                                                         <div>
                                                             <Input
@@ -663,14 +776,14 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     "w-full h-11 border-greyborder border "
                                                                 }
                                                                 name={
-                                                                    "commission"
+                                                                    "sales_name"
                                                                 }
                                                                 defaultValue={
                                                                     rc &&
-                                                                    rc.commission
+                                                                    rc.sales_name
                                                                 }
                                                                 placeholder={
-                                                                    "Комиссия"
+                                                                    "Имя"
                                                                 }
                                                                 onChange={
                                                                     changeFields
@@ -681,7 +794,7 @@ export default function EditRcsTemplate({ rcId }) {
 
                                                     <div>
                                                         <div className="font-bold mb-2.5 text-sm">
-                                                            Ссылка на презентацию
+                                                            Департамент
                                                         </div>
                                                         <div>
                                                             <Input
@@ -689,40 +802,14 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     "w-full h-11 border-greyborder border "
                                                                 }
                                                                 name={
-                                                                    "presentation_link"
+                                                                    "sales_department"
                                                                 }
                                                                 defaultValue={
                                                                     rc &&
-                                                                    rc.presentation_link
+                                                                    rc.sales_department
                                                                 }
                                                                 placeholder={
-                                                                    "Ссылка на презентацию"
-                                                                }
-                                                                onChange={
-                                                                    changeFields
-                                                                }
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Ссылка на шахматку
-                                                        </div>
-                                                        <div>
-                                                            <Input
-                                                                style={
-                                                                    "w-full h-11 border-greyborder border "
-                                                                }
-                                                                name={
-                                                                    "checkerboard_link"
-                                                                }
-                                                                defaultValue={
-                                                                    rc &&
-                                                                    rc.checkerboard_link
-                                                                }
-                                                                placeholder={
-                                                                    "Ссылка на шахматку"
+                                                                    "Департамент"
                                                                 }
                                                                 onChange={
                                                                     changeFields
@@ -731,173 +818,47 @@ export default function EditRcsTemplate({ rcId }) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div className="mt-5 border border-[#d5d5d5] rounded-2xl p-5 mb-5">
-                                                    <h3 className="font-bold mb-2.5 text-xl">
-                                                        Отдел продаж
-                                                    </h3>
-
-                                                    <div className="grid md:grid-cols-2 gap-5">
-                                                        <div>
-                                                            <div className="font-bold mb-2.5 text-sm">
-                                                                Телефон
-                                                            </div>
-                                                            <div>
-                                                                <Input
-                                                                    style={
-                                                                        "w-full h-11 border-greyborder border "
-                                                                    }
-                                                                    name={
-                                                                        "sales_phone"
-                                                                    }
-                                                                    defaultValue={
-                                                                        rc &&
-                                                                        rc.sales_phone
-                                                                    }
-                                                                    placeholder={
-                                                                        "Телефон"
-                                                                    }
-                                                                    onChange={
-                                                                        changeFields
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className="font-bold mb-2.5 text-sm">
-                                                                Имя
-                                                            </div>
-                                                            <div>
-                                                                <Input
-                                                                    style={
-                                                                        "w-full h-11 border-greyborder border "
-                                                                    }
-                                                                    name={
-                                                                        "sales_name"
-                                                                    }
-                                                                    defaultValue={
-                                                                        rc &&
-                                                                        rc.sales_name
-                                                                    }
-                                                                    placeholder={
-                                                                        "Имя"
-                                                                    }
-                                                                    onChange={
-                                                                        changeFields
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div>
-                                                            <div className="font-bold mb-2.5 text-sm">
-                                                                Департамент
-                                                            </div>
-                                                            <div>
-                                                                <Input
-                                                                    style={
-                                                                        "w-full h-11 border-greyborder border "
-                                                                    }
-                                                                    name={
-                                                                        "sales_department"
-                                                                    }
-                                                                    defaultValue={
-                                                                        rc &&
-                                                                        rc.sales_department
-                                                                    }
-                                                                    placeholder={
-                                                                        "Департамент"
-                                                                    }
-                                                                    onChange={
-                                                                        changeFields
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className="font-bold mb-2.5 text-sm">
-                                                                WhatsApp
-                                                            </div>
-                                                            <div>
-                                                                <SelectNoAutocomplete
-                                                                    style={
-                                                                        "w-full h-[43px] border-greyborder border"
-                                                                    }
-                                                                    nullable={
-                                                                        true
-                                                                    }
-                                                                    options={[
-                                                                        {
-                                                                            name: "Есть",
-                                                                            id: 1,
-                                                                        },
-                                                                        {
-                                                                            name: "Нет",
-                                                                            id: 0,
-                                                                        },
-                                                                    ]}
-                                                                    addCallback={
-                                                                        changeFields
-                                                                    }
-                                                                    name={
-                                                                        "sales_whatsapp"
-                                                                    }
-                                                                    defaultValue={
-                                                                        "Нет"
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="font-bold mb-2.5 text-sm">
-                                                    Опубликовано
-                                                </div>
-                                                <div className="mb-5">
-                                                    <SelectNoAutocomplete
-                                                        style={
-                                                            "w-full h-[43px] border-greyborder border"
-                                                        }
-                                                        name={"published"}
-                                                        type={"Опубликовано"}
-                                                        defaultOption={
-                                                            rc &&
-                                                            publishedValues &&
-                                                            publishedValues[
-                                                                rc.published
-                                                            ]
-                                                        }
-                                                        addCallback={
-                                                            changeFields
-                                                        }
-                                                        options={
-                                                            publishedValues
-                                                        }
-                                                    />
-                                                </div>
-
-                                                <FieldImages
-                                                    name={"images"}
-                                                    title={
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Фотографии
-                                                        </div>
+                                            <div className="font-bold mb-2.5 text-sm">
+                                                Опубликовано
+                                            </div>
+                                            <div className="mb-5">
+                                                <SelectNoAutocomplete
+                                                    style={
+                                                        "w-full h-[43px] border-greyborder border"
                                                     }
-                                                    description={"   "}
-                                                    isRequired={false}
-                                                    setForm={setFields}
-                                                    form={fields}
-                                                    defaultImages={
-                                                        rc?.images &&
-                                                        JSON.parse(rc?.images)
+                                                    name={"published"}
+                                                    type={"Опубликовано"}
+                                                    defaultOption={
+                                                        rc &&
+                                                        publishedValues &&
+                                                        publishedValues[
+                                                            rc.published
+                                                        ]
                                                     }
+                                                    addCallback={changeFields}
+                                                    options={publishedValues}
                                                 />
                                             </div>
-                                        
+
+                                            <FieldImages
+                                                name={"images"}
+                                                title={
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Фотографии
+                                                    </div>
+                                                }
+                                                description={"   "}
+                                                isRequired={false}
+                                                setForm={setFields}
+                                                form={fields}
+                                                defaultImages={
+                                                    rc?.images &&
+                                                    JSON.parse(rc?.images)
+                                                }
+                                            />
+                                        </div>
                                     </div>
                                     {!MOBILE && (
                                         <div className="flex justify-end w-full mt-[10px]">

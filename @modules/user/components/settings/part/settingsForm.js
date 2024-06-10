@@ -425,11 +425,16 @@ export default function SettingsForm({
                         </div>
                     )}
                 </div>
-                <div className={`mb-4 ${blockClassName ? blockClassName : ""}`}>
+
+
+                
+
+
+                <div className={`col-span-2 mb-4 ${blockClassName ? blockClassName : ""}`}>
                     <Textarea
                         topTitle={"О себе"}
                         style={"w-full"}
-                        areaStyle={"h-[200px]"}
+                        areaStyle={"h-[120px]"}
                         defaultValue={user && user.user_description}
                         name="user_description"
                         placeholder={
@@ -437,9 +442,41 @@ export default function SettingsForm({
                         }
                     />
                 </div>
+
+                
+
+
+
+
+                <div>
+                    {JSON.stringify(user?.send_app_pushes_to_whatsapp)}
+                    <div className="mb-1 text-xs">Отправлять сообщения на WhatsApp</div>
+                    <div>
+                        <SelectNoAutocomplete
+                            style={"w-full h-[43px] border-greyborder border"}
+                            nullable={true}
+                            options={[
+                                {
+                                    name: "Да",
+                                    id: true,
+                                },
+                                {
+                                    name: "Нет",
+                                    id: false,
+                                },
+                            ]}
+                            name={"send_app_pushes_to_whatsapp"}
+                            defaultValue={"Нет"}
+                        />
+                    </div>
+                </div>
+
+
+
+
                 {isAdmin ? (
                     <div
-                        className={`mb-4 ${
+                        className={`mt-5 col-span-2 mb-4 ${
                             blockClassName ? blockClassName : ""
                         }`}
                     >
@@ -447,7 +484,7 @@ export default function SettingsForm({
                             topTitle={
                                 "Подтверждение профессиональной деятельности"
                             }
-                            areaStyle={"h-full"}
+                            areaStyle={"h-full col-span-2"}
                             placeholder={
                                 "- Ссылка на: YouTube, Vkontakte\n- Ссылка на кабинет: Циан, Авито, Domclick \n- Ссылка на профиль на сайте Агентства Недвижимости"
                             }

@@ -119,7 +119,7 @@ export default function EditRcsTemplate({ rcId }) {
             currentFields[forceName] = forceValue;
         } else if (Array.isArray(event)) {
             // Если событие - это массив телефонов
-            currentFields["sales_phones"] = event;
+            currentFields["sales_contacts"] = event;
         } else if (typeof event === "function") {
             const callbackEvent = event();
             if (callbackEvent) {
@@ -166,7 +166,7 @@ export default function EditRcsTemplate({ rcId }) {
                     });
                 }
             }
-            else if (key === "sales_phones") {
+            else if (key === "sales_contacts") {
                 formData.set(key, JSON.stringify(fields[key])); // Преобразование в JSON строку
             }
         }
@@ -746,77 +746,21 @@ export default function EditRcsTemplate({ rcId }) {
                                                 </h3>
 
                                                 <div className="grid md:grid-cols-2 gap-5">
-                                                    {/* {JSON.stringify(
-                                                        rc.sales_phones
-                                                    )} */}
-
-                                                    <div className="flex gap-5 col-span-2">
-                                                        <div>
+                                                    <div className="col-span-2">
                                                             <PhoneInput
                                                                 name={
-                                                                    "sales_phones"
+                                                                    "sales_contacts"
                                                                 }
                                                                 initialPhones={
-                                                                    rc.sales_phones
+                                                                    rc.sales_contacts
                                                                 }
                                                                 onChange={
                                                                     changeFields
                                                                 }
                                                             />
-                                                        </div>
                                                     </div>
 
-                                                    <div>
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Имя
-                                                        </div>
-                                                        <div>
-                                                            <Input
-                                                                style={
-                                                                    "w-full h-11 border-greyborder border "
-                                                                }
-                                                                name={
-                                                                    "sales_name"
-                                                                }
-                                                                defaultValue={
-                                                                    rc &&
-                                                                    rc.sales_name
-                                                                }
-                                                                placeholder={
-                                                                    "Имя"
-                                                                }
-                                                                onChange={
-                                                                    changeFields
-                                                                }
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Департамент
-                                                        </div>
-                                                        <div>
-                                                            <Input
-                                                                style={
-                                                                    "w-full h-11 border-greyborder border "
-                                                                }
-                                                                name={
-                                                                    "sales_department"
-                                                                }
-                                                                defaultValue={
-                                                                    rc &&
-                                                                    rc.sales_department
-                                                                }
-                                                                placeholder={
-                                                                    "Департамент"
-                                                                }
-                                                                onChange={
-                                                                    changeFields
-                                                                }
-                                                            />
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 

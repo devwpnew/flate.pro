@@ -449,25 +449,17 @@ export default function SettingsForm({
 
 
                 <div>
-                    {JSON.stringify(user?.send_app_pushes_to_whatsapp)}
                     <div className="mb-1 text-xs">Отправлять сообщения на WhatsApp</div>
                     <div>
-                        <SelectNoAutocomplete
-                            style={"w-full h-[43px] border-greyborder border"}
-                            nullable={true}
-                            options={[
-                                {
-                                    name: "Да",
-                                    id: true,
-                                },
-                                {
-                                    name: "Нет",
-                                    id: false,
-                                },
-                            ]}
-                            name={"send_app_pushes_to_whatsapp"}
-                            defaultValue={"Нет"}
-                        />
+                        <div className="flex items-center gap-2 text-sm">
+                            <input
+                                name="send_app_pushes_to_whatsapp"
+                                type="checkbox"
+                                checked={user?.send_app_pushes_to_whatsapp}
+                                defaultValue={true}
+                            />
+                            <span>WhatsApp</span>
+                        </div>
                     </div>
                 </div>
 

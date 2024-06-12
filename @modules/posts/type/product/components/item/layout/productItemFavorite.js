@@ -68,7 +68,7 @@ export default function ProductItemFavorite({ user, product }) {
                                         type="green"
                                         product={product}
                                     >
-                                        Написать в WA
+                                        Написать в WhatsApp
                                     </ButtonMessage>
                                     // <Link href={"/user/profile/messages/" + product.user_id}>
                                     //   <a className="hidden lg:flex lg:flex-col lg:w-[165px]">

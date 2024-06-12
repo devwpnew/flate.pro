@@ -44,7 +44,7 @@ export default function SubscribeContent() {
               className={"w-auto px-[15px] py-2 ml-1"}
               onClick={openWaInBlank}
             >
-              Написать в WA
+              Написать в WhatsApp
             </Button>
           </>
         }

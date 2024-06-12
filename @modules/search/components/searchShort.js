@@ -200,7 +200,7 @@ export default function SearchForm(className) {
                                         />
                                     </svg> */}
                                     <SelectRelated
-                                        placeholder={`По названию ЖК`}
+                                        placeholder={`По названию ЖК или адресу`}
                                         style={`w-full h-10 rounded-full md:rounded-[10px] bg-[#ECF2F8] border-0 ${className}`}
                                         name={"rcs"}
                                         minLength={3}

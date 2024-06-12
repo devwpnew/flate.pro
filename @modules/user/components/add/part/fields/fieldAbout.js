@@ -85,7 +85,7 @@ export default function FieldAbout({ sectionId, product, form, setForm }) {
               onlyNumbers={true}
               name={"flat_floors"}
               style={"flex-grow h-10"}
-              placeholder={"Этаж"}
+              placeholder={"Этаж (если знаете)"}
               onChange={onChangeHandler}
               defaultValue={product?.properties.product_floor}
             />
@@ -106,7 +106,7 @@ export default function FieldAbout({ sectionId, product, form, setForm }) {
                   onlyNumbers={true}
                   name={"flat_floors"}
                   style={"flex-grow h-10"}
-                  placeholder={"Этажей в доме"}
+                  placeholder={"Этажей в доме (если знаете)"}
                   onChange={onChangeHandler}
                   defaultValue={product?.flat_floors}
                 />

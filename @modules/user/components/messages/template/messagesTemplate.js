@@ -69,9 +69,10 @@ export default function MessagesTemplate({ chatTemplate, dialogue }) {
           <MobilePageHeader href={"/user/profile"} title="Сообщения" />
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Container>
-              <div className="relative border-b-greyborder border-b mb-2.5">
+              <div className="relative border-b-greyborder mb-2.5">
                 <Tab.List>
                   <div className="flex justify-start gap-8">
+                    
                     <Tab as={Fragment}>
                       {({ selected }) => (
                         <div
@@ -89,45 +90,6 @@ export default function MessagesTemplate({ chatTemplate, dialogue }) {
                             }
                           >
                             <span className="relative">
-                              <span
-                                style={{
-                                  position: "absolute",
-                                  top: "-5px",
-                                  right: "-8px",
-                                  fontSize: "10px",
-                                }}
-                              ></span>
-                              Сообщения
-                            </span>
-                          </button>
-                        </div>
-                      )}
-                    </Tab>
-                    <Tab as={Fragment}>
-                      {({ selected }) => (
-                        <div
-                          className={
-                            selected
-                              ? "border-b-blue border-b-2"
-                              : "border-b-transparent border-b-2"
-                          }
-                        >
-                          <button
-                            className={
-                              selected
-                                ? "text-blue px-1 md:px-5 whitespace-nowrap"
-                                : "text-primary px-1 md:px-5 whitespace-nowrap"
-                            }
-                          >
-                            <span className="relative">
-                              <span
-                                style={{
-                                  position: "absolute",
-                                  top: "-5px",
-                                  right: "-8px",
-                                  fontSize: "10px",
-                                }}
-                              ></span>
                               Уведомления
                             </span>
                           </button>
@@ -184,66 +146,22 @@ export default function MessagesTemplate({ chatTemplate, dialogue }) {
                 selectedIndex={selectedIndex}
                 onChange={setSelectedIndex}
               >
-                <Container>
-                  <div className="relative border-b-greyborder border-b mb-2.5">
+                <div>
+                  <div className="relative mb-2.5">
                     <Tab.List>
                       <div className="flex justify-start gap-8">
+                        
                         <Tab as={Fragment}>
                           {({ selected }) => (
-                            <div
-                              className={
-                                selected
-                                  ? "border-b-blue border-b-2"
-                                  : "border-b-transparent border-b-2"
-                              }
-                            >
+                            <div>
                               <button
                                 className={
                                   selected
-                                    ? "text-blue px-1 md:px-5 whitespace-nowrap"
-                                    : "text-primary px-1 md:px-5 whitespace-nowrap"
-                                }
-                              >
-                                <span className="relative">
-                                  <span
-                                    style={{
-                                      position: "absolute",
-                                      top: "-5px",
-                                      right: "-8px",
-                                      fontSize: "10px",
-                                    }}
-                                  ></span>
-                                  Сообщения
-                                </span>
-                              </button>
-                            </div>
-                          )}
-                        </Tab>
-                        <Tab as={Fragment}>
-                          {({ selected }) => (
-                            <div
-                              className={
-                                selected
-                                  ? "border-b-blue border-b-2"
-                                  : "border-b-transparent border-b-2"
+                                      ? "bg-primary text-white px-[15px] py-[10px] whitespace-nowrap rounded-[10px] border border-primary"
+                                      : "text-primary border border-primary/10 whitespace-nowrap rounded-[10px] px-[15px] py-[10px] active:border-primary/10"
                               }
-                            >
-                              <button
-                                className={
-                                  selected
-                                    ? "text-blue px-1 md:px-5 whitespace-nowrap"
-                                    : "text-primary px-1 md:px-5 whitespace-nowrap"
-                                }
                               >
                                 <span className="relative">
-                                  <span
-                                    style={{
-                                      position: "absolute",
-                                      top: "-5px",
-                                      right: "-8px",
-                                      fontSize: "10px",
-                                    }}
-                                  ></span>
                                   Уведомления
                                   {unreadNotificationsCount > 0 && (
                                     <div className="absolute right-[-10px] top-[-1px] bg-red rounded-full w-2 h-2 text-white text-exs flex justify-center items-center"></div>
@@ -256,33 +174,9 @@ export default function MessagesTemplate({ chatTemplate, dialogue }) {
                       </div>
                     </Tab.List>
                   </div>
-                </Container>
+                </div>
 
                 <Tab.Panels>
-                  <Tab.Panel>
-                    <FallbackDevelopment
-                      text={
-                        <>
-                          Внутренний чат уже готов. Мы включим эту функцию
-                          сразу, как только закончим приложения. <br />
-                          <br />
-                          <a
-                            target="_blank"
-                            className="text-blue hover:text-bluelight"
-                            href="https://t.me/FLATEPRO"
-                          >
-                            Подпишитесь на наши новости в телеграм. Там мы
-                            постим анонсы и пишем о важных вещах
-                          </a>
-                        </>
-                      }
-                    />
-                    {/* {chatTemplate ? (
-                      <MessagesChat dialogue={dialogue} />
-                    ) : (
-                      <MessagesContent />
-                    )} */}
-                  </Tab.Panel>
                   <Tab.Panel>
                     <div className="flex flex-col gap-1 sm:container mx-auto px-[15px] lg:px-0">
                       <NotificationsContent

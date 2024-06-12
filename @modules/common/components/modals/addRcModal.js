@@ -223,7 +223,7 @@ export default function AddRcModal({
               topTitle={"Адрес"}
               inputStyle={"h-10"}
               labelStyle={"my-2.5"}
-              placeholder={"Укажите адрес или передвиньте метку на карте*"}
+              placeholder={"Укажите адрес*"}
               value={rcAddress && rcAddress}
               onChange={(ev) => setRcAddress(ev.target.value)}
               id="suggest"

@@ -61,7 +61,7 @@ export default function Marketing({ data }) {
                   className={"w-auto px-[15px] py-2 ml-1"}
                   onClick={openWaInBlank}
                 >
-                  Написать в WA
+                  Написать в WhatsApp
                 </Button>
               </>
             }

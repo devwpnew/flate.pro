@@ -132,7 +132,7 @@ export default function FieldAddress({
         Расположение <span className="text-red">*</span>
       </H2>
       <div className="mb-2 text-sm">
-        Укажите адрес или передвиньте метку на карте
+        Укажите адрес
       </div>
 
       <div className="flex flex-col md:flex-row justify-between gap-2 mb-5">

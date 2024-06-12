@@ -201,7 +201,7 @@ export default function DropdownMenu() {
                     </span>
                   </DropdownLink>
                 </div> */}
-                {/* <div>
+                <div>
                   <DropdownLink href="/user/profile/selections/">
                     <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">
                       <svg
@@ -224,7 +224,7 @@ export default function DropdownMenu() {
                       <span>Подборки</span>
                     </span>
                   </DropdownLink>
-                </div> */}
+                </div>
                 {/* <div>
                   <DropdownLink href="/user/profile/subscribe/">
                     <span className="relative text-primary hover:text-blue transition-all flex items-center gap-2.5 group">

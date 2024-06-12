@@ -37,16 +37,16 @@ const sortFields = [
     id: "date_created-DESC",
     sort: { date_sort: "DESC" },
   },
-  // {
-  //   name: "Дороже за м2",
-  //   id: "squares-price-asc",
-  //   sort: { living_squares: "DESC" },
-  // },
-  // {
-  //   name: "Дешевле за м2",
-  //   id: "squares-price-desc",
-  //   sort: { living_squares: "ASC" },
-  // },
+  {
+    name: "Дороже за м2",
+    id: "squares-price-asc",
+    sort: { living_squares: "DESC" },
+  },
+  {
+    name: "Дешевле за м2",
+    id: "squares-price-desc",
+    sort: { living_squares: "ASC" },
+  },
 ];
 
 export default function ProductsSortSelect({ callback }) {

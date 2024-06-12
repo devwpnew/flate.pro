@@ -709,7 +709,7 @@ export default function AddForm({ user, product, sidebarCallback }) {
               </div>
             </div>
           </div>
-          <div className="pt-3 pb-7 md:border-b-[1px] md:border-greyborder">
+          {/* <div className="pt-3 pb-7 md:border-b-[1px] md:border-greyborder">
             <div className="md:max-w-[425px] lg:max-w-[300px]">
               <div className="mb-7">
                 <H2>Способ связи</H2>
@@ -727,7 +727,7 @@ export default function AddForm({ user, product, sidebarCallback }) {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="pt-3 pb-7 md:border-b-[1px] md:border-greyborder">
             {/* <div className="md:max-w-[520px] lg:max-w-[300px]"> */}
             <div className="mb-7">
@@ -747,7 +747,7 @@ export default function AddForm({ user, product, sidebarCallback }) {
                               required={true}
                               labelStyle={"w-full h-11 border border-red"}
                               name={"property_product_floor"}
-                              placeholder={"Этаж"}
+                              placeholder={"Этаж (если знаете)"}
                               value={
                                 product && product.properties.product_floor
                               }
@@ -770,7 +770,7 @@ export default function AddForm({ user, product, sidebarCallback }) {
                               labelStyle={"w-full h-11 border border-red"}
                               name={"flat_floors"}
                               value={product && product.flat_floors}
-                              placeholder={"Этажей в доме"}
+                              placeholder={"Этажей в доме (если знаете)"}
                               onChange={(val) => {
                                 changeFields(val);
                                 intInputChange(val);

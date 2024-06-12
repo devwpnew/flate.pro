@@ -203,7 +203,7 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
                           className="flex justify-center items-center px-2.5"
                           product={product}
                         >
-                          Написать в WA
+                          Написать в WhatsApp
                         </ButtonMessage>
                       </div>
                     </>

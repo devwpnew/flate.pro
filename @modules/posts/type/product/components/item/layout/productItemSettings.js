@@ -90,7 +90,7 @@ export default function ProductItemSettings({ product, isModeration }) {
 
                                 {/* BUTTONS */}
 
-                                <div className="mt-2 flex gap-5">
+                                {/* <div className="mt-2 flex gap-5">
                                     <div className="flex items-center gap-[6px]">
                                         <Image
                                             src={viewedIcon.src}
@@ -113,7 +113,7 @@ export default function ProductItemSettings({ product, isModeration }) {
                                             {favoriteStat && favoriteStat.count}
                                         </span>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="mt-3 flex md:gap-2.5">
                                     <Link href={"/user/profile/subscribe"}>

@@ -101,7 +101,7 @@ export default function FieldStatus({ sectionId, form, setForm, product }) {
     <div className="mb-5">
       <div className="text-sm font-bold mb-2">
         {sectionId === 6 || sectionId === 7 || sectionId === 4
-          ? "Вид"
+          ? "Тип объекта"
           : "Статус"}<span className="text-red">*</span>
       </div>
 

@@ -54,7 +54,13 @@ export default function itemsContent({
                                             }
                                         >
                                             Все объявления{" "}
-                                            <span className="text-primary/60 pl-1">
+                                            <span 
+                                                className={
+                                                    selected
+                                                        ? "text-white/70 pl-1"
+                                                        : "text-primary/60 pl-1"
+                                                }
+                                            >
                                                 {products && products.length}
                                             </span>
                                         </button>
@@ -70,7 +76,13 @@ export default function itemsContent({
                                             }
                                         >
                                             Ждут действий{" "}
-                                            <span className="text-backdrop/60 pl-1">
+                                            <span 
+                                                className={
+                                                    selected
+                                                        ? "text-white/70 pl-1"
+                                                        : "text-primary/60 pl-1"
+                                                }
+                                            >
                                                 {productsModerated &&
                                                     productsModerated.length}
                                             </span>
@@ -87,7 +99,13 @@ export default function itemsContent({
                                             }
                                         >
                                             Архив{" "}
-                                            <span className="pl-1 opacity-60">
+                                            <span 
+                                                className={
+                                                    selected
+                                                        ? "text-white/70 pl-1"
+                                                        : "text-primary/60 pl-1"
+                                                }
+                                            >
                                                 {productsArchive &&
                                                     productsArchive.length}
                                             </span>
@@ -112,7 +130,7 @@ export default function itemsContent({
                     <Tab.Panel>
                         <div className="flex flex-col gap-1 sm:container mx-auto px-[15px] lg:px-0">
                             <ProductContainer
-                                containerClassName="flex flex-col gap-1 w-full"
+                                containerClassName="grid md:grid-cols-3 gap-[20px] w-full"
                                 products={products}
                                 hotDeals={false}
                                 isLoading={isLoading}
@@ -134,7 +152,7 @@ export default function itemsContent({
                     <Tab.Panel>
                         <div className="flex flex-col gap-1 sm:container mx-auto px-[15px] lg:px-0">
                             <ProductContainer
-                                containerClassName="flex flex-col gap-1 w-full"
+                                containerClassName="grid md:grid-cols-3 gap-[20px] w-full"
                                 products={productsModerated}
                                 hotDeals={false}
                                 isLoading={isLoading}

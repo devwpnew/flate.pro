@@ -274,12 +274,12 @@ export default function addForm({ product }) {
                 />
               </div>
 
-              <div
+              {/* <div
                 className="border-b border-greyborder pb-[30px] mb-[30px]"
                 id="connect"
               >
                 <FieldConnect product={product} />
-              </div>
+              </div> */}
 
               <div
                 className="border-b border-greyborder pb-[30px] mb-[30px]"

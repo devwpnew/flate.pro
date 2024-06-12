@@ -53,7 +53,7 @@ export default function FilterAreas({ filter, setFilter, isSidebar }) {
   // console.log(filterGlobalFields, "filterGlobalFields");
   return (
     <>
-      {router.pathname !== "/rcs/[id]" && (
+      {/* {router.pathname !== "/rcs/[id]" && ( */}
         <div
           className={`flex flex-col  ${
             isSidebar ? "lg:w-[100%]" : ""
@@ -75,7 +75,7 @@ export default function FilterAreas({ filter, setFilter, isSidebar }) {
             }
           />
         </div>
-      )}
+      {/* )} */}
     </>
   );
 }

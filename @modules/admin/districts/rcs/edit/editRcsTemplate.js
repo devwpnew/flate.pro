@@ -251,6 +251,8 @@ export default function EditRcsTemplate({ rcId }) {
     // console.log(defValueParent, "defValueParent", defValue, "defValue");
     // console.log(rc);
 
+    console.log(mapAddress);
+
     return (
         <>
             <div className="w-full">
@@ -472,7 +474,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                 defaultValue={rc && rc.address}
                                                 required={true}
                                                 placeholder={"Укажите адрес*"}
-                                                onChange={changeFields}
+                                                // onChange={changeFields}
                                                 id={"suggest-address"}
                                             />
 
@@ -752,7 +754,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     "sales_contacts"
                                                                 }
                                                                 initialPhones={
-                                                                    rc.sales_contacts
+                                                                    rc?.sales_contacts
                                                                 }
                                                                 onChange={
                                                                     changeFields

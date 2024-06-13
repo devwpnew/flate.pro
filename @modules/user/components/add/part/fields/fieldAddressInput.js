@@ -84,7 +84,7 @@ export default function FieldAddressInput({
               <Input
                 key={defaultValue}
                 id={"suggest-address"}
-                name={"property_product_address"}
+                name={null}
                 onChange={(ev) => {
                   debouncedAddressChange(ev);
                   handleErrorsOnChange(ev);

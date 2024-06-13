@@ -40,12 +40,12 @@ const sortFields = [
   {
     name: "Дороже за м2",
     id: "squares-price-asc",
-    sort: { flats_price_for_m: "DESC" },
+    sort: { flats_price_for_m: "DESC NULLS LAST" },
   },
   {
     name: "Дешевле за м2",
     id: "squares-price-desc",
-    sort: { flats_price_for_m: "ASC" },
+    sort: { flats_price_for_m: "ASC NULLS LAST"  },
   },
 ];
 

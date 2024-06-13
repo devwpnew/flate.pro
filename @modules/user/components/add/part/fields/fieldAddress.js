@@ -131,9 +131,7 @@ export default function FieldAddress({
       <H2>
         Расположение <span className="text-red">*</span>
       </H2>
-      <div className="mb-2 text-sm">
-        Укажите адрес
-      </div>
+      <div className="mb-2 text-sm">Укажите адрес</div>
 
       <div className="flex flex-col md:flex-row justify-between gap-2 mb-5">
         {sectionId === 3 && (
@@ -144,7 +142,8 @@ export default function FieldAddress({
           rcId={rcId}
           rcInfoIsLoading={rcInfoIsLoading}
           rcInfo={rcInfo}
-          handleAddressChange={handleAddressChange}
+          // handleAddressChange={handleAddressChange}
+          handleAddressChange={() => {}}
           address={mapAddress}
         />
       </div>
@@ -198,7 +197,10 @@ export default function FieldAddress({
           inputId={"suggest-address"}
           rcInfo={rcInfo}
           address={mapAddress}
-          setAddress={setMapAddress}
+          setAddress={(address) => {
+            setMapAddress(address);
+            setForm({ ...form, property_product_address: address });
+          }}
           // setCity={setRcCity}
           setBuilding={setBuilding}
           setPreName={setPreName}

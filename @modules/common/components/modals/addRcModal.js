@@ -225,7 +225,7 @@ export default function AddRcModal({
               labelStyle={"my-2.5"}
               placeholder={"Укажите адрес*"}
               value={rcAddress && rcAddress}
-              onChange={(ev) => setRcAddress(ev.target.value)}
+              // onChange={(ev) => setRcAddress(ev.target.value)}
               id="suggest"
             />
 

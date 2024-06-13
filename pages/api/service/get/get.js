@@ -16,67 +16,67 @@ const userSelectFieldsList = ['id', 'user_name', 'phone', 'email', 'user_group',
 let GET = {};
 export default GET = {
   
-	data: async function getData(fields) {
-		try {
-			let domen;
-			if (fields.window_host) {
-				domen = fields.window_host;
-			} else if (typeof window !== 'undefined') {
-				domen = window.location.origin;
-			}
+	// data: async function getData(fields) {
+	// 	try {
+	// 		let domen;
+	// 		if (fields.window_host) {
+	// 			domen = fields.window_host;
+	// 		} else if (typeof window !== 'undefined') {
+	// 			domen = window.location.origin;
+	// 		}
 		
-			// Generate a unique cache key based on the fields
-			const cacheKey = JSON.stringify(fields);
+	// 		// Generate a unique cache key based on the fields
+	// 		const cacheKey = JSON.stringify(fields);
 		
-			// Try to get the cached data
-			const cachedData = cache.get(cacheKey);
-			if (cachedData) {
-				console.log('—— Using cache');
-				return cachedData;
-			}
+	// 		// Try to get the cached data
+	// 		const cachedData = cache.get(cacheKey);
+	// 		if (cachedData) {
+	// 			console.log('—— Using cache');
+	// 			return cachedData;
+	// 		}
 		
-			const res = await axios.post(
-				`${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
-				fields
-			);
+	// 		const res = await axios.post(
+	// 			`${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
+	// 			fields
+	// 		);
 		
-			if (res.data.error) {
-				return { error: res.data.error };
-			}
+	// 		if (res.data.error) {
+	// 			return { error: res.data.error };
+	// 		}
 		
-			const data = res.data;
+	// 		const data = res.data;
 		
-			// Cache the data
-			cache.put(cacheKey, data, CACHE_DURATION);
+	// 		// Cache the data
+	// 		cache.put(cacheKey, data, CACHE_DURATION);
 		
-			return data;
-		} catch (error) {
-			return { error: error.message };
-		}
-	},
+	// 		return data;
+	// 	} catch (error) {
+	// 		return { error: error.message };
+	// 	}
+	// },
 
-  // data: async function getData(fields) {
-  //   try {
-  //     if (fields.window_host) {
-  //       domen = fields.window_host;
-  //     } else if (typeof window != 'undefined') {
-  //       domen = window.location.origin;
-  //     }
-  //     const res = await axios.post(
-  //       `${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
-  //       fields
-  //     );
+  data: async function getData(fields) {
+    try {
+      if (fields.window_host) {
+        domen = fields.window_host;
+      } else if (typeof window != 'undefined') {
+        domen = window.location.origin;
+      }
+      const res = await axios.post(
+        `${domen ? domen : "https://flate.pro"}/api/admin_api/getList`,
+        fields
+      );
 
-  //     if (res.data.error) {
-  //       return { error: res.data.error }
-  //     }
-  //     const data = res.data;
+      if (res.data.error) {
+        return { error: res.data.error }
+      }
+      const data = res.data;
 
-  //     return data;
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // },
+      return data;
+    } catch (error) {
+      return error;
+    }
+  },
 
   activeCity: async function getActiveCity() {
     const fromCookie = getCookie("city");

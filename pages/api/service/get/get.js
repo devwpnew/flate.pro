@@ -11,7 +11,7 @@ const CACHE_DURATION = 3600000; // кеш на 1 час
 
 let domen = false;
 
-const userSelectFieldsList = ['id', 'user_name', 'phone', 'email', 'user_group', 'date_registered', 'date_paid_to', 'paid', 'user_description', 'user_last_name', 'favorites', 'email_confirmed', 'phone_confirmed', 'email_confirmation', 'user_avatar', 'user_agency', 'default_city', 'professional_confirmation', 'sef_code', 'additional_phones', 'product_count', 'last_login_date', 'paid', 'date_paid', 'date_paid_to', 'date_notifications_read'];
+const userSelectFieldsList = ['id', 'user_name', 'phone', 'email', 'user_group', 'date_registered', 'date_paid_to', 'paid', 'user_description', 'user_last_name', 'favorites', 'email_confirmed', 'phone_confirmed', 'email_confirmation', 'user_avatar', 'user_agency', 'default_city', 'professional_confirmation', 'sef_code', 'additional_phones', 'product_count', 'last_login_date', 'paid', 'date_paid', 'date_paid_to', 'date_notifications_read', 'send_app_pushes_to_whatsapp'];
 
 let GET = {};
 export default GET = {

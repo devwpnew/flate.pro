@@ -173,7 +173,9 @@ export default function SettingsForm({
             }
         }
 
-        console.log(data, "data");
+        if(!data?.send_app_pushes_to_whatsapp) {
+            data.send_app_pushes_to_whatsapp = "false"
+        }
 
         const res = await API.update.user(data);
 
@@ -184,9 +186,9 @@ export default function SettingsForm({
         setIsLoading(false);
         setIsOpen(true);
 
-        if (!res?.error) {
-            router.push("/");
-        }
+        // if (!res?.error) {
+        //     router.push("/");
+        // }
     };
 
     const emailChangeHandler = (ev) => {
@@ -455,7 +457,8 @@ export default function SettingsForm({
                             <input
                                 name="send_app_pushes_to_whatsapp"
                                 type="checkbox"
-                                checked={user?.send_app_pushes_to_whatsapp}
+                                defaultChecked={user?.send_app_pushes_to_whatsapp}
+                                // checked={user?.send_app_pushes_to_whatsapp}
                                 defaultValue={true}
                             />
                             <span>WhatsApp</span>

@@ -816,6 +816,27 @@ export default ADD = {
                 return { Error: "Userid обязателен" };
             }
 
+            let arUser = false;
+            if(typeof userid != "object") {
+                arUser = await API.get.user({filter: {id: userid}, limit: 1})
+            } else {
+                arUser = userid
+            }
+
+            if(arUser?.send_app_pushes_to_whatsapp) {
+                // console.log('wasend', arUser?.send_app_pushes_to_whatsapp)
+                const waSend = await axios.post('https://suzdalini.flate.pro/messages', {
+                    token: "789hghj23sdfsdfsadfhghHDSFJho7y8tugfisdu9f",
+                    userId: arUser.id,
+                    phone: arUser.phone,
+                    title,
+                    text
+                })
+                console.log({waSend})
+            }
+
+            // console.log({arUser})
+
             const expoPushToken = await API.get.tokenRowsByUserId(id);
 
             const arTokens = expoPushToken.map((data) => {

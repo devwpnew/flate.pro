@@ -186,9 +186,9 @@ export default function SettingsForm({
         setIsLoading(false);
         setIsOpen(true);
 
-        // if (!res?.error) {
-        //     router.push("/");
-        // }
+        if (!res?.error) {
+            router.push("/");
+        }
     };
 
     const emailChangeHandler = (ev) => {

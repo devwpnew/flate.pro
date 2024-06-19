@@ -20,6 +20,10 @@ const validateAddForm = (formData, sectionId, product) => {
     tmpForm["product_room_count"] = product?.product_room_count;
   }
 
+  if (product?.repairment) {
+    tmpForm["repairment"] = product?.repairment;
+  }
+
   for (const key in tmpForm) {
     if (tmpForm[key] === "0") {
       tmpForm[key] = "1";

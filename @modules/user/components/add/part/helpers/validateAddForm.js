@@ -8,6 +8,18 @@ const validateAddForm = (formData, sectionId, product) => {
     tmpForm[key] = value;
   });
 
+  if (product?.properties?.product_address) {
+    tmpForm["property_product_address"] = product?.properties?.product_address;
+  }
+
+  if (product?.area_link?.id) {
+    tmpForm["area_link"] = product?.area_link?.id;
+  }
+
+  if (product?.product_room_count) {
+    tmpForm["product_room_count"] = product?.product_room_count;
+  }
+
   for (const key in tmpForm) {
     if (tmpForm[key] === "0") {
       tmpForm[key] = "1";

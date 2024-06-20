@@ -324,7 +324,7 @@ export default function addForm({ product }) {
                                         }
                                     />
 
-                                    <div>
+                                    {/* <div>
                                         <p className="text-xl mb-3">Или добавьте видео</p>
                                         
                                         {product.video_path && <VideoPlayer src={product.video_path} className="rounded-2xl bg-slate-100 w-full max-h-[400px] mb-3" />}
@@ -338,7 +338,7 @@ export default function addForm({ product }) {
 											setForm={setForm}
 											onUploadComplete={handleUploadComplete}
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 

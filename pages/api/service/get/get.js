@@ -420,6 +420,19 @@ export default GET = {
       return data;
     }
   },
+  
+  rcTypes: async function getRcTypes(fields) {
+    const rcTypeFields = {
+      table: "rc_types",
+      ...fields,
+    }
+
+    const data = await API.get.data(rcTypeFields);
+
+    if (data) {
+      return data;
+    }
+  },
 
   rcProdCount: async function getRcProdCount(id) {
     const getCountFields = {

@@ -45,6 +45,19 @@ export default function EditRcsTemplate({ rcId }) {
 
     const [mapAddress, setMapAddress] = useState("");
 
+
+    const [rcTypesList, setRcTypesList] = useState(null);
+
+    useEffect(() => {
+        (async function fetchRcTypes() {
+            const getRcTypesList = await api.get.rcTypes({ sort: { id: "asc" } });
+            setRcTypesList(getRcTypesList);
+        })();
+    }, []);
+
+
+
+
     useEffect(() => {
         (async function fetchCities() {
             const getCitiesList = await api.get.cities({ sort: { id: "asc" } });
@@ -112,7 +125,7 @@ export default function EditRcsTemplate({ rcId }) {
     
 
     const changeFields = (event, forceName = false, forceValue = false) => {
-        console.log("changeFields", event);
+        //console.log("changeFields", event);
         let currentFields = fields;
 
         if (forceName && forceValue) {
@@ -142,65 +155,59 @@ export default function EditRcsTemplate({ rcId }) {
 
     const sendForm = async (e) => {
         e.preventDefault();
-
+    
         const formData = new FormData(formRef.current);
-
+    
         for (const key in fields) {
             if (key === "images") {
                 const galleryFiles = fields[key];
                 const galleryFilesResult = [];
-
+    
                 if (
                     galleryFiles &&
                     galleryFiles.length > 0 &&
                     galleryFiles[0].name !== ""
                 ) {
-                    galleryFiles.map((file) => {
+                    galleryFiles.forEach((file) => {
                         galleryFilesResult.push(file);
                     });
-
+    
                     formData.delete("images");
-
-                    galleryFilesResult.map((file) => {
+    
+                    galleryFilesResult.forEach((file) => {
                         formData.append("images", file);
                     });
                 }
-            }
-            else if (key === "sales_contacts") {
-                formData.set(key, JSON.stringify(fields[key])); // Преобразование в JSON строку
+            } else if (key === "sales_contacts") {
+                formData.set(key, JSON.stringify(fields[key]));
+            } else {
+                formData.set(key, fields[key]);
             }
         }
-
+    
         if (selectedCity) {
             formData.set("city_link", selectedCity.id);
         }
-
+    
         if (selectedParentArea?.id) {
             formData.set("area_link", selectedParentArea.id);
         }
-
+    
         if (selectedMicroArea?.id) {
             formData.set("area_link", selectedMicroArea.id);
         }
-
-        for (const key of formData) {
-            // console.log(key);
-        }
-
+    
         const action = formRef.current.getAttribute("name");
-        if (action == "editAd" && rc && user) {
+        if (action === "editAd" && rc && user) {
             formData.append("id", rc.id);
             const res = await api.update.rcs(formData, true);
-            // console.log(res);
             if (res) {
                 alert("ЖК успешно изменён");
-                router.push("//user/admin/rcs/");
             }
-        } else if (action == "addAd") {
+        } else if (action === "addAd") {
             const res = await api.add.rcs(formData, true);
             if (res) {
                 alert("ЖК успешно добавлен");
-                router.push("//user/admin/rcs/");
             }
         }
     };
@@ -213,7 +220,7 @@ export default function EditRcsTemplate({ rcId }) {
                 alert(res.Error);
             } else {
                 alert("ЖК успешно удален");
-                router.push("//user/admin/rcs/");
+                router.push("/user/admin/rcs/");
             }
         }
     };
@@ -238,6 +245,12 @@ export default function EditRcsTemplate({ rcId }) {
             if (rcInfo.area_link?.id) {
                 setDefValue(rcInfo.area_link?.id);
             }
+
+            setFields({
+                ...fields,
+                published: rcInfo.published,
+                type_id: rcInfo.type_id,
+            });
         }
     }, [rc]);
 
@@ -766,26 +779,65 @@ export default function EditRcsTemplate({ rcId }) {
                                                 </div>
                                             </div>
 
-                                            <div className="font-bold mb-2.5 text-sm">
-                                                Опубликовано
-                                            </div>
+                                            {/* {JSON.stringify(fields)} */}
+
+
+                                            <div className="font-bold mb-2.5 text-sm">Опубликовано</div>
                                             <div className="mb-5">
-                                                <SelectNoAutocomplete
-                                                    style={
-                                                        "w-full h-[43px] border-greyborder border"
-                                                    }
-                                                    name={"published"}
-                                                    type={"Опубликовано"}
-                                                    defaultOption={
-                                                        rc &&
-                                                        publishedValues &&
-                                                        publishedValues[
-                                                            rc.published
-                                                        ]
-                                                    }
-                                                    addCallback={changeFields}
-                                                    options={publishedValues}
-                                                />
+                                                <div className="flex flex-wrap gap-2">
+                                                    {publishedValues &&
+                                                        publishedValues.map((val) => (
+                                                            <button
+                                                                type="button"
+                                                                key={val.id}
+                                                                onClick={() =>
+                                                                    setFields((prevFields) => ({
+                                                                        ...prevFields,
+                                                                        published: val.id,
+                                                                    }))
+                                                                }
+                                                                className={`
+                                                                    py-1.5 px-4 rounded-lg 
+                                                                    ${
+                                                                        fields.published === val.id
+                                                                            ? "bg-blue text-white"
+                                                                            : "bg-backdrop/5"
+                                                                    }
+                                                                `}
+                                                            >
+                                                                {val.name}
+                                                            </button>
+                                                        ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="font-bold mb-2.5 text-sm">Тип объекта</div>
+                                            <div className="mb-5">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {rcTypesList &&
+                                                        rcTypesList.map((val) => (
+                                                            <button
+                                                                type="button"
+                                                                key={val.id}
+                                                                onClick={() =>
+                                                                    setFields((prevFields) => ({
+                                                                        ...prevFields,
+                                                                        type_id: val.id,
+                                                                    }))
+                                                                }
+                                                                className={`
+                                                                    py-1.5 px-4 rounded-lg 
+                                                                    ${
+                                                                        fields.type_id === val.id
+                                                                            ? "bg-blue text-white"
+                                                                            : "bg-backdrop/5"
+                                                                    }
+                                                                `}
+                                                            >
+                                                                {val.name}
+                                                            </button>
+                                                        ))}
+                                                </div>
                                             </div>
 
                                             <FieldImages
@@ -809,7 +861,7 @@ export default function EditRcsTemplate({ rcId }) {
                                     {!MOBILE && (
                                         <div className="flex justify-end w-full mt-[10px]">
                                             <div className="w-[130px] h-[33px]">
-                                                <Button>Сохранить</Button>
+                                                <Button className="py-2">Сохранить</Button>
                                             </div>
                                         </div>
                                     )}

@@ -5,7 +5,7 @@ const sortFields = [
   {
     name: "По умолчанию",
     id: "date_published",
-    sort: null,
+    sort: { date_sort: "DESC" },
   },
   {
     name: "Дешевле",

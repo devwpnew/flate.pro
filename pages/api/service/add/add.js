@@ -212,6 +212,8 @@ export default ADD = {
                 sendData.append("table", "product");
                 sendData.append("published", "0");
 
+               
+
                 if (sendData.get("building_address")) {
                     const buildingAddress = sendData.get("building_address");
 

@@ -16,6 +16,7 @@ export default async (req, res) => {
 
         const date = new Date();
 
+
         const formidableData = await new Promise((resolve, reject) => {
             let editObject = {};
             let createProperties = {};
@@ -53,7 +54,7 @@ export default async (req, res) => {
                         }
                     }
 
-                    if (fields[k][0] == 'published' && fields[k][1] == '1' && editObject['date_published'] == '') {
+                    if (fields[k][0] == 'published' && fields[k][1] == 1 && editObject['date_published'] == '') {
                         editObject['date_published'] = date;
                     }
 

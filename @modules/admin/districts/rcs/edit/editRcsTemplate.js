@@ -55,6 +55,15 @@ export default function EditRcsTemplate({ rcId }) {
         })();
     }, []);
 
+    const [rcClassesList, setRcClassesList] = useState(null);
+
+    useEffect(() => {
+        (async function fetchRcClasses() {
+            const getRcClassesList = await api.get.rcClasses({ sort: { id: "asc" } });
+            setRcClassesList(getRcClassesList);
+        })();
+    }, []);
+
 
 
 
@@ -250,6 +259,7 @@ export default function EditRcsTemplate({ rcId }) {
                 ...fields,
                 published: rcInfo.published,
                 type_id: rcInfo.type_id,
+                class_id: rcInfo.class_id,
             });
         }
     }, [rc]);
@@ -829,6 +839,35 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     py-1.5 px-4 rounded-lg 
                                                                     ${
                                                                         fields.type_id === val.id
+                                                                            ? "bg-blue text-white"
+                                                                            : "bg-backdrop/5"
+                                                                    }
+                                                                `}
+                                                            >
+                                                                {val.name}
+                                                            </button>
+                                                        ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="font-bold mb-2.5 text-sm">Класс объекта</div>
+                                            <div className="mb-5">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {rcClassesList &&
+                                                        rcClassesList.map((val) => (
+                                                            <button
+                                                                type="button"
+                                                                key={val.id}
+                                                                onClick={() =>
+                                                                    setFields((prevFields) => ({
+                                                                        ...prevFields,
+                                                                        class_id: val.id,
+                                                                    }))
+                                                                }
+                                                                className={`
+                                                                    py-1.5 px-4 rounded-lg 
+                                                                    ${
+                                                                        fields.class_id === val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
                                                                     }

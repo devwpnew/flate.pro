@@ -434,6 +434,19 @@ export default GET = {
     }
   },
 
+  rcClasses: async function getRcClasses(fields) {
+    const rcClassFields = {
+      table: "rc_classes",
+      ...fields,
+    }
+
+    const data = await API.get.data(rcClassFields);
+
+    if (data) {
+      return data;
+    }
+  },
+
   rcProdCount: async function getRcProdCount(id) {
     const getCountFields = {
       table: 'product',

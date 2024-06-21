@@ -268,6 +268,7 @@ export default function EditRcsTemplate({ rcId }) {
 
     const handleStatusChange = (selectedStatus) => {
         setStatus(selectedStatus);
+        console.log({selectedStatus})
         changeFields({ target: { name: "status", value: selectedStatus } });
     };
 

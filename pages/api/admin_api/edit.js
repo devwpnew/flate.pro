@@ -120,6 +120,8 @@ export default async (req, res) => {
 
         let { editObject, createProperties, filter } = formidableData
 
+        // console.log({editObject})
+
         const updateRequest = await updateItems(editObject.table, filter, editObject);
 
         if (updateRequest.error) {

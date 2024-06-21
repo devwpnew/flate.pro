@@ -43,9 +43,7 @@ export default function SelectNoAutocomplete({
   useEffect(() => {
     (() => {
       if (addCallback) {
-        addCallback(function () {
-          return { name: name, value: selected.id };
-        });
+        addCallback(selected.id);
       }
 
       if (callback) {

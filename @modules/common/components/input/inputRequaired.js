@@ -2,43 +2,61 @@ import { useEffect, useState } from "react";
 
 import Input from "./input";
 
-export default function InputRequired({ onChange, value, ...props }) {
-    const [isError, setIsError] = useState(null);
-    const handleErrorsOnChange = (ev) => {
-        setIsError(null);
+const numberFormat = new Intl.NumberFormat("ru");
 
-        if (ev.target.value === "") {
-            setIsError("Обязательно для заполнения");
-        }
+export default function InputRequired({
+  onChange,
+  onlyNumbers = false,
+  onlyNumbersBiggerThan = null,
+  isCurrency = false,
+  value,
+  ...props
+}) {
+  const [isError, setIsError] = useState(null);
+  const handleErrorsOnChange = (ev) => {
+    setIsError(null);
 
-		if (parseInt(ev.target.value.replace(/\s/g, '')) < 300000) {
-            setIsError("Значение должно быть больше 300 000 ₽");
-        }
-    };
+    if (ev.target.value === "") {
+      setIsError("Обязательно для заполнения");
+    }
 
-    // if uncontrolled input
-    const onChangeHandler = (ev) => {
-        if (onChange) {
-            onChange(ev);
-        }
-        handleErrorsOnChange(ev);
-    };
+    if (onlyNumbers && onlyNumbersBiggerThan) {
+      if (
+        parseInt(ev.target.value.replace(/\s/g, "")) < onlyNumbersBiggerThan
+      ) {
+        const formatted = numberFormat.format(onlyNumbersBiggerThan);
 
-    // if controlled input
-    useEffect(() => {
-        setIsError(null);
-        if (value === "") {
-            setIsError("Обязательно для заполнения");
-        }
-    }, [value]);
+        const currency = isCurrency ? " руб." : "";
 
-    return (
-        <Input
-            onChange={onChangeHandler}
-            {...props}
-            isError={typeof isError === "string"}
-            errorMsg={isError}
-            value={value}
-        />
-    );
+        setIsError(`Значение должно быть больше ${formatted}${currency}`);
+      }
+    }
+  };
+
+  // if uncontrolled input
+  const onChangeHandler = (ev) => {
+    if (onChange) {
+      onChange(ev);
+    }
+    handleErrorsOnChange(ev);
+  };
+
+  // if controlled input
+  useEffect(() => {
+    setIsError(null);
+    if (value === "") {
+      setIsError("Обязательно для заполнения");
+    }
+  }, [value]);
+
+  return (
+    <Input
+      onChange={onChangeHandler}
+      {...props}
+      onlyNumbers={onlyNumbers}
+      isError={typeof isError === "string"}
+      errorMsg={isError}
+      value={value}
+    />
+  );
 }

@@ -15,9 +15,7 @@ export default function ProductItem({
 }) {
     const user = useSelector((state) => state.userLogin.value);
 
-    if (layout === "horisontal") {
-        return <ProductItemHorizontal user={user} product={product} />;
-    }
+    
 
     if (layout === "settings") {
         return (

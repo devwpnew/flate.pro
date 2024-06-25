@@ -181,7 +181,7 @@ export default function ProductContainerWithFetch({
                         ))}
 
                     {isLoading && (
-                        <ProductPreloader amount={preloaderAmountTmp} />
+                        <p>1</p>
                     )}
 
                     <div ref={anchorEnd}></div>

@@ -51,19 +51,20 @@ export default function ProductItemGrid({ user, product }) {
                             className={`rounded-xl flex flex-col cursor-pointer group h-full transition-all`}
                         >
                             <div className="block">
-                                {/* <div className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full">
-                  <Image
-                    className="object-cover object-center h-full w-full"
-                    src={getProductImageSrc(product)}
-                    width={220}
-                    height={160}
-                    layout="responsive"
-                    quality={50}
-                    onError={(e) => console.error(e.target.id)}
-                  />
-                </div> */}
-
-                                <div
+                                <div className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full">
+                                    <Image
+                                        className="object-cover object-center h-full w-full"
+                                        src={getProductImageSrc(product)}
+                                        width={220}
+                                        height={160}
+                                        layout="responsive"
+                                        quality={50}
+                                        onError={(e) =>
+                                            console.error(e.target.id)
+                                        }
+                                    />
+                                </div>
+                                {/* <div
                                     className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full h-[160px]"
                                     style={{
                                         backgroundImage: `url(${getProductImageSrc(
@@ -73,7 +74,7 @@ export default function ProductItemGrid({ user, product }) {
                                         backgroundPosition: "center",
                                     }}
                                     onError={(e) => console.error(e.target.id)}
-                                ></div>
+                                ></div> */}
 
                                 <div className="text-primary text-[18px] tracking-tight font-bold block mt-[5px] md:mt-[10px]">
                                     {getProductPrice(product)} ₽

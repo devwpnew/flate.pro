@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 
 import Input from "./input";
 
+const numberFormat = new Intl.NumberFormat("ru");
+
 export default function InputRequired({
   onChange,
   onlyNumbers = false,
   onlyNumbersBiggerThan = null,
+  isCurrency = false,
   value,
   ...props
 }) {
@@ -21,7 +24,11 @@ export default function InputRequired({
       if (
         parseInt(ev.target.value.replace(/\s/g, "")) < onlyNumbersBiggerThan
       ) {
-        setIsError("Значение должно быть больше 300 000 ₽");
+        const formatted = numberFormat.format(onlyNumbersBiggerThan);
+
+        const currency = isCurrency ? " руб." : "";
+
+        setIsError(`Значение должно быть больше ${formatted}${currency}`);
       }
     }
   };

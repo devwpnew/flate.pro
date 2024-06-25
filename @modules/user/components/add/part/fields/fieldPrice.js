@@ -94,6 +94,7 @@ export default function FieldPrice({
               <InputRequired
                 onlyNumbers={true}
                 onlyNumbersBiggerThan={300000}
+                isCurrency={true}
                 name={"product_price"}
                 style={"flex-grow h-10"}
                 placeholder={"Цена"}

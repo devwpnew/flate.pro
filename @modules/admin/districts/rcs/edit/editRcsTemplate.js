@@ -24,7 +24,7 @@ import Checkbox from "@modules/common/components/checkbox/checkbox";
 import HeadlessMultiSelect from "@modules/common/components/select/listBox/headlessMultiSelect";
 
 import VideoUpload from "@modules/common/components/video/Upload";
-//import VideoPlayer from "@modules/common/components/video/Player";
+import VideoPlayer from "@modules/common/components/video/Player";
 
 import PhoneInput from "@modules/admin/districts/rcs/edit/part/phoneInput";
 
@@ -1294,13 +1294,13 @@ export default function EditRcsTemplate({ rcId }) {
                                                 )}
 
                                                 
-                                                {/* {videos && videos.length > 0 && (
+                                                {videos && videos.length > 0 && (
                                                     <div className="mt-5 grid grid-cols-3 gap-4">
                                                         {videos.map((val) => (
                                                             <VideoPlayer key={val.id} playbackId={val.playback_id} />
                                                         ))}
                                                     </div>
-                                                )} */}
+                                                )}
 
 
 

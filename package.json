@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & npx next-video sync -w",
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
@@ -36,6 +36,7 @@
     "next-session": "^4.0.5",
     "next-share": "^0.18.1",
     "next-useragent": "^2.8.0",
+    "next-video": "^1.1.1",
     "nextjs-cors": "^2.1.2",
     "node-sms-ru": "^0.0.6",
     "nodemailer": "^6.7.8",

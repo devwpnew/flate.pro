@@ -13,7 +13,7 @@ const VideoPlayer = ({ playbackId }) => {
                 style={{ display: 'grid', width: '600px', aspectRatio: '16/9', borderRadius: '50px' }}
                 disableTracking
                 src={videoUrl}
-                className="w-[500px] max-w-[500px] rounded-2xl"
+                className="w-[300px] max-w-[300px] rounded-2xl"
                 controls
                 autoPlay
             />

@@ -83,7 +83,7 @@ export default function DropdownMenu() {
                   height={arrowBottom.height}
                 />
 
-                <div className="w-[30px] h-[30px]">
+                <div className="w-[30px] h-[30px] overflow-hidden">
                   <UserAvatar
                     onClick={(ev) => {
                       ev.preventDefault();

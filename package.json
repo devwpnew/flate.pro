@@ -13,6 +13,7 @@
     "@fancyapps/ui": "^4.0.31",
     "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.6",
+    "@mux/mux-node": "^8.8.0",
     "@reduxjs/toolkit": "^1.8.1",
     "async-busboy": "^1.1.0",
     "axios": "^0.26.1",

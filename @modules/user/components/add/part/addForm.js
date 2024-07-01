@@ -309,7 +309,7 @@ export default function addForm({ product }) {
                                 className="border-b border-greyborder pb-[30px] mb-[30px]"
                                 id="gallery"
                             >
-                                <div className="grid md:grid-cols-2 gap-5">
+                                <div className="flex flex-col gap-5">
                                     <FieldImages
                                         setForm={setForm}
                                         form={form}

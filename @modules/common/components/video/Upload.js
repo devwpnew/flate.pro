@@ -1,70 +1,79 @@
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 
-const FormUpload = ({ path, name, onUploadComplete }) => {
+const VideoUpload = ({ onUploadSuccess, rcId }) => {
+    const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    const fileInputRef = useRef(null);
+    const [error, setError] = useState(null);
 
-    const handleFileChange = async (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-            const selectedFile = e.target.files[0];
-
-            setUploading(true);
-            const formData = new FormData();
-            formData.append("file", selectedFile);
-            formData.append("path", path);
-            formData.append("name", name);
-
-            try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_V2}/file/upload/single`,
-                    {
-                        method: "POST",
-                        body: formData,
-                    }
-                );
-
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(
-                        "File uploaded successfully, public URL:",
-                        data.publicUrl
-                    ); // Log image URL
-                    onUploadComplete(data.publicUrl); // Call onUploadComplete with the public URL
-                } else {
-                    console.error("File upload failed");
-                }
-            } catch (error) {
-                console.error("Error uploading file:", error);
-            } finally {
-                setUploading(false);
-            }
+    const handleFileChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setFile(event.target.files[0]);
         }
     };
 
-    const handleButtonClick = (e) => {
-        e.preventDefault();
-        if (fileInputRef.current) {
-            fileInputRef.current.click();
+    const handleUpload = async () => {
+        if (!file) return;
+
+        setUploading(true);
+        setError(null);
+
+        try {
+            console.log("MUX start upload client", rcId);
+
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_V2}/mux/upload`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ rc_id: rcId }),
+                }
+            );
+
+            console.log(response);
+
+            if (!response.ok) {
+                throw new Error(
+                    `Failed to get upload URL: ${response.statusText}`
+                );
+            }
+
+            const data = await response.json();
+            const uploadUrl = data.uploadUrl;
+            const uploadId = data.uploadId;
+
+            const uploadResponse = await fetch(uploadUrl, {
+                method: "PUT",
+                body: file,
+            });
+
+            if (!uploadResponse.ok) {
+                throw new Error(`Upload failed: ${uploadResponse.statusText}`);
+            }
+
+            //console.log("Upload ID:", uploadId);
+            onUploadSuccess(uploadId);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setUploading(false);
         }
     };
 
     return (
         <div>
-            <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-            />
+            <input type="file" onChange={handleFileChange} />
             <button
-                className="bg-blue text-white px-4 py-2 rounded-lg"
-                onClick={handleButtonClick}
+                onClick={handleUpload}
                 disabled={uploading}
+                className="py-2 px-3 rounded-lg bg-blue text-white"
             >
-                {uploading ? "Загрузка..." : "Загрузить видео"}
+                {uploading ? "Идёт загрузка..." : "Загрузить видео"}
             </button>
+            {error && <p style={{ color: "red" }}>Error: {error}</p>}
         </div>
     );
 };
 
-export default FormUpload;
+export default VideoUpload;

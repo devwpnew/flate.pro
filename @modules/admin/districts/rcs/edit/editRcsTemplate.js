@@ -19,6 +19,12 @@ import { useRouter } from "next/router";
 import api from "pages/api/service/api";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import Checkbox from "@modules/common/components/checkbox/checkbox";
+//import SelectMultiSelect from "@modules/common/components/select/listBox/selectMultiSelect";
+import HeadlessMultiSelect from "@modules/common/components/select/listBox/headlessMultiSelect";
+
+import VideoUpload from "@modules/common/components/video/Upload";
+//import VideoPlayer from "@modules/common/components/video/Player";
 
 import PhoneInput from "@modules/admin/districts/rcs/edit/part/phoneInput";
 
@@ -45,12 +51,17 @@ export default function EditRcsTemplate({ rcId }) {
 
     const [mapAddress, setMapAddress] = useState("");
 
-
     const [rcTypesList, setRcTypesList] = useState(null);
+
+    const [documentType, setDocumentType] = useState([]);
+    const [paymentType, setPaymentType] = useState([]);
+    const [rating, setRating] = useState(null);
 
     useEffect(() => {
         (async function fetchRcTypes() {
-            const getRcTypesList = await api.get.rcTypes({ sort: { id: "asc" } });
+            const getRcTypesList = await api.get.rcTypes({
+                sort: { id: "asc" },
+            });
             setRcTypesList(getRcTypesList);
         })();
     }, []);
@@ -59,13 +70,12 @@ export default function EditRcsTemplate({ rcId }) {
 
     useEffect(() => {
         (async function fetchRcClasses() {
-            const getRcClassesList = await api.get.rcClasses({ sort: { id: "asc" } });
+            const getRcClassesList = await api.get.rcClasses({
+                sort: { id: "asc" },
+            });
             setRcClassesList(getRcClassesList);
         })();
     }, []);
-
-
-
 
     useEffect(() => {
         (async function fetchCities() {
@@ -131,8 +141,6 @@ export default function EditRcsTemplate({ rcId }) {
         })();
     }, [rcId]);
 
-    
-
     const changeFields = (event, forceName = false, forceValue = false) => {
         //console.log("changeFields", event);
         let currentFields = fields;
@@ -164,14 +172,14 @@ export default function EditRcsTemplate({ rcId }) {
 
     const sendForm = async (e) => {
         e.preventDefault();
-    
+
         const formData = new FormData(formRef.current);
-    
+
         for (const key in fields) {
             if (key === "images") {
                 const galleryFiles = fields[key];
                 const galleryFilesResult = [];
-    
+
                 if (
                     galleryFiles &&
                     galleryFiles.length > 0 &&
@@ -180,9 +188,9 @@ export default function EditRcsTemplate({ rcId }) {
                     galleryFiles.forEach((file) => {
                         galleryFilesResult.push(file);
                     });
-    
+
                     formData.delete("images");
-    
+
                     galleryFilesResult.forEach((file) => {
                         formData.append("images", file);
                     });
@@ -193,19 +201,19 @@ export default function EditRcsTemplate({ rcId }) {
                 formData.set(key, fields[key]);
             }
         }
-    
+
         if (selectedCity) {
             formData.set("city_link", selectedCity.id);
         }
-    
+
         if (selectedParentArea?.id) {
             formData.set("area_link", selectedParentArea.id);
         }
-    
+
         if (selectedMicroArea?.id) {
             formData.set("area_link", selectedMicroArea.id);
         }
-    
+
         const action = formRef.current.getAttribute("name");
         if (action === "editAd" && rc && user) {
             formData.append("id", rc.id);
@@ -255,12 +263,33 @@ export default function EditRcsTemplate({ rcId }) {
                 setDefValue(rcInfo.area_link?.id);
             }
 
+            setFz214(rcInfo.fz214);
+            setSoldout(rcInfo.soldout);
+            setTrustManagement(rcInfo.trust_management);
+            //setDocumentType(rcInfo.document_type);
+            //setPaymentType(rcInfo.payment_type);
+            //setRating(rcInfo.rating);
+
             setFields({
                 ...fields,
                 published: rcInfo.published,
                 type_id: rcInfo.type_id,
                 class_id: rcInfo.class_id,
+                fz214: rcInfo.fz214 || false,
+                soldout: rcInfo.soldout || false,
+                trust_management: rcInfo.trust_management || false,
+                //document_type: rcInfo.document_type || [],
+                //payment_type: rcInfo.payment_type || [],
+                //rating: rcInfo.rating || null,
             });
+        }
+    }, [rc]);
+
+    useEffect(() => {
+        if (rc) {
+            setDocumentType(rc.document_type);
+            setPaymentType(rc.payment_type);
+            setRating(rc.rating);
         }
     }, [rc]);
 
@@ -268,14 +297,113 @@ export default function EditRcsTemplate({ rcId }) {
 
     const handleStatusChange = (selectedStatus) => {
         setStatus(selectedStatus);
-        console.log({selectedStatus})
         changeFields({ target: { name: "status", value: selectedStatus } });
     };
+
+    const [fz214, setFz214] = useState(false);
+    const [soldout, setSoldout] = useState(false);
+    const [trustManagement, setTrustManagement] = useState(false);
+
+    const handleFz214Change = () => {
+        setFz214(!fz214);
+        setFields((prevFields) => ({
+            ...prevFields,
+            fz214: !fz214,
+        }));
+    };
+
+    const handleSoldoutChange = () => {
+        setSoldout(!soldout);
+        setFields((prevFields) => ({
+            ...prevFields,
+            soldout: !soldout,
+        }));
+    };
+
+    const handleTrustManagementChange = () => {
+        setTrustManagement(!trustManagement);
+        setFields((prevFields) => ({
+            ...prevFields,
+            trust_management: !trustManagement,
+        }));
+    };
+
+    const handleDocumentTypeChange = (selectedIds) => {
+        setDocumentType(selectedIds);
+        //changeFields({ target: { name: "document_type", value: JSON.stringify(selectedIds) } });
+        setFields((prevFields) => ({
+            ...prevFields,
+            document_type: JSON.stringify(selectedIds),
+        }));
+    };
+
+    const handlePaymentTypeChange = (selectedIds) => {
+        setPaymentType(selectedIds);
+        setFields((prevFields) => ({
+            ...prevFields,
+            payment_type: JSON.stringify(selectedIds),
+        }));
+    };
+
+    const handleRatingChange = (selectedRating) => {
+        setRating(selectedRating);
+        setFields((prevFields) => ({
+            ...prevFields,
+            rating: selectedRating,
+        }));
+    };
+
+    const [uploadId, setUploadId] = useState(null);
+
+    const checkPlaybackStatus = async () => {
+        try {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
+            );
+            const data = await response.json();
+            return data.videos;
+        } catch (error) {
+            console.error("Error checking playback status:", error);
+            return false;
+        }
+    };
+
+
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const videosResponse = await checkPlaybackStatus();
+            setVideos(videosResponse);
+        };
+        fetchVideos();
+    }, []);
+
+    useEffect(() => {
+        //console.log('timer start')
+        if (uploadId) {
+            const interval = setInterval(async () => {
+
+                //console.log('iteration')
+
+                const videosResponse = await checkPlaybackStatus();
+
+                if (videosResponse.every((video) => video.playback_id)) {
+                    clearInterval(interval);
+                    console.log("All videos have playback IDs");
+                    setVideos(videosResponse);
+                    setUploadId(null);
+                }
+            }, 5000); // Check every 10 seconds
+
+            return () => clearInterval(interval); // Cleanup interval on unmount
+        }
+    }, [uploadId]);
 
     // console.log(defValueParent, "defValueParent", defValue, "defValue");
     // console.log(rc);
 
-    console.log(mapAddress);
+    //console.log(mapAddress);
 
     return (
         <>
@@ -289,6 +417,9 @@ export default function EditRcsTemplate({ rcId }) {
                                 <H1>Добавить ЖК</H1>
                             )}
                         </div>
+
+                        {/* <pre>{JSON.stringify(fields)}</pre> */}
+
                         <div className="flex flex-row justify-between md:p-4 md:bg-greylight md:rounded md:shadow w-full mb-10">
                             <div className="min-w-[250px] w-1/3 flex flex-col items-start border-r border-greyborder">
                                 <div className="flex flex-col gap-5 mb-[35px]">
@@ -402,7 +533,7 @@ export default function EditRcsTemplate({ rcId }) {
                                             <div className="mb-5">
                                                 <SelectNoAutocomplete
                                                     style={
-                                                        "w-full h-11 border-greyborder border"
+                                                        "w-full min-h-[40px] border-greyborder border"
                                                     }
                                                     name={"city_link"}
                                                     type={"Город"}
@@ -430,7 +561,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                     </div>
                                                     <SelectNoAutocomplete
                                                         style={
-                                                            "w-full h-11 border-greyborder border"
+                                                            "w-full min-h-[40px] border-greyborder border"
                                                         }
                                                         nullable={true}
                                                         options={[
@@ -462,7 +593,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                     </div>
                                                     <SelectNoAutocomplete
                                                         style={
-                                                            "w-full h-11 border-greyborder border"
+                                                            "w-full min-h-[40px] border-greyborder border"
                                                         }
                                                         nullable={true}
                                                         options={[
@@ -514,6 +645,33 @@ export default function EditRcsTemplate({ rcId }) {
                                             </div>
 
                                             <div className="font-bold text-sm my-2.5">
+                                                Форма фиксации
+                                            </div>
+                                            <div className="mb-5">
+                                                <Textarea
+                                                    name="fixing_form"
+                                                    onChange={changeFields}
+                                                    defaultValue={
+                                                        (rc &&
+                                                            rc.fixing_form) ||
+                                                        `АН:
+АГЕНТ:
+ТЕЛЕФОН АГЕНТА:
+ПОКУПАТЕЛЬ:
+ТЕЛЕФОН ПОКУПАТЕЛЯ:
+КОММЕНТАРИЙ:`
+                                                    }
+                                                    style={
+                                                        "py-2.5 border-greyborder border rounded"
+                                                    }
+                                                    areaStyle={"rounded h-32"}
+                                                    placeholder={
+                                                        "Форма фиксации"
+                                                    }
+                                                />
+                                            </div>
+
+                                            <div className="font-bold text-sm my-2.5">
                                                 Описание
                                             </div>
                                             <div className="mb-5">
@@ -526,8 +684,28 @@ export default function EditRcsTemplate({ rcId }) {
                                                     style={
                                                         "py-2.5 border-greyborder border rounded"
                                                     }
-                                                    areaStyle={"rounded h-11"}
+                                                    areaStyle={"rounded h-64"}
                                                     placeholder={"Описание ЖК"}
+                                                />
+                                            </div>
+
+                                            <div className="font-bold text-sm my-2.5">
+                                                Дополнительно
+                                            </div>
+                                            <div className="mb-5">
+                                                <Textarea
+                                                    name="details"
+                                                    onChange={changeFields}
+                                                    defaultValue={
+                                                        rc && rc.details
+                                                    }
+                                                    style={
+                                                        "py-2.5 border-greyborder border rounded"
+                                                    }
+                                                    areaStyle={"rounded h-11"}
+                                                    placeholder={
+                                                        "Дополнительно"
+                                                    }
                                                 />
                                             </div>
 
@@ -576,13 +754,13 @@ export default function EditRcsTemplate({ rcId }) {
                                                             }
                                                             name="status"
                                                             defaultValue={
-                                                                rc?.status
+                                                                rc && rc?.status
                                                             }
                                                         />
                                                     </div>
                                                 </div>
 
-                                                {status.value === 1 && (
+                                                {status === 1 && (
                                                     <div>
                                                         <div className="font-bold mb-2.5 text-sm">
                                                             Год постройки
@@ -610,80 +788,129 @@ export default function EditRcsTemplate({ rcId }) {
                                                     </div>
                                                 )}
 
-                                                {status.value === 2 && (
-                                                    <div>
-                                                        <div className="font-bold mb-2.5 text-sm">
-                                                            Плановая дата сдачи
+                                                {status === 2 && (
+                                                    <>
+                                                        <div>
+                                                            <div className="font-bold mb-2.5 text-sm">
+                                                                Плановая дата
+                                                                сдачи
+                                                            </div>
+                                                            <div className="">
+                                                                <Input
+                                                                    style={
+                                                                        "w-full h-11 border-greyborder border "
+                                                                    }
+                                                                    name={
+                                                                        "build_date_planned"
+                                                                    }
+                                                                    defaultValue={
+                                                                        rc &&
+                                                                        rc.build_date_planned
+                                                                    }
+                                                                    placeholder={
+                                                                        "Плановая дата сдачи"
+                                                                    }
+                                                                    onChange={
+                                                                        changeFields
+                                                                    }
+                                                                />
+                                                            </div>
                                                         </div>
-                                                        <div className="mb-5">
-                                                            <Input
-                                                                style={
-                                                                    "w-full h-11 border-greyborder border "
-                                                                }
-                                                                name={
-                                                                    "build_date_planned"
-                                                                }
-                                                                defaultValue={
-                                                                    rc &&
-                                                                    rc.build_date_planned
-                                                                }
-                                                                placeholder={
-                                                                    "Плановая дата сдачи"
+
+                                                        <div className="flex items-center gap-2">
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={
+                                                                    fields.fz214
                                                                 }
                                                                 onChange={
-                                                                    changeFields
+                                                                    handleFz214Change
                                                                 }
                                                             />
+                                                            <label className="font-bold text-sm">
+                                                                ФЗ 214
+                                                            </label>
                                                         </div>
-                                                    </div>
+                                                    </>
                                                 )}
                                             </div>
 
-                                            <div className="mb-5">
-                                                <div className="font-bold mb-2.5 text-sm">
-                                                    Варианты оплаты
-                                                </div>
-                                                <div>
-                                                    <Textarea
-                                                        name="payment_options"
-                                                        onChange={changeFields}
-                                                        defaultValue={
-                                                            rc &&
-                                                            rc.payment_options
-                                                        }
-                                                        style={
-                                                            "py-2.5 border-greyborder border rounded"
-                                                        }
-                                                        areaStyle={
-                                                            "rounded h-11"
-                                                        }
-                                                        placeholder={
-                                                            "Варианты оплаты"
-                                                        }
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="grid md:grid-cols-2 gap-5">
+                                            <div className="mt-4 grid md:grid-cols-2 gap-5">
                                                 <div>
                                                     <div className="font-bold mb-2.5 text-sm">
                                                         Оформление
                                                     </div>
                                                     <div>
-                                                        <Input
-                                                            style={
-                                                                "w-full h-11 border-greyborder border "
-                                                            }
-                                                            name={"execution"}
-                                                            defaultValue={
-                                                                rc &&
-                                                                rc.execution
-                                                            }
-                                                            placeholder={
-                                                                "Оформление"
+                                                        {/* {JSON.stringify(documentType)} */}
+                                                        <HeadlessMultiSelect
+                                                            options={[
+                                                                {
+                                                                    name: "ДКП",
+                                                                    id: 1,
+                                                                },
+                                                                {
+                                                                    name: "ДДУ",
+                                                                    id: 2,
+                                                                },
+                                                                {
+                                                                    name: "Преддоговор",
+                                                                    id: 3,
+                                                                },
+                                                                {
+                                                                    name: "Другое",
+                                                                    id: 4,
+                                                                },
+                                                            ]}
+                                                            selectedOptions={
+                                                                documentType ||
+                                                                []
                                                             }
                                                             onChange={
-                                                                changeFields
+                                                                handleDocumentTypeChange
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div className="font-bold mb-2.5 text-sm">
+                                                        Варианты оплаты
+                                                    </div>
+                                                    <div>
+                                                        {/* {JSON.stringify(paymentType)} */}
+                                                        <HeadlessMultiSelect
+                                                            options={[
+                                                                {
+                                                                    name: "Ипотека",
+                                                                    id: 1,
+                                                                },
+                                                                {
+                                                                    name: "Рассрочка",
+                                                                    id: 2,
+                                                                },
+                                                                {
+                                                                    name: "Мат. капитал",
+                                                                    id: 3,
+                                                                },
+                                                                {
+                                                                    name: "Военная ипотека",
+                                                                    id: 4,
+                                                                },
+                                                                {
+                                                                    name: "Гос. поддержка",
+                                                                    id: 5,
+                                                                },
+                                                                {
+                                                                    name: "Другое",
+                                                                    id: 6,
+                                                                },
+                                                            ]}
+                                                            selectedOptions={
+                                                                paymentType ||
+                                                                []
+                                                            }
+                                                            onChange={
+                                                                handlePaymentTypeChange
                                                             }
                                                         />
                                                     </div>
@@ -766,6 +993,62 @@ export default function EditRcsTemplate({ rcId }) {
                                                 </div>
                                             </div>
 
+                                            <div className="mt-2 flex gap-2">
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={fields.soldout}
+                                                        onChange={
+                                                            handleSoldoutChange
+                                                        }
+                                                    />
+                                                    <label className="font-bold text-sm">
+                                                        Все лоты проданы
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-5 border border-[#d5d5d5] rounded-2xl p-5">
+                                                <div className="grid md:grid-cols-2 gap-3 items-center">
+                                                    <div className="flex items-center gap-2">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={
+                                                                fields.trust_management
+                                                            }
+                                                            onChange={
+                                                                handleTrustManagementChange
+                                                            }
+                                                        />
+                                                        <label className="font-bold text-sm">
+                                                            Доверительное
+                                                            управление
+                                                        </label>
+                                                    </div>
+
+                                                    {fields.trust_management && (
+                                                        <Input
+                                                            style={
+                                                                "w-full h-11 border-greyborder border "
+                                                            }
+                                                            name={
+                                                                "trust_management_operator"
+                                                            }
+                                                            defaultValue={
+                                                                rc &&
+                                                                rc.trust_management_operator
+                                                            }
+                                                            placeholder={
+                                                                "Название оператора"
+                                                            }
+                                                            onChange={
+                                                                changeFields
+                                                            }
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+
                                             <div className="mt-5 border border-[#d5d5d5] rounded-2xl p-5 mb-5">
                                                 <h3 className="font-bold mb-2.5 text-xl">
                                                     Отдел продаж
@@ -773,110 +1056,200 @@ export default function EditRcsTemplate({ rcId }) {
 
                                                 <div className="grid md:grid-cols-2 gap-5">
                                                     <div className="col-span-2">
-                                                            <PhoneInput
-                                                                name={
-                                                                    "sales_contacts"
-                                                                }
-                                                                initialPhones={
-                                                                    rc?.sales_contacts
-                                                                }
-                                                                onChange={
-                                                                    changeFields
-                                                                }
-                                                            />
+                                                        <PhoneInput
+                                                            name={
+                                                                "sales_contacts"
+                                                            }
+                                                            initialPhones={
+                                                                rc?.sales_contacts
+                                                            }
+                                                            onChange={
+                                                                changeFields
+                                                            }
+                                                        />
                                                     </div>
-
-                                                    
                                                 </div>
                                             </div>
 
                                             {/* {JSON.stringify(fields)} */}
 
-
-                                            <div className="font-bold mb-2.5 text-sm">Опубликовано</div>
+                                            <div className="font-bold mb-2.5 text-sm">
+                                                Опубликовано
+                                            </div>
                                             <div className="mb-5">
                                                 <div className="flex flex-wrap gap-2">
                                                     {publishedValues &&
-                                                        publishedValues.map((val) => (
-                                                            <button
-                                                                type="button"
-                                                                key={val.id}
-                                                                onClick={() =>
-                                                                    setFields((prevFields) => ({
-                                                                        ...prevFields,
-                                                                        published: val.id,
-                                                                    }))
-                                                                }
-                                                                className={`
+                                                        publishedValues.map(
+                                                            (val) => (
+                                                                <button
+                                                                    type="button"
+                                                                    key={val.id}
+                                                                    onClick={() =>
+                                                                        setFields(
+                                                                            (
+                                                                                prevFields
+                                                                            ) => ({
+                                                                                ...prevFields,
+                                                                                published:
+                                                                                    val.id,
+                                                                            })
+                                                                        )
+                                                                    }
+                                                                    className={`
                                                                     py-1.5 px-4 rounded-lg 
                                                                     ${
-                                                                        fields.published === val.id
+                                                                        fields.published ===
+                                                                        val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
                                                                     }
                                                                 `}
-                                                            >
-                                                                {val.name}
-                                                            </button>
-                                                        ))}
+                                                                >
+                                                                    {val.name}
+                                                                </button>
+                                                            )
+                                                        )}
                                                 </div>
                                             </div>
 
-                                            <div className="font-bold mb-2.5 text-sm">Тип объекта</div>
+                                            <div className="font-bold mb-2.5 text-sm">
+                                                Тип объекта
+                                            </div>
                                             <div className="mb-5">
                                                 <div className="flex flex-wrap gap-2">
                                                     {rcTypesList &&
-                                                        rcTypesList.map((val) => (
-                                                            <button
-                                                                type="button"
-                                                                key={val.id}
-                                                                onClick={() =>
-                                                                    setFields((prevFields) => ({
-                                                                        ...prevFields,
-                                                                        type_id: val.id,
-                                                                    }))
-                                                                }
-                                                                className={`
+                                                        rcTypesList.map(
+                                                            (val) => (
+                                                                <button
+                                                                    type="button"
+                                                                    key={val.id}
+                                                                    onClick={() =>
+                                                                        setFields(
+                                                                            (
+                                                                                prevFields
+                                                                            ) => ({
+                                                                                ...prevFields,
+                                                                                type_id:
+                                                                                    val.id,
+                                                                            })
+                                                                        )
+                                                                    }
+                                                                    className={`
                                                                     py-1.5 px-4 rounded-lg 
                                                                     ${
-                                                                        fields.type_id === val.id
+                                                                        fields.type_id ===
+                                                                        val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
                                                                     }
                                                                 `}
-                                                            >
-                                                                {val.name}
-                                                            </button>
-                                                        ))}
+                                                                >
+                                                                    {val.name}
+                                                                </button>
+                                                            )
+                                                        )}
                                                 </div>
                                             </div>
 
-                                            <div className="font-bold mb-2.5 text-sm">Класс объекта</div>
+                                            <div className="font-bold mb-2.5 text-sm">
+                                                Класс объекта
+                                            </div>
                                             <div className="mb-5">
                                                 <div className="flex flex-wrap gap-2">
                                                     {rcClassesList &&
-                                                        rcClassesList.map((val) => (
-                                                            <button
-                                                                type="button"
-                                                                key={val.id}
-                                                                onClick={() =>
-                                                                    setFields((prevFields) => ({
-                                                                        ...prevFields,
-                                                                        class_id: val.id,
-                                                                    }))
-                                                                }
-                                                                className={`
+                                                        rcClassesList.map(
+                                                            (val) => (
+                                                                <button
+                                                                    type="button"
+                                                                    key={val.id}
+                                                                    onClick={() =>
+                                                                        setFields(
+                                                                            (
+                                                                                prevFields
+                                                                            ) => ({
+                                                                                ...prevFields,
+                                                                                class_id:
+                                                                                    val.id,
+                                                                            })
+                                                                        )
+                                                                    }
+                                                                    className={`
                                                                     py-1.5 px-4 rounded-lg 
                                                                     ${
-                                                                        fields.class_id === val.id
+                                                                        fields.class_id ===
+                                                                        val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
                                                                     }
                                                                 `}
-                                                            >
-                                                                {val.name}
-                                                            </button>
-                                                        ))}
+                                                                >
+                                                                    {val.name}
+                                                                </button>
+                                                            )
+                                                        )}
+                                                </div>
+                                            </div>
+
+                                            <div className="font-bold mb-2.5 text-sm">
+                                                Рейтинг ЖК
+                                            </div>
+                                            <div className="mb-5">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {[
+                                                        {
+                                                            name: "Не выбрано",
+                                                            id: 0,
+                                                        },
+                                                        {
+                                                            name: "5",
+                                                            id: 5,
+                                                        },
+                                                        {
+                                                            name: "4",
+                                                            id: 4,
+                                                        },
+                                                        {
+                                                            name: "3",
+                                                            id: 3,
+                                                        },
+                                                        {
+                                                            name: "2",
+                                                            id: 2,
+                                                        },
+                                                        {
+                                                            name: "1",
+                                                            id: 1,
+                                                        },
+                                                    ].map((val) => (
+                                                        <button
+                                                            type="button"
+                                                            key={val.id}
+                                                            onClick={() => {
+                                                                setRating(
+                                                                    val.id
+                                                                );
+                                                                setFields(
+                                                                    (
+                                                                        prevFields
+                                                                    ) => ({
+                                                                        ...prevFields,
+                                                                        rating: val.id,
+                                                                    })
+                                                                );
+                                                            }}
+                                                            className={`
+                                                                    py-1.5 px-4 rounded-lg 
+                                                                    ${
+                                                                        rating ===
+                                                                        val.id
+                                                                            ? "bg-blue text-white"
+                                                                            : "bg-backdrop/5"
+                                                                    }
+                                                                `}
+                                                        >
+                                                            {val.name}
+                                                        </button>
+                                                    ))}
                                                 </div>
                                             </div>
 
@@ -896,12 +1269,51 @@ export default function EditRcsTemplate({ rcId }) {
                                                     JSON.parse(rc?.images)
                                                 }
                                             />
+
+                                            <div className="mt-10 border border-backdrop/20 rounded-xl p-5">
+                                                <div className="font-bold mb-2.5 text-sm">
+                                                    Видео
+                                                </div>
+                                                <VideoUpload
+                                                    rcId={rcId}
+                                                    onUploadSuccess={(
+                                                        uploadId
+                                                    ) => {
+                                                        setUploadId(uploadId);
+                                                        console.log(uploadId)
+                                                    }}
+                                                />
+
+                                                {/* {uploadId ? 1 : 0}
+                                                {videosEncoded ? 1 : 0} */}
+
+                                                {uploadId && (
+                                                    <div>
+                                                        Обработка видео...
+                                                    </div>
+                                                )}
+
+                                                
+                                                {/* {videos && videos.length > 0 && (
+                                                    <div className="mt-5 grid grid-cols-3 gap-4">
+                                                        {videos.map((val) => (
+                                                            <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                        ))}
+                                                    </div>
+                                                )} */}
+
+
+
+
+                                            </div>
                                         </div>
                                     </div>
                                     {!MOBILE && (
                                         <div className="flex justify-end w-full mt-[10px]">
                                             <div className="w-[130px] h-[33px]">
-                                                <Button className="py-2">Сохранить</Button>
+                                                <Button className="py-2">
+                                                    Сохранить
+                                                </Button>
                                             </div>
                                         </div>
                                     )}

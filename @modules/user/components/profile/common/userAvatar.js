@@ -32,6 +32,7 @@ export default function UserAvatar({
       {user && user.user_avatar ? (
         <Gallery>
           <Item
+          
             // original={`https://flate.pro/${user.user_avatar}`}
             // thumbnail={`https://flate.pro/${user.user_avatar}`}
             html={`<img src="https://flate.pro/${user.user_avatar}" />`}
@@ -40,6 +41,7 @@ export default function UserAvatar({
           >
             {({ ref, open }) => (
               <img
+              className="h-full"
                 ref={ref}
                 onClick={(ev) => {
                   if (!onClick) {

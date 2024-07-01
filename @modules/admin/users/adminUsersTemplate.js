@@ -7,24 +7,24 @@ import AdminUsersContent from "./adminUsersContent";
 import UserEditTemplate from "./user/UserEditTemplate";
 
 export default function AdminUsersTemplate({ user, userTemplate }) {
-  const router = useRouter();
-  const userId = router.query.id;
-  
-  return (
-    <MotionContainer>
-      <Container>
-        <div className="flex items-start gap-4">
-          <AdminSidebar user={user} />
+    const router = useRouter();
+    const userId = router.query.id;
 
-          <div className="flex flex-col w-full admin-content">
-            {userTemplate ? (
-              <UserEditTemplate userId={userId} />
-            ) : (
-              <AdminUsersContent user={user} />
-            )}
-          </div>
-        </div>
-      </Container>
-    </MotionContainer>
-  );
+    return (
+        <MotionContainer>
+            <Container>
+                <div className="flex items-start gap-4">
+                    <AdminSidebar user={user} />
+
+                    <div className="flex flex-col w-full admin-content">
+                        {userTemplate ? (
+                            <UserEditTemplate userId={userId} />
+                        ) : (
+                            <AdminUsersContent user={user} />
+                        )}
+                    </div>
+                </div>
+            </Container>
+        </MotionContainer>
+    );
 }

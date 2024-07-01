@@ -12,41 +12,42 @@ import useUser from "hooks/useUser";
 import api from "pages/api/service/api";
 
 export default function User({ data }) {
-  const router = useRouter();
+    const router = useRouter();
 
-  const user = useUser(data.user, "/user/profile/auth");
+    const user = useUser(data.user, "/user/profile/auth");
 
-  useEffect(() => {
-    if (user && user.user_group?.id !== 1 && user.user_group?.id !== 5) {
-      router.push("/user/profile/auth");
-    }
-  }, [router, user]);
+    useEffect(() => {
+        if (user && user.user_group?.id !== 1 && user.user_group?.id !== 5) {
+            router.push("/user/profile/auth");
+        }
+    }, [router, user]);
 
-  return (
-    <>
-      {user && (user.user_group?.id === 1 || user.user_group?.id === 5) ? (
-        <div className="min-h-[610px]">
-          <AdminUsersTemplate
-            user={user ? user : data.user}
-            userTemplate={true}
-          />
-        </div>
-      ) : (
-        <Container>
-          <div className="flex flex-row items-center justify-center h-full">
-            <PreloaderSpinner />
-          </div>
-        </Container>
-      )}
-    </>
-  );
+    return (
+        <>
+            {user &&
+            (user.user_group?.id === 1 || user.user_group?.id === 5) ? (
+                <div className="min-h-[610px]">
+                    <AdminUsersTemplate
+                        user={user ? user : data.user}
+                        userTemplate={true}
+                    />
+                </div>
+            ) : (
+                <Container>
+                    <div className="flex flex-row items-center justify-center h-full">
+                        <PreloaderSpinner />
+                    </div>
+                </Container>
+            )}
+        </>
+    );
 }
 
 export async function getServerSideProps(context) {
-  require("dotenv").config();
-  const { req, res } = context;
+    require("dotenv").config();
+    const { req, res } = context;
 
-  const user = await api.auth.isUserAuthorized(req, res);
+    const user = await api.auth.isUserAuthorized(req, res);
 
-  return { props: { data: { user } } };
+    return { props: { data: { user } } };
 }

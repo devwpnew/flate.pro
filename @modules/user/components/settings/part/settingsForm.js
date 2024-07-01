@@ -29,6 +29,8 @@ import getLayout from "helpers/getLayout";
 import SettingsSelectNewPhone from "../button/settingsSelectNewPhone";
 import Tooltip from "@modules/common/components/tooltip/tooltip";
 
+import SelectOrCreateAgency from "@modules/common/components/select/selectOrCreateAgency";
+
 export default function SettingsForm({
     isAdmin,
     user,
@@ -173,6 +175,8 @@ export default function SettingsForm({
             }
         }
 
+        data.agency_id = selectedAgencyId
+
         if(!data?.send_app_pushes_to_whatsapp) {
             data.send_app_pushes_to_whatsapp = "false"
         }
@@ -233,6 +237,27 @@ export default function SettingsForm({
         }
     };
 
+
+
+
+
+    const [selectedAgencyId, setSelectedAgencyId] = useState(null);
+
+    useEffect(() => {
+        if (user) {
+            setSelectedAgencyId(user.agency_id);
+        }
+    }, [user]);
+
+
+    const handleSelectAgency = (agencyId) => {
+        setSelectedAgencyId(agencyId);
+    };
+
+
+
+
+
     return (
         <div className="flex flex-col gap-1 sm:container mx-auto px-[15px] lg:px-0">
             <form
@@ -270,7 +295,7 @@ export default function SettingsForm({
                         blockClassName ? blockClassName : ""
                     }`}
                 >
-                    <Input
+                    {/* <Input
                         topTitle={
                             <div
                                 className="inline-flex gap-1 items-center cursor-pointer"
@@ -288,7 +313,22 @@ export default function SettingsForm({
                         type={"text"}
                         name="user_agency"
                         defaultValue={user && user.user_agency}
-                    />
+                    /> */}
+
+
+
+                    <div>
+                        <h1 className="text-xs mb-2">Выберите агентство или создайте новое</h1>
+                        {/* {selectedAgencyId} */}
+                        {/* {JSON.stringify(user)} */}
+                        <SelectOrCreateAgency 
+                            name="agency_id"
+                            onSelectAgency={handleSelectAgency} 
+                            initialAgencyId={selectedAgencyId} 
+                        />
+                    </div>
+
+                
 
                     <Tooltip
                         text={
@@ -428,8 +468,14 @@ export default function SettingsForm({
                     )}
                 </div>
 
+               
+
 
                 
+
+
+
+
 
 
                 <div className={`col-span-2 mb-4 ${blockClassName ? blockClassName : ""}`}>

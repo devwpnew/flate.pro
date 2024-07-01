@@ -213,9 +213,55 @@ export default function addForm({ product }) {
         }
     }, [user]);
 
-	const handleUploadComplete = (publicUrl) => {
-        setForm({ ...form, video_path: publicUrl });
+
+    const [uploadId, setUploadId] = useState(null);
+
+    const checkPlaybackStatus = async () => {
+        try {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
+            );
+            const data = await response.json();
+            return data.videos;
+        } catch (error) {
+            console.error("Error checking playback status:", error);
+            return false;
+        }
     };
+
+
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const videosResponse = await checkPlaybackStatus();
+            setVideos(videosResponse);
+        };
+        fetchVideos();
+    }, []);
+
+    useEffect(() => {
+        //console.log('timer start')
+        if (uploadId) {
+            const interval = setInterval(async () => {
+
+                //console.log('iteration')
+
+                const videosResponse = await checkPlaybackStatus();
+
+                if (videosResponse.every((video) => video.playback_id)) {
+                    clearInterval(interval);
+                    console.log("All videos have playback IDs");
+                    setVideos(videosResponse);
+                    setUploadId(null);
+                }
+            }, 5000); // Check every 10 seconds
+
+            return () => clearInterval(interval); // Cleanup interval on unmount
+        }
+    }, [uploadId]);
+
+
 
     // console.log(product);
     // console.log(product?.user_id);
@@ -327,18 +373,32 @@ export default function addForm({ product }) {
                                     <div>
                                         <p className="text-xl mb-3">Или добавьте видео</p>
                                         
-                                        {product?.video_path && <VideoPlayer src={product.video_path} className="rounded-2xl bg-slate-100 w-full max-h-[400px] mb-3" />}
-                                        
-                                        
-                                        {form.video_path && <VideoPlayer src={form.video_path} className="rounded-2xl bg-slate-100 w-full max-h-[400px] mb-3" />}
-
                                         <VideoUpload
-                                            path={`users/1`}
-                                            name={``}
-											form={form}
-											setForm={setForm}
-											onUploadComplete={handleUploadComplete}
+                                            productId={product.id}
+                                            onUploadSuccess={(
+                                                uploadId
+                                            ) => {
+                                                setUploadId(uploadId);
+                                                console.log(uploadId)
+                                            }}
                                         />
+
+                                        {uploadId && (
+                                            <div>
+                                                Обработка видео...
+                                            </div>
+                                        )}
+
+                                        
+                                        {videos && videos.length > 0 && (
+                                            <div className="mt-5 grid grid-cols-3 gap-4">
+                                                {videos.map((val) => (
+                                                    <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                ))}
+                                            </div>
+                                        )}
+
+
                                     </div>
                                 </div>
                             </div>

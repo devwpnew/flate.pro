@@ -42,7 +42,7 @@ function SelectOrCreateAgency({ onSelectAgency, initialAgencyId }) {
 
     const handleCreateAgency = () => {
         axios
-            .post(`${process.env.NEXT_PUBLIC_API_V2}/agencies`, { name: query })
+            .post(`${process.env.NEXT_PUBLIC_API_V2}/agencies`, { name: query, token: "789hghj23sdfsdfsadfhghHDSFJho7y8tugfisdu9f" })
             .then((response) => {
                 const newAgency = response.data;
                 setAgencies([...agencies, newAgency]);

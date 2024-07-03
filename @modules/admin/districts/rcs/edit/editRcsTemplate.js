@@ -652,14 +652,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                     name="fixing_form"
                                                     onChange={changeFields}
                                                     defaultValue={
-                                                        (rc &&
-                                                            rc.fixing_form) ||
-                                                        `АН:
-АГЕНТ:
-ТЕЛЕФОН АГЕНТА:
-ПОКУПАТЕЛЬ:
-ТЕЛЕФОН ПОКУПАТЕЛЯ:
-КОММЕНТАРИЙ:`
+                                                        (rc && rc.fixing_form) || ``
                                                     }
                                                     style={
                                                         "py-2.5 border-greyborder border rounded"

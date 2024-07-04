@@ -214,52 +214,52 @@ export default function addForm({ product }) {
     }, [user]);
 
 
-    const [uploadId, setUploadId] = useState(null);
+    // const [uploadId, setUploadId] = useState(null);
 
-    const checkPlaybackStatus = async () => {
-        try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
-            );
-            const data = await response.json();
-            return data.videos;
-        } catch (error) {
-            console.error("Error checking playback status:", error);
-            return false;
-        }
-    };
+    // const checkPlaybackStatus = async () => {
+    //     try {
+    //         const response = await fetch(
+    //             `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
+    //         );
+    //         const data = await response.json();
+    //         return data.videos;
+    //     } catch (error) {
+    //         console.error("Error checking playback status:", error);
+    //         return false;
+    //     }
+    // };
 
 
-    const [videos, setVideos] = useState([]);
+    // const [videos, setVideos] = useState([]);
 
-    useEffect(() => {
-        const fetchVideos = async () => {
-            const videosResponse = await checkPlaybackStatus();
-            setVideos(videosResponse);
-        };
-        fetchVideos();
-    }, []);
+    // useEffect(() => {
+    //     const fetchVideos = async () => {
+    //         const videosResponse = await checkPlaybackStatus();
+    //         setVideos(videosResponse);
+    //     };
+    //     fetchVideos();
+    // }, []);
 
-    useEffect(() => {
-        //console.log('timer start')
-        if (uploadId) {
-            const interval = setInterval(async () => {
+    // useEffect(() => {
+    //     //console.log('timer start')
+    //     if (uploadId) {
+    //         const interval = setInterval(async () => {
 
-                //console.log('iteration')
+    //             //console.log('iteration')
 
-                const videosResponse = await checkPlaybackStatus();
+    //             const videosResponse = await checkPlaybackStatus();
 
-                if (videosResponse.every((video) => video.playback_id)) {
-                    clearInterval(interval);
-                    console.log("All videos have playback IDs");
-                    setVideos(videosResponse);
-                    setUploadId(null);
-                }
-            }, 5000); // Check every 10 seconds
+    //             if (videosResponse.every((video) => video.playback_id)) {
+    //                 clearInterval(interval);
+    //                 console.log("All videos have playback IDs");
+    //                 setVideos(videosResponse);
+    //                 setUploadId(null);
+    //             }
+    //         }, 5000); // Check every 10 seconds
 
-            return () => clearInterval(interval); // Cleanup interval on unmount
-        }
-    }, [uploadId]);
+    //         return () => clearInterval(interval); // Cleanup interval on unmount
+    //     }
+    // }, [uploadId]);
 
 
 
@@ -370,7 +370,7 @@ export default function addForm({ product }) {
                                         }
                                     />
 
-                                    <div>
+                                    {/* <div>
                                         <p className="text-xl mb-3">Или добавьте видео</p>
                                         
                                         <VideoUpload
@@ -399,7 +399,7 @@ export default function addForm({ product }) {
                                         )}
 
 
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 

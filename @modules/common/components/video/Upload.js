@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { ImSpinner2 } from "react-icons/im";
 
-const VideoUpload = ({ onUploadSuccess, rcId }) => {
+const VideoUpload = ({ onUploadSuccess, rcId, tempId }) => {
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleFileChange = (event) => {
+    const handleFileChange = async (event) => {
         if (event.target.files && event.target.files[0]) {
-            setFile(event.target.files[0]);
+            const selectedFile = event.target.files[0];
+            setFile(selectedFile);
+            await uploadFile(selectedFile);
         }
     };
 
-    const handleUpload = async () => {
-        if (!file) return;
-
+    const uploadFile = async (file) => {
         setUploading(true);
         setError(null);
 
@@ -27,7 +28,10 @@ const VideoUpload = ({ onUploadSuccess, rcId }) => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ rc_id: rcId }),
+                    body: JSON.stringify({ 
+                        rc_id: rcId,
+                        temp_id: tempId, 
+                    }),
                 }
             );
 
@@ -52,8 +56,8 @@ const VideoUpload = ({ onUploadSuccess, rcId }) => {
                 throw new Error(`Upload failed: ${uploadResponse.statusText}`);
             }
 
-            //console.log("Upload ID:", uploadId);
             onUploadSuccess(uploadId);
+            setFile(null);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -61,16 +65,25 @@ const VideoUpload = ({ onUploadSuccess, rcId }) => {
         }
     };
 
+    const buttonText = uploading
+        ? "Идёт загрузка..."
+        : "Добавить видео";
+
     return (
-        <div>
-            <input type="file" onChange={handleFileChange} />
-            <button
-                onClick={handleUpload}
-                disabled={uploading}
-                className="py-2 px-3 rounded-lg bg-blue text-white"
-            >
-                {uploading ? "Идёт загрузка..." : "Загрузить видео"}
-            </button>
+        <div className="video-upload-container">
+            <input
+                type="file"
+                id="file-upload"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+                accept="video/*"
+            />
+            {!uploading && (
+                <label htmlFor="file-upload" className="py-2 px-3 rounded-lg bg-[#000] text-white w-fit cursor-pointer">
+                    {buttonText}
+                </label>
+            )}
+            {uploading && <ImSpinner2 className="m-auto animate-spin" />}
             {error && <p style={{ color: "red" }}>Error: {error}</p>}
         </div>
     );

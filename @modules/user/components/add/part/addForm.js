@@ -26,6 +26,9 @@ import validateAddForm from "./helpers/validateAddForm";
 
 import VideoUpload from "@modules/common/components/video/Upload";
 import VideoPlayer from "@modules/common/components/video/Player";
+import { ImSpinner2 } from "react-icons/im";
+import { BsX } from "react-icons/bs";
+
 
 export default function addForm({ product }) {
     const router = useRouter();
@@ -214,52 +217,120 @@ export default function addForm({ product }) {
     }, [user]);
 
 
-    // const [uploadId, setUploadId] = useState(null);
-
-    // const checkPlaybackStatus = async () => {
-    //     try {
-    //         const response = await fetch(
-    //             `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
-    //         );
-    //         const data = await response.json();
-    //         return data.videos;
-    //     } catch (error) {
-    //         console.error("Error checking playback status:", error);
-    //         return false;
-    //     }
-    // };
 
 
-    // const [videos, setVideos] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchVideos = async () => {
-    //         const videosResponse = await checkPlaybackStatus();
-    //         setVideos(videosResponse);
-    //     };
-    //     fetchVideos();
-    // }, []);
 
-    // useEffect(() => {
-    //     //console.log('timer start')
-    //     if (uploadId) {
-    //         const interval = setInterval(async () => {
 
-    //             //console.log('iteration')
 
-    //             const videosResponse = await checkPlaybackStatus();
 
-    //             if (videosResponse.every((video) => video.playback_id)) {
-    //                 clearInterval(interval);
-    //                 console.log("All videos have playback IDs");
-    //                 setVideos(videosResponse);
-    //                 setUploadId(null);
-    //             }
-    //         }, 5000); // Check every 10 seconds
 
-    //         return () => clearInterval(interval); // Cleanup interval on unmount
-    //     }
-    // }, [uploadId]);
+
+
+
+
+    const [uploadId, setUploadId] = useState(null);
+    const [productTempId, setProductTempId] = useState(Math.random().toString(36).substr(2, 16));
+
+    const checkPlaybackStatus = async () => {
+
+        
+        try {
+
+            let response;
+
+            if (product && product?.id) {
+                response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-product-id/${product.id}`
+                );
+            } else {
+                response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-temp-id/${productTempId}`
+                );
+            }
+
+            const data = await response.json();
+            return data.videos;
+        } catch (error) {
+            console.error("Error checking playback status:", error);
+            return false;
+        }
+    };
+
+
+    const deleteVideoByUploadId = async (uploadId) => {
+        try {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_V2}/mux/${uploadId}`,
+                {
+                    method: 'DELETE',
+                }
+            );
+    
+            if (!response.ok) {
+                throw new Error(`Failed to delete video: ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+
+            // Удаляем видео из состояния
+            setVideos((prevVideos) => prevVideos.filter(video => video.upload_id !== uploadId));
+
+            return data;
+        } catch (error) {
+            console.error("Error deleting video:", error);
+            return false;
+        }
+    };
+
+
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const videosResponse = await checkPlaybackStatus();
+            setVideos(videosResponse); 
+
+            // Добавляем videos в fields только в случае, если создается новый ЖК
+            setForm({
+                ...form,
+                product_temp_id: productTempId,
+            });
+                
+        };
+        fetchVideos();
+    }, [uploadId]);
+
+    useEffect(() => {
+        //console.log('timer start')
+        if (uploadId) {
+            const interval = setInterval(async () => {
+
+                //console.log('iteration')
+
+                const videosResponse = await checkPlaybackStatus();
+
+                if (videosResponse && videosResponse.every((video) => video.playback_id)) {
+                    clearInterval(interval);
+                    console.log("All videos have playback IDs");
+                    setVideos(videosResponse);
+                    setUploadId(null);
+                }
+            }, 5000); // Check every 10 seconds
+
+            return () => clearInterval(interval); // Cleanup interval on unmount
+        }
+    }, [uploadId]);
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -269,6 +340,8 @@ export default function addForm({ product }) {
         <>
             <div className="flex items-start relative mb-5">
                 <PreloaderWithBackdrop isShow={isLoading} />
+
+                {/* {JSON.stringify(product.id)} */}
 
                 <form
                     className="flex-grow mr-5"
@@ -370,36 +443,41 @@ export default function addForm({ product }) {
                                         }
                                     />
 
-                                    {/* <div>
-                                        <p className="text-xl mb-3">Или добавьте видео</p>
-                                        
+                                    <div className="mt-10 border border-backdrop/20 rounded-xl p-5">
+                                        <div className="font-bold mb-2.5 text-sm">
+                                            Видео
+                                        </div>
                                         <VideoUpload
-                                            productId={product.id}
-                                            onUploadSuccess={(
-                                                uploadId
-                                            ) => {
+                                            tempId={productTempId}
+                                            onUploadSuccess={( uploadId ) => {
                                                 setUploadId(uploadId);
-                                                console.log(uploadId)
                                             }}
                                         />
-
-                                        {uploadId && (
-                                            <div>
-                                                Обработка видео...
-                                            </div>
-                                        )}
-
                                         
                                         {videos && videos.length > 0 && (
                                             <div className="mt-5 grid grid-cols-3 gap-4">
                                                 {videos.map((val) => (
-                                                    <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                    <>
+                                                        {val.playback_id ? (
+                                                            <div className="relative">
+                                                                <div className="cursor-pointer bg-backdrop text-white rounded-full absolute right-16 top-2 z-10 shadow" onClick={() => deleteVideoByUploadId(val.upload_id)}><BsX className="text-3xl" /></div>
+                                                                <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                            </div>
+                                                        ) : (
+                                                            <div className="w-full h-full min-h-32 bg-backdrop/10 rounded-lg flex">
+                                                                <ImSpinner2 className="m-auto animate-spin" />
+                                                            </div>
+                                                        )}
+                                                    </>
                                                 ))}
                                             </div>
                                         )}
 
+                                    </div>
 
-                                    </div> */}
+
+
+
                                 </div>
                             </div>
 

@@ -27,6 +27,8 @@ import VideoUpload from "@modules/common/components/video/Upload";
 import VideoPlayer from "@modules/common/components/video/Player";
 
 import PhoneInput from "@modules/admin/districts/rcs/edit/part/phoneInput";
+import { ImSpinner2 } from "react-icons/im";
+import { BsX } from "react-icons/bs";
 
 export default function EditRcsTemplate({ rcId }) {
     const router = useRouter();
@@ -355,11 +357,30 @@ export default function EditRcsTemplate({ rcId }) {
 
     const [uploadId, setUploadId] = useState(null);
 
+
+    const [rcTempId, setRcTempId] = useState(Math.random().toString(36).substr(2, 16));
+
     const checkPlaybackStatus = async () => {
+
+        
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
-            );
+
+
+            let response;
+
+            if (rcId === 'add') {
+                response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-temp-id/${rcTempId}`
+                );
+            } else {
+                response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_V2}/mux/get-by-rc-id/${rcId}`
+                );
+            }
+
+
+
+
             const data = await response.json();
             return data.videos;
         } catch (error) {
@@ -369,15 +390,54 @@ export default function EditRcsTemplate({ rcId }) {
     };
 
 
+
+    const deleteVideoByUploadId = async (uploadId) => {
+        try {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_V2}/mux/${uploadId}`,
+                {
+                    method: 'DELETE',
+                }
+            );
+    
+            if (!response.ok) {
+                throw new Error(`Failed to delete video: ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+
+            // Удаляем видео из состояния
+            setVideos((prevVideos) => prevVideos.filter(video => video.upload_id !== uploadId));
+
+            return data;
+        } catch (error) {
+            console.error("Error deleting video:", error);
+            return false;
+        }
+    };
+
+
+
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
         const fetchVideos = async () => {
             const videosResponse = await checkPlaybackStatus();
-            setVideos(videosResponse);
+            setVideos(videosResponse); 
+
+            // Добавляем videos в fields только в случае, если создается новый ЖК
+            console.log(rc?.id === undefined)
+            console.log(videosResponse)
+            console.log(videosResponse.length > 0)
+            if(rcId === 'add') {
+                setFields({
+                    ...fields,
+                    rc_temp_id: rcTempId,
+                });
+            }       
         };
         fetchVideos();
-    }, []);
+    }, [uploadId]);
 
     useEffect(() => {
         //console.log('timer start')
@@ -408,6 +468,7 @@ export default function EditRcsTemplate({ rcId }) {
     return (
         <>
             <div className="w-full">
+                
                 {rc || rcId == "add" ? (
                     <Container>
                         <div className="pt-3 pb-2.5 lg:border-b-[1px] lg:border-greyborder mb-2.5">
@@ -730,7 +791,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                     </div>
                                                     <div>
                                                         <SelectNoAutocomplete
-                                                            style="w-full h-[45px] border-greyborder border"
+                                                            style="w-full min-h-[45px] border-greyborder border"
                                                             nullable={true}
                                                             options={[
                                                                 {
@@ -810,7 +871,14 @@ export default function EditRcsTemplate({ rcId }) {
                                                             </div>
                                                         </div>
 
-                                                        <div className="flex items-center gap-2">
+                                                        
+                                                    </>
+                                                )}
+                                            </div>
+
+
+
+                                            <div className="mt-2 flex items-center gap-2">
                                                             <input
                                                                 type="checkbox"
                                                                 checked={
@@ -824,9 +892,8 @@ export default function EditRcsTemplate({ rcId }) {
                                                                 ФЗ 214
                                                             </label>
                                                         </div>
-                                                    </>
-                                                )}
-                                            </div>
+
+
 
                                             <div className="mt-4 grid md:grid-cols-2 gap-5">
                                                 <div>
@@ -1269,43 +1336,59 @@ export default function EditRcsTemplate({ rcId }) {
                                                 </div>
                                                 <VideoUpload
                                                     rcId={rcId}
-                                                    onUploadSuccess={(
-                                                        uploadId
-                                                    ) => {
+                                                    tempId={rcTempId}
+                                                    onUploadSuccess={( uploadId ) => {
                                                         setUploadId(uploadId);
-                                                        console.log(uploadId)
                                                     }}
                                                 />
 
                                                 {/* {uploadId ? 1 : 0}
                                                 {videosEncoded ? 1 : 0} */}
 
-                                                {uploadId && (
+                                                
+
+                                                {/* {JSON.stringify(fields)} */}
+
+                                                {/* {uploadId && (
                                                     <div>
                                                         Обработка видео...
                                                     </div>
-                                                )}
+                                                )} */}
 
                                                 
                                                 {videos && videos.length > 0 && (
                                                     <div className="mt-5 grid grid-cols-3 gap-4">
                                                         {videos.map((val) => (
-                                                            <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                            <>
+                                                                {val.playback_id ? (
+
+                                                                    <div className="relative">
+                                                                        <div className="cursor-pointer bg-backdrop text-white rounded-full absolute right-2 top-2 z-10 shadow" onClick={() => deleteVideoByUploadId(val.upload_id)}><BsX className="text-3xl" /></div>
+                                                                        <VideoPlayer key={val.id} playbackId={val.playback_id} />
+                                                                    </div>
+
+                                                                ) : (
+                                                                    <div className="w-full h-full min-h-32 bg-backdrop/10 rounded-lg flex">
+                                                                        <ImSpinner2 className="m-auto animate-spin" />
+                                                                    </div>
+                                                                )}
+                                                            </>
                                                         ))}
                                                     </div>
                                                 )}
 
-
-
-
                                             </div>
+
+
+
+
                                         </div>
                                     </div>
                                     {!MOBILE && (
                                         <div className="flex justify-end w-full mt-[10px]">
-                                            <div className="w-[130px] h-[33px]">
-                                                <Button className="py-2">
-                                                    Сохранить
+                                            <div className="h-[33px]">
+                                                <Button className="px-5 py-2" isDisabled={uploadId}>
+                                                    {uploadId ? "Дождитесь обработки видео..." : "Сохранить"}
                                                 </Button>
                                             </div>
                                         </div>

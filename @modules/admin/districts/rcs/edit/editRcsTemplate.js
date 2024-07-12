@@ -484,7 +484,7 @@ export default function EditRcsTemplate({ rcId }) {
                             )}
                         </div>
 
-                        <pre>{JSON.stringify(fields)}</pre>
+                        {/* <pre>{JSON.stringify(fields)}</pre> */}
 
                         <div className="flex flex-row justify-between md:p-4 md:bg-greylight md:rounded md:shadow w-full mb-10">
                             <div className="min-w-[250px] w-1/3 flex flex-col items-start border-r border-greyborder">

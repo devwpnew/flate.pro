@@ -332,18 +332,23 @@ export default function EditRcsTemplate({ rcId }) {
 
     const handleDocumentTypeChange = (selectedIds) => {
         setDocumentType(selectedIds);
-        //changeFields({ target: { name: "document_type", value: JSON.stringify(selectedIds) } });
+        
+        const formattedIds = `{${selectedIds.join(',')}}`;
+
         setFields((prevFields) => ({
             ...prevFields,
-            document_type: JSON.stringify(selectedIds),
+            document_type: formattedIds,
         }));
     };
 
     const handlePaymentTypeChange = (selectedIds) => {
         setPaymentType(selectedIds);
+
+        const formattedIds = `{${selectedIds.join(',')}}`;
+
         setFields((prevFields) => ({
             ...prevFields,
-            payment_type: JSON.stringify(selectedIds),
+            payment_type: formattedIds,
         }));
     };
 
@@ -479,7 +484,7 @@ export default function EditRcsTemplate({ rcId }) {
                             )}
                         </div>
 
-                        {/* <pre>{JSON.stringify(fields)}</pre> */}
+                        <pre>{JSON.stringify(fields)}</pre>
 
                         <div className="flex flex-row justify-between md:p-4 md:bg-greylight md:rounded md:shadow w-full mb-10">
                             <div className="min-w-[250px] w-1/3 flex flex-col items-start border-r border-greyborder">

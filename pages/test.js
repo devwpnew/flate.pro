@@ -4,7 +4,11 @@ import { useRouter } from "next/router";
 export default function Text({ response }) {
     return (
         <>
-            <pre>{JSON.stringify(response)}</pre>
+            <div style={{ padding: '20px', backgroundColor: '#f4f4f4', borderRadius: '5px' }}>
+            <pre style={{ fontFamily: 'monospace', fontSize: '14px', color: '#333' }}>
+                {JSON.stringify(response, null, 2)}
+            </pre>
+        </div>
         </>
     );
 }
@@ -16,7 +20,7 @@ export async function getServerSideProps(context) {
         response = await API.get.rcs({
             filter: {
                 city_link: "5",
-                payment_type: [1],
+                payment_type: `{1,3}`,
                 published: "1",
             },
             limit: 20,

@@ -332,23 +332,28 @@ export default function EditRcsTemplate({ rcId }) {
 
     const handleDocumentTypeChange = (selectedIds) => {
         setDocumentType(selectedIds);
+
+        // console.log({docType: selectedIds})
+
         
-        const formattedIds = `{${selectedIds.join(',')}}`;
+        // const formattedIds = `{${selectedIds.join(',')}}`;
 
         setFields((prevFields) => ({
             ...prevFields,
-            document_type: formattedIds,
+            document_type: selectedIds,
         }));
     };
 
     const handlePaymentTypeChange = (selectedIds) => {
         setPaymentType(selectedIds);
 
-        const formattedIds = `{${selectedIds.join(',')}}`;
+        // console.log({payment: selectedIds})
+
+        // const formattedIds = `{${selectedIds.join(',')}}`;
 
         setFields((prevFields) => ({
             ...prevFields,
-            payment_type: formattedIds,
+            payment_type: selectedIds,
         }));
     };
 

@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
         response = await API.get.rcs({
             filter: {
                 city_link: "5",
-                payment_type: `{1,3}`,
+                payment_type: [6],
                 published: "1",
             },
             limit: 20,

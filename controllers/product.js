@@ -21,7 +21,7 @@ function productFilter (newFilter) {
     const defaultFilterStr = filterToString(newFilter)
 
     let productFilterRes = ( defaultFilterStr ? defaultFilterStr : 'WHERE' );
-    if(complicatedFilter) {
+    if(complicatedFilter.length) {
         if(defaultFilterStr) {
             productFilterRes += ' AND ';
         }
@@ -92,6 +92,23 @@ async function getMinMaxPrices(filter) {
     }
 }
 
+async function parseProperties(request) {
+    const arReturn = await Promise.all(request.map(async (item) => {
+        const props = await productController.getProperties({productId: item.id})
+        // item.properties = props
+        // console.log('item', item)
+        if (Array.isArray(props)) {
+            item.properties = {}
+            props.map((property) => {
+                item.properties[property.prop_code] = property.prop_value
+            })
+        }
+        return item
+    }))
+    // console.log('parseReturn', {arReturn})
+    return arReturn
+}
+
 const productController = {
     tableName: 'product',
 
@@ -123,12 +140,17 @@ const productController = {
 
         const query = `SELECT ${selectStr} FROM ${productController.tableName} ${additionalSelect} ${filterStr} ${sortStr} ${limitStr} ${offsetStr}`.trim()
 
+        console.log({query})
+
         try {
             const request = await db.any(query)
+            // console.log({ request })
+            const arReturn = await parseProperties(request)
+            // console.log('arReturn', arReturn)
             if (limitVar == 1) {
-                return request[0]
+                return arReturn[0]
             }
-            return request
+            return arReturn
         } catch (e) {
             return controllerError(e, { query })
         }

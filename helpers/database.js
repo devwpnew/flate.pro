@@ -28,11 +28,13 @@ const sortValues = {
 }
 
 const filterValues = {
-    "null": "IS NULL",
-    "NULL": "IS NULL",
+    "null": "{column} IS NULL",
+    "NULL": "{column} IS NULL",
 
-    "!null": "IS NOT NULL",
-    "!NULL": "IS NOT NULL"
+    "!null": "{column} IS NOT NULL",
+    "!NULL": "{column} IS NOT NULL",
+
+    '!false': "{column} IS NOT NULL AND {column} != '0'"
 }
 
 function isNumeric(str) {
@@ -78,7 +80,9 @@ export function filterToString(filter = false) {
                 }
             } else {
                 if(filterValues[filter[field]]) {
-                    addValue = `${field} ${filterValues[filter[field]]}`;
+                    const strReplace = filterValues[filter[field]];
+                    const column = field
+                    addValue = strReplace.replaceAll('{column}', column);
                 } else {
                     addValue = `${field} = '${filter[field]}'`;
                 }

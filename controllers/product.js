@@ -4,6 +4,33 @@ import propertyValuesController from "./property_values";
 
 const limitDefault = 20;
 
+function productFilter (newFilter) {
+    const complicatedFilter = [];
+    // let newFilter = filter;
+
+    if(newFilter?.section_relation) {
+        complicatedFilter.push(`'${newFilter.section_relation}' = ANY(section_relation)`);
+        delete newFilter.section_relation;
+    }
+
+    if(newFilter?.user_agency_id) {
+        complicatedFilter.push(`users.agency_id = ${newFilter.user_agency_id}`);
+        delete newFilter.user_agency_id;
+    }
+
+    const defaultFilterStr = filterToString(newFilter)
+
+    let productFilterRes = ( defaultFilterStr ? defaultFilterStr : 'WHERE' );
+    if(complicatedFilter) {
+        if(defaultFilterStr) {
+            productFilterRes += ' AND ';
+        }
+        productFilterRes += complicatedFilter.join(' AND ')
+    }
+    
+    return productFilterRes
+}
+
 async function getMinMaxPrices(filter) {
     try {
         const filterStr = filterToString(filter)
@@ -67,27 +94,34 @@ async function getMinMaxPrices(filter) {
 
 const productController = {
     tableName: 'product',
-    // dbFields: [],
 
     getList: async ({ sort, filter, limit, page, select }) => {
-        const sortStr = sortToString(sort)
-
-        const filterStr = filterToString(filter)
-
-        if (limit && !Number(limit)) {
-            throw new Error(`limit должен быть числом`)
-        }
-        const limitVar = limit ? limit : limitDefault;
-        const limitStr = `LIMIT ${limitVar}`
-
-        if (page && !Number(page)) {
-            throw new Error(`page должен быть числом`)
-        }
-        const offsetStr = offsetToString(page, limitVar)
 
         const selectStr = selectToString(select)
 
-        const query = `SELECT ${selectStr} FROM ${productController.tableName} ${filterStr} ${sortStr} ${limitStr} ${offsetStr}`.trim()
+        let additionalSelect = '';
+        if(filter?.user_agency_id) {
+            additionalSelect = ` INNER JOIN users ON ${productController.tableName}.user_id = users.id `
+        }
+        
+        const filterStr = productFilter(filter);
+        
+        if (limit && !Number(limit)) {
+            throw new Error(`limit должен быть числом`)
+        }
+
+        const limitVar = limit ? limit : limitDefault;
+        const limitStr = `LIMIT ${limitVar}`
+        
+        if (page && !Number(page)) {
+            throw new Error(`page должен быть числом`)
+        }
+
+        const sortStr = sortToString(sort)
+
+        const offsetStr = offsetToString(page, limitVar)
+
+        const query = `SELECT ${selectStr} FROM ${productController.tableName} ${additionalSelect} ${filterStr} ${sortStr} ${limitStr} ${offsetStr}`.trim()
 
         try {
             const request = await db.any(query)

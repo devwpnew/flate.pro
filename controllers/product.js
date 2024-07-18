@@ -1,4 +1,4 @@
-import { controllerError, filterToString, offsetToString, selectToString, sortToString } from "helpers/database";
+import { controllerError, filterToString, formatDateToDB, offsetToString, selectToString, sortToString } from "helpers/database";
 import db from "lib/postgresql/db";
 import propertyValuesController from "./property_values";
 
@@ -6,12 +6,41 @@ const limitDefault = 20;
 
 function productFilter (newFilter) {
     const complicatedFilter = [];
-    // let newFilter = filter;
+
+    if(newFilter?.date_created) {
+        newFilter.date_created = formatDateToDB(newFilter.date_created)
+    }
+    if(newFilter?.date_edited) {
+        newFilter.date_edited = formatDateToDB(newFilter.date_edited)
+    }
+    if(newFilter?.date_published) {
+        newFilter.date_published = formatDateToDB(newFilter.date_published)
+    }
+    if(newFilter?.date_sort) {
+        newFilter.date_sort = formatDateToDB(newFilter.date_sort)
+    }
+    if(newFilter?.date_paid) {
+        newFilter.date_paid = formatDateToDB(newFilter.date_banned_to)
+    }
+    if(newFilter?.date_banned_to) {
+        newFilter.date_banned_to = formatDateToDB(newFilter.date_banned_to)
+    }
+    if(newFilter?.date_banned) {
+        newFilter.date_banned = formatDateToDB(newFilter.date_banned)
+    }
+    // if(newFilter?.date_banned) {
+    //     newFilter.date_banned = formatDateToDB(newFilter.date_banned)
+    // }
 
     if(newFilter?.section_relation) {
         complicatedFilter.push(`'${newFilter.section_relation}' = ANY(section_relation)`);
         delete newFilter.section_relation;
     }
+
+    // if(newFilter?.area_link) {
+    //     complicatedFilter.push(`'${newFilter.section_relation}' = ANY(section_relation)`);
+    //     delete newFilter.section_relation;
+    // }
 
     if(newFilter?.user_agency_id) {
         complicatedFilter.push(`users.agency_id = ${newFilter.user_agency_id}`);
@@ -20,10 +49,15 @@ function productFilter (newFilter) {
 
     const defaultFilterStr = filterToString(newFilter)
 
-    let productFilterRes = ( defaultFilterStr ? defaultFilterStr : 'WHERE' );
+    let productFilterRes = '';
+    if(defaultFilterStr) {
+        productFilterRes += defaultFilterStr
+    }
     if(complicatedFilter.length) {
         if(defaultFilterStr) {
             productFilterRes += ' AND ';
+        } else {
+            productFilterRes += ' WHERE ';
         }
         productFilterRes += complicatedFilter.join(' AND ')
     }
@@ -95,8 +129,6 @@ async function getMinMaxPrices(filter) {
 async function parseProperties(request) {
     const arReturn = await Promise.all(request.map(async (item) => {
         const props = await productController.getProperties({productId: item.id})
-        // item.properties = props
-        // console.log('item', item)
         if (Array.isArray(props)) {
             item.properties = {}
             props.map((property) => {
@@ -105,7 +137,6 @@ async function parseProperties(request) {
         }
         return item
     }))
-    // console.log('parseReturn', {arReturn})
     return arReturn
 }
 
@@ -140,13 +171,9 @@ const productController = {
 
         const query = `SELECT ${selectStr} FROM ${productController.tableName} ${additionalSelect} ${filterStr} ${sortStr} ${limitStr} ${offsetStr}`.trim()
 
-        console.log({query})
-
         try {
             const request = await db.any(query)
-            // console.log({ request })
             const arReturn = await parseProperties(request)
-            // console.log('arReturn', arReturn)
             if (limitVar == 1) {
                 return arReturn[0]
             }
@@ -402,6 +429,28 @@ const productController = {
             return responses
         } catch (e) {
             controllerError(e, { filter })
+        }
+    },
+
+    getCount: async ({ filter }) => {
+        let additionalSelect = '';
+        if(filter?.user_agency_id) {
+            additionalSelect = ` INNER JOIN users ON ${productController.tableName}.user_id = users.id `
+        }
+
+        const filterStr = productFilter(filter);
+        console.log({filterStr})
+
+        const query = `SELECT COUNT(*) FROM ${productController.tableName} ${additionalSelect} ${filterStr}`.trim()
+
+        console.log({countQuery: query})
+
+        try {
+            const request = await db.one(query)
+            // console.log({countRequest: request})
+            return request
+        } catch (e) {
+            return controllerError(e, { query })
         }
     }
 }

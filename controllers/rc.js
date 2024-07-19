@@ -8,7 +8,7 @@ const rcController = {
     tableName: 'rcs',
     //dbFields = []
 
-    getList: async ({sort, filter, limit, page, select}) => {
+    getList: async ({sort, filter, limit, page, select = ''}) => {
         const sortStr = sortToString(sort)
 
         const filterStr = filterToString(filter)
@@ -40,8 +40,8 @@ const rcController = {
     },
     getByid: async ({id, select}) => {
         try {
-            const getProd = await rcController.getList({sort: false, filter: {id}, limit: 1, page: false, select})
-            return getProd
+            const get = await rcController.getList({sort: false, filter: {id}, limit: 1, page: false, select})
+            return get
         } catch (e) {
             return controllerError(e, {id, select})
         }

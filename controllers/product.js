@@ -145,6 +145,9 @@ const productController = {
 
     getList: async ({ sort, filter, limit, page, select }) => {
 
+        let limitVar = undefined;
+        let limitStr = '';
+
         const selectStr = selectToString(select)
 
         let additionalSelect = '';
@@ -153,13 +156,15 @@ const productController = {
         }
         
         const filterStr = productFilter(filter);
-        
-        if (limit && !Number(limit)) {
-            throw new Error(`limit должен быть числом`)
-        }
 
-        const limitVar = limit ? limit : limitDefault;
-        const limitStr = `LIMIT ${limitVar}`
+        // console.log({type: typeof limit})
+        
+        if (limit && limit != 'all' && !Number(limit)) {
+            throw new Error(`limit должен быть числом`)
+        } else if(limit != 'all') {
+            limitVar = limit ? limit : limitDefault;
+            limitStr = `LIMIT ${limitVar}`
+        }
         
         if (page && !Number(page)) {
             throw new Error(`page должен быть числом`)
@@ -439,11 +444,11 @@ const productController = {
         }
 
         const filterStr = productFilter(filter);
-        console.log({filterStr})
+        // console.log({filterStr})
 
         const query = `SELECT COUNT(*) FROM ${productController.tableName} ${additionalSelect} ${filterStr}`.trim()
 
-        console.log({countQuery: query})
+        // console.log({countQuery: query})
 
         try {
             const request = await db.one(query)

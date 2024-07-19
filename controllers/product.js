@@ -3,6 +3,7 @@ import db from "lib/postgresql/db";
 import propertyValuesController from "./property_values";
 import usersController from "./users";
 import rcController from "./rc";
+import sectionsController from "./sections";
 
 const limitDefault = 20;
 
@@ -142,6 +143,9 @@ async function parseProductAdditional(request) {
         }
         if(item?.rc_link) {
             item.rc_link = await rcController.getByid({id: item.rc_link})
+        }
+        if(item?.section_relation) {
+            item.section_relation = await sectionsController.getList({filter: {id: item.section_relation}})
         }
         return item
     }))

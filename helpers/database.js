@@ -83,6 +83,8 @@ export function filterToString(filter = false) {
                     const strReplace = filterValues[filter[field]];
                     const column = field
                     addValue = strReplace.replaceAll('{column}', column);
+                } else if ( typeof filter[field] == 'string' && filter[field].indexOf('!=') == 0 ) {
+                    addValue = `${field} != '${filter[field].substring(2)}'`;
                 } else {
                     addValue = `${field} = '${filter[field]}'`;
                 }

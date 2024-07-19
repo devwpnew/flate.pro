@@ -2,6 +2,7 @@ import { controllerError, filterToString, formatDateToDB, offsetToString, select
 import db from "lib/postgresql/db";
 import propertyValuesController from "./property_values";
 import usersController from "./users";
+import rcController from "./rc";
 
 const limitDefault = 20;
 
@@ -138,6 +139,9 @@ async function parseProductAdditional(request) {
         }
         if(item?.user_id) {
             item.user_id = await usersController.getByid({id: item.user_id})
+        }
+        if(item?.rc_link) {
+            item.rc_link = await rcController.getByid({id: item.rc_link})
         }
         return item
     }))

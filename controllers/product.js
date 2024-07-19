@@ -1,6 +1,7 @@
 import { controllerError, filterToString, formatDateToDB, offsetToString, selectToString, sortToString } from "helpers/database";
 import db from "lib/postgresql/db";
 import propertyValuesController from "./property_values";
+import usersController from "./users";
 
 const limitDefault = 20;
 
@@ -126,7 +127,7 @@ async function getMinMaxPrices(filter) {
     }
 }
 
-async function parseProperties(request) {
+async function parseProductAdditional(request) {
     const arReturn = await Promise.all(request.map(async (item) => {
         const props = await productController.getProperties({productId: item.id})
         if (Array.isArray(props)) {
@@ -134,6 +135,9 @@ async function parseProperties(request) {
             props.map((property) => {
                 item.properties[property.prop_code] = property.prop_value
             })
+        }
+        if(item?.user_id) {
+            item.user_id = await usersController.getByid({id: item.user_id})
         }
         return item
     }))
@@ -178,7 +182,7 @@ const productController = {
 
         try {
             const request = await db.any(query)
-            const arReturn = await parseProperties(request)
+            const arReturn = await parseProductAdditional(request)
             if (limitVar == 1) {
                 return arReturn[0]
             }

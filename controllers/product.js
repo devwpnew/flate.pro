@@ -160,16 +160,16 @@ const productController = {
         let limitVar = undefined;
         let limitStr = '';
 
-        const selectStr = selectToString(select)
+        let selectStr = selectToString(select)
 
         let additionalSelect = '';
         if(filter?.user_agency_id) {
             additionalSelect = ` INNER JOIN users ON ${productController.tableName}.user_id = users.id `
+            selectStr = ` ${productController.tableName}.*, users.id as useridtbl `
         }
         
         const filterStr = productFilter(filter);
 
-        // console.log({type: typeof limit})
         
         if (limit && limit != 'all' && !Number(limit)) {
             throw new Error(`limit должен быть числом`)

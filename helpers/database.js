@@ -122,7 +122,7 @@ export function sortToString(sort) {
     return sortStr
 }
 
-export function selectToString(select, type) {
+export function selectToString(select, type, secondTable) {
     let selectStr = ''
     if (type == 'EDIT') {
         if (Array.isArray(select)) {

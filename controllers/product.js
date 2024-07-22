@@ -155,21 +155,22 @@ async function parseProductAdditional(request) {
 const productController = {
     tableName: 'product',
 
-    getList: async ({ sort, filter, limit, page, select }) => {
+    getList: async ({ sort, filter, limit, page, select, additional }) => {
 
         let limitVar = undefined;
         let limitStr = '';
 
         let selectStr = selectToString(select)
 
+        let sortStr = ''
+
         let additionalSelect = '';
-        if(filter?.user_agency_id) {
+        if(filter?.user_agency_id || (sort?.my_agency && additional?.agency_id) ) {
             additionalSelect = ` INNER JOIN users ON ${productController.tableName}.user_id = users.id `
             selectStr = ` ${productController.tableName}.*, users.id as useridtbl `
         }
         
         const filterStr = productFilter(filter);
-
         
         if (limit && limit != 'all' && !Number(limit)) {
             throw new Error(`limit должен быть числом`)
@@ -182,7 +183,12 @@ const productController = {
             throw new Error(`page должен быть числом`)
         }
 
-        const sortStr = sortToString(sort)
+        if( sort?.my_agency && additional?.agency_id ) {
+            sortStr = `ORDER BY CASE agency_id WHEN '${additional?.agency_id}' THEN 1 ELSE 2 END`
+            delete sort['my_agency']
+        }
+
+        sortStr = sortToString(sort, sortStr)
 
         const offsetStr = offsetToString(page, limitVar)
 

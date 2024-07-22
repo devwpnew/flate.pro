@@ -104,18 +104,18 @@ export function controllerError(e, fields) {
     return { error: e.toString(), fields }
 }
 
-export function sortToString(sort) {
-    let sortStr = '';
+export function sortToString(sort, sortStr = '') {
     if (sort) {
         if (typeof sort != 'object') {
             throw new Error('sort должен быть объектом')
         }
         for (const name in sort) {
             const sortValue = sortValues[sort[name]] ? sortValues[sort[name]] : sort[name]
+            // console.log({name, sortValue})
             if (sortStr != '') {
-                sortStr = `, ${name} ${sortValue}`
+                sortStr += `, ${name} ${sortValue}`
             } else {
-                sortStr = `ORDER BY ${name} ${sortValue}`
+                sortStr += `ORDER BY ${name} ${sortValue}`
             }
         }
     }

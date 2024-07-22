@@ -147,6 +147,11 @@ async function parseProductAdditional(request) {
         if(item?.section_relation) {
             item.section_relation = await sectionsController.getList({filter: {id: item.section_relation}})
         }
+        if(item?.map_coordinates) {
+            console.log({test: item.map_coordinates})
+            item.map_coordinates = JSON.parse(item.map_coordinates)
+            console.log({test2s: item.map_coordinates})
+        }
         return item
     }))
     return arReturn

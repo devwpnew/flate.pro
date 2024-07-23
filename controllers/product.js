@@ -148,9 +148,7 @@ async function parseProductAdditional(request) {
             item.section_relation = await sectionsController.getList({filter: {id: item.section_relation}})
         }
         if(item?.map_coordinates) {
-            console.log({test: item.map_coordinates})
             item.map_coordinates = JSON.parse(item.map_coordinates)
-            console.log({test2s: item.map_coordinates})
         }
         return item
     }))
@@ -161,6 +159,7 @@ const productController = {
     tableName: 'product',
 
     getList: async ({ sort, filter, limit, page, select, additional }) => {
+        console.log({additional});
 
         let limitVar = undefined;
         let limitStr = '';
@@ -190,6 +189,8 @@ const productController = {
 
         if( sort?.my_agency && additional?.agency_id ) {
             sortStr = `ORDER BY CASE agency_id WHEN '${additional?.agency_id}' THEN 1 ELSE 2 END`
+            delete sort['my_agency']
+        } else if (sort?.my_agency) {
             delete sort['my_agency']
         }
 

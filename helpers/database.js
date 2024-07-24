@@ -110,6 +110,7 @@ export function sortToString(sort, sortStr = '') {
             throw new Error('sort должен быть объектом')
         }
         for (const name in sort) {
+            console.log({sort, test: sortValues[sort[name]]})
             const sortValue = sortValues[sort[name]] ? sortValues[sort[name]] : sort[name]
             // console.log({name, sortValue})
             if (sortStr != '') {

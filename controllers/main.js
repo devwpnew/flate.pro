@@ -5,6 +5,7 @@ import rcController from "./rc";
 import selectionsController from "./selections";
 import selectionProductController from "./selection_product";
 import usersController from "./users";
+import agenciesController from "./agencies";
 
 const controllers = {
     product: productController,
@@ -13,7 +14,8 @@ const controllers = {
     selections: selectionsController,
     selection_product: selectionProductController,
     image: imageController,
-    users: usersController
+    users: usersController,
+    agencies: agenciesController
 }
 
 export default controllers;

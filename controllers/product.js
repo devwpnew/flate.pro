@@ -4,6 +4,8 @@ import propertyValuesController from "./property_values";
 import usersController from "./users";
 import rcController from "./rc";
 import sectionsController from "./sections";
+import citiesController from "./cities";
+import areasController from "./areas";
 
 const limitDefault = 20;
 
@@ -138,6 +140,9 @@ async function parseProductAdditional(request) {
                 item.properties[property.prop_code] = property.prop_value
             })
         }
+        if(item?.city_link) {
+            item.city_link = await citiesController.getByid({id: item.city_link})
+        }
         if(item?.user_id) {
             item.user_id = await usersController.getByid({id: item.user_id})
         }
@@ -146,6 +151,9 @@ async function parseProductAdditional(request) {
         }
         if(item?.section_relation) {
             item.section_relation = await sectionsController.getList({filter: {id: item.section_relation}})
+        }
+        if(item?.area_link) {
+            item.area_link = await areasController.getByid({id: item.area_link})
         }
         if(item?.map_coordinates) {
             item.map_coordinates = JSON.parse(item.map_coordinates)

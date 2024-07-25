@@ -10,13 +10,13 @@ export default function TestAdminIndex(data) {
 
   useUser(data.user);
 
-  useEffect(() => {  
-    (async () => {
-      const test = await api.add.pushMessageByUser('tit', 'txt', 1115)
-      setResult(test)
-      console.log({test})     
-    })();
-  }, []);
+  // useEffect(() => {  
+  //   (async () => {
+  //     const test = await api.add.pushMessageByUser('tit', 'txt', 1115)
+  //     setResult(test)
+  //     console.log({test})     
+  //   })();
+  // }, []);
 
   return (
     <>

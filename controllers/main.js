@@ -6,6 +6,8 @@ import selectionsController from "./selections";
 import selectionProductController from "./selection_product";
 import usersController from "./users";
 import agenciesController from "./agencies";
+import citiesController from "./cities";
+import areasController from "./areas";
 
 const controllers = {
     product: productController,
@@ -16,6 +18,8 @@ const controllers = {
     image: imageController,
     users: usersController,
     agencies: agenciesController
+    cities: citiesController,
+    areas: areasController
 }
 
 export default controllers;

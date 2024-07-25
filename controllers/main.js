@@ -17,7 +17,7 @@ const controllers = {
     selection_product: selectionProductController,
     image: imageController,
     users: usersController,
-    agencies: agenciesController
+    agencies: agenciesController,
     cities: citiesController,
     areas: areasController
 }

@@ -37,7 +37,7 @@ const citiesController = {
             return controllerError(e, {query})
         }
     },
-    getByid: async ({id, select}) => {
+    getById: async ({id, select}) => {
         try {
             const get = await citiesController.getList({sort: false, filter: {id}, limit: 1, page: false, select})
             return get

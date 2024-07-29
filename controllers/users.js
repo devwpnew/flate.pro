@@ -1,12 +1,13 @@
 import { controllerError, filterToString, offsetToString, selectToString, sortToString } from "helpers/database"
 import db from "lib/postgresql/db";
+import productController from "./product";
 
 const usersController = {
     tableName: 'users',
     defaultLimit: 20,
     selectFields: ['id', 'agency_id', 'user_name', 'phone', 'email', 'user_group', 'date_registered', 'date_paid_to', 'paid', 'user_description', 'user_last_name', 'favorites', 'email_confirmed', 'phone_confirmed', 'email_confirmation', 'user_avatar', 'user_agency', 'default_city', 'professional_confirmation', 'sef_code', 'additional_phones', 'product_count', 'last_login_date', 'paid', 'date_paid', 'date_paid_to', 'date_notifications_read', '( SELECT count(*) FROM product WHERE product.user_id = users.id ) as count_product'],
 
-    getByid: async({id}) => {
+    getById: async({id}) => {
         try {
             const get = await usersController.getList({sort: false, filter: {id}, limit: 1, page: false})
             return get
@@ -84,8 +85,35 @@ const usersController = {
         } catch (e) {
             return controllerError(e, {function: 'selectionController.get', query})
         }
-    }
+    },
 
+    getFavorites: async ({userId}) => {
+        const arUser = await usersController.getById({id: userId})
+        const arResult = [];
+
+        if( arUser?.favorites && arUser.favorites.length > 0 ) {
+            const favorites = arUser.favorites
+
+            const getProds = await productController.getList({filter: {id: favorites}, limit: 'all'})
+
+            if(getProds?.length) {
+                arUser.favorites.forEach(prodId => {
+                    const productExists = getProds.filter(prod => {
+                        // console.log({prod})
+                        if(prod && prod?.id && prod.id == prodId) {
+                            return true;
+                        }
+                        return false
+                    });
+                    // console.log({productExists})
+                    if(productExists && productExists[0]) {
+                        arResult.push(productExists[0])
+                    }
+                })
+            }
+        }
+        return arResult
+    }
 }
 
 export default usersController;

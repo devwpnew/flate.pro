@@ -36,7 +36,7 @@ const propertiesController = {
         }
     },
 
-    getByid: async ({id, select}) => {
+    getById: async ({id, select}) => {
         try {
             const getProd = await productController.getList({sort: false, filter: {id}, limit: 1, page: false, select})
             return getProd

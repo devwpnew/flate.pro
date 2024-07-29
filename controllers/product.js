@@ -141,19 +141,19 @@ async function parseProductAdditional(request) {
             })
         }
         if(item?.city_link) {
-            item.city_link = await citiesController.getByid({id: item.city_link})
+            item.city_link = await citiesController.getById({id: item.city_link})
         }
         if(item?.user_id) {
-            item.user_id = await usersController.getByid({id: item.user_id})
+            item.user_id = await usersController.getById({id: item.user_id})
         }
         if(item?.rc_link) {
-            item.rc_link = await rcController.getByid({id: item.rc_link})
+            item.rc_link = await rcController.getById({id: item.rc_link})
         }
         if(item?.section_relation) {
             item.section_relation = await sectionsController.getList({filter: {id: item.section_relation}})
         }
         if(item?.area_link) {
-            item.area_link = await areasController.getByid({id: item.area_link})
+            item.area_link = await areasController.getById({id: item.area_link})
         }
         if(item?.map_coordinates) {
             item.map_coordinates = JSON.parse(item.map_coordinates)
@@ -220,7 +220,7 @@ const productController = {
         }
     },
 
-    getByid: async ({ id, select }) => {
+    getById: async ({ id, select }) => {
         try {
             const getProd = await productController.getList({ sort: false, filter: { id }, limit: 1, page: false, select })
             return getProd

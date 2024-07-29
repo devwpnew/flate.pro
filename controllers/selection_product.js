@@ -147,7 +147,7 @@ const selectionProductController = {
     },
 
     copyProduct: async ({ productId, selectionId }) => {
-        const prodInfo = await productController.getByid({ id: productId })
+        const prodInfo = await productController.getById({ id: productId })
         if (!prodInfo) {
             throw new Error(`Обэект ${productId} не найден`)
         }

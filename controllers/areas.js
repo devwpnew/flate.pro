@@ -37,7 +37,7 @@ const areasController = {
             return controllerError(e, {query})
         }
     },
-    getByid: async ({id, select}) => {
+    getById: async ({id, select}) => {
         try {
             const get = await areasController.getList({sort: false, filter: {id}, limit: 1, page: false, select})
             return get

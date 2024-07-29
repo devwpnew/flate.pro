@@ -33,19 +33,11 @@ function productFilter (newFilter) {
     if(newFilter?.date_banned) {
         newFilter.date_banned = formatDateToDB(newFilter.date_banned)
     }
-    // if(newFilter?.date_banned) {
-    //     newFilter.date_banned = formatDateToDB(newFilter.date_banned)
-    // }
 
     if(newFilter?.section_relation) {
         complicatedFilter.push(`'${newFilter.section_relation}' = ANY(section_relation)`);
         delete newFilter.section_relation;
     }
-
-    // if(newFilter?.area_link) {
-    //     complicatedFilter.push(`'${newFilter.section_relation}' = ANY(section_relation)`);
-    //     delete newFilter.section_relation;
-    // }
 
     if(newFilter?.user_agency_id) {
         complicatedFilter.push(`users.agency_id = ${newFilter.user_agency_id}`);
@@ -228,6 +220,7 @@ const productController = {
             return controllerError(e, { id, select })
         }
     },
+
     getProperties: async ({ productId }) => {
         try {
             const properties = await propertyValuesController.getForItem({ table: productController.tableName, itemId: productId })

@@ -115,6 +115,7 @@ export default function itemsContent({
                             </div>
                         </Tab.List>
 
+
                         <ButtonShare
                             type={"secondary-10"}
                             shareButtonLink={`https://flate.pro/users/${
@@ -146,6 +147,7 @@ export default function itemsContent({
                                     (user && user.sef_code) || user.id
                                 }`}
                                 shareButtonText={"Поделиться профилем"}
+                                isArchive={false}
                             />
                         </div>
                     </Tab.Panel>
@@ -166,6 +168,7 @@ export default function itemsContent({
                                 fallbackComponent={
                                     <ProductsEmpty title="У вас нет объявлений на модерации" />
                                 }
+                                isArchive={false}
                             />
                         </div>
                     </Tab.Panel>
@@ -185,6 +188,7 @@ export default function itemsContent({
                                 fallbackComponent={
                                     <ProductsEmpty title="У вас нет объявлений в архиве" />
                                 }
+                                isArchive={true}
                             />
                         </div>
                     </Tab.Panel>

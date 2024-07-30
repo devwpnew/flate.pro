@@ -28,6 +28,7 @@ export default function ProductContainer({
     shareButtonLink,
     shareButtonText,
     isModeration,
+    isArchive,
 }) {
     return (
         <div className="flex flex-col items-start w-full gap-2.5">
@@ -85,6 +86,7 @@ export default function ProductContainer({
                             layout={layout}
                             hideUserInfo={hideUserInfo}
                             isModeration={isModeration}
+                            isArchive={isArchive}
                         />
                     ))}
 

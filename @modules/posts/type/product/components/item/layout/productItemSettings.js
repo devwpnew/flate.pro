@@ -23,8 +23,25 @@ import getProductImageSrc from "helpers/formatters/product/getProductImageSrc";
 import getProductUrl from "helpers/formatters/product/getProductUrl";
 import LineStatusBar from "@modules/common/components/statusbar/lineStatusBar";
 
-export default function ProductItemSettings({ product, isModeration }) {
+import { useSelector } from "react-redux";
+import { setFetchState } from "store/global/helpers/fetchTrigger";
+import { useDispatch } from "react-redux";
+
+import { ImSpinner2 } from "react-icons/im";
+
+
+
+
+export default function ProductItemSettings({
+    product,
+    isModeration,
+    isArchive,
+}) {
+    const dispatch = useDispatch();
+    const fetchState = useSelector((state) => state.fetchTrigger.value);
+
     const [isLoading, setIsLoading] = useState(false);
+    const [isPublishLoading, setIsPublishLoading] = useState(false);
     const [showAdminTools, setShowAdminTools] = useState(false);
     const [favoriteStat, setFavoriteStat] = useState(0);
     const [productExpiry, setProductExpiry] = useState(null);
@@ -49,6 +66,16 @@ export default function ProductItemSettings({ product, isModeration }) {
             setIsLoading(false);
         })();
     }, []);
+
+    const publishCallback = async () => {
+        setIsPublishLoading(true);
+        if (product.published === 2) {
+            const toArchiveReq = await API.set.publishProduct(product.id);
+        }
+        dispatch(setFetchState(!fetchState));
+        setIsPublishLoading(false);
+    };
+
     const productUrl =
         isModeration || product.published === 2
             ? `/user/profile/items/${product.id}`
@@ -57,6 +84,7 @@ export default function ProductItemSettings({ product, isModeration }) {
         <>
             <div className="grid gap-3">
                 <>
+
                     <Link href={productUrl} key={product.id}>
                         <a className="cursor-pointer">
                             <div className="rounded-[10px] overflow-hidden h-[200px] relative">
@@ -116,18 +144,33 @@ export default function ProductItemSettings({ product, isModeration }) {
                                 </div> */}
 
                                 <div className="mt-3 flex md:gap-2.5">
-                                    <Link href={"/user/profile/subscribe"}>
-                                        <div className="h-[30px] lg:h-auto min-w-[80px] lg:min-w-[160px] mr-1 p-1 lg:mr-0 lg:p-0 ">
-                                            <Button className="flex justify-center items-center h-10">
-                                                <span className="text-[8px] md:text-sm hidden lg:inline">
-                                                    Сделать премиум
-                                                </span>
-                                                <span className="text-[8px] inline lg:hidden">
-                                                    Премиум
+                                    {isArchive ? (
+                                        <div className="h-[30px] lg:h-auto min-w-[80px] lg:min-w-[160px] mr-1 p-1 lg:mr-0 lg:p-0">
+                                            <Button
+                                                className="flex justify-center items-center h-10"
+                                                onClick={() =>
+                                                    publishCallback()
+                                                }
+                                            >
+                                                <span className="text-[8px] md:text-sm">
+                                                    {isPublishLoading ? <ImSpinner2 className="animate-spin" /> : "Опубликовать"}
                                                 </span>
                                             </Button>
                                         </div>
-                                    </Link>
+                                    ) : (
+                                        <Link href={"/user/profile/subscribe"}>
+                                            <div className="h-[30px] lg:h-auto min-w-[80px] lg:min-w-[160px] mr-1 p-1 lg:mr-0 lg:p-0 ">
+                                                <Button className="flex justify-center items-center h-10">
+                                                    <span className="text-[8px] md:text-sm hidden lg:inline">
+                                                        Сделать премиум
+                                                    </span>
+                                                    <span className="text-[8px] inline lg:hidden">
+                                                        Премиум
+                                                    </span>
+                                                </Button>
+                                            </div>
+                                        </Link>
+                                    )}
 
                                     <OutsideAlerter
                                         action={() => setShowAdminTools(false)}
@@ -195,7 +238,7 @@ export default function ProductItemSettings({ product, isModeration }) {
                   </span> */}
                             </div>
 
-                            <div className="block">
+                            <div className="block mt-2">
                                 {isModeration ? (
                                     <div className="w-full md:absolute md:top-0 md:left-0">
                                         <div className="py-1 max-w-[120px] font-bold text-exs md:text-xs text-primary w-full h-full rounded md:text-black bg-primary bg-opacity-20 text-center">

@@ -12,6 +12,7 @@ export default function ProductItem({
     layout,
     isModeration,
     hideUserInfo,
+    isArchive,
 }) {
     const user = useSelector((state) => state.userLogin.value);
 
@@ -25,6 +26,7 @@ export default function ProductItem({
                 user={user}
                 product={product}
                 isModeration={isModeration}
+                isArchive={isArchive}
             />
         );
     }

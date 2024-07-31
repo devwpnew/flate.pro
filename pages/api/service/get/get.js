@@ -837,7 +837,8 @@ export default GET = {
 
       const data = await API.get.data({
         table: 'push_tokens',
-        filter: { user_id: userId }
+        filter: { user_id: userId },
+        limit: 'all'
       })
   
       return data

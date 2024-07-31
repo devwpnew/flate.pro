@@ -837,19 +837,19 @@ export default ADD = {
                 console.log({waSend})
             }
 
-            // console.log({arUser})
+            if(arUser?.send_app_pushes) {
+                const expoPushToken = await API.get.tokenRowsByUserId(id);
 
-            const expoPushToken = await API.get.tokenRowsByUserId(id);
+                const arTokens = expoPushToken.map((data) => {
+                    return data.token;
+                });
 
-            const arTokens = expoPushToken.map((data) => {
-                return data.token;
-            });
+                if (!expoPushToken) {
+                    return { Error: "Токен не был получен" };
+                }
 
-            if (!expoPushToken) {
-                return { Error: "Токен не был получен" };
+                return await API.add.pushMessage(title, text, arTokens);
             }
-
-            return await API.add.pushMessage(title, text, arTokens);
         } catch (e) {
             return { Error: e };
         }

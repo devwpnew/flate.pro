@@ -46,7 +46,7 @@ export default function LoginFormStep({
       <div className="mb-4 w-full">
         <Container className=" w-full">
             <Button isDisabled={!isCanSendForm}>
-              <div className="py-2.5 font-bold">Получить код</div>
+              <div className="py-2.5 font-bold text-white">Получить код</div>
             </Button>
         </Container>
       </div>

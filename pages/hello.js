@@ -37,24 +37,24 @@ export default function GuestPage() {
 
     const feedbacks = [
         {
-            img: "/hello/12.png",
+            img: "/hello/13.png",
             text: "Мы используем для ведения всей базы нашего агентства. Всё в одном месте",
         },
         {
-            img: "/hello/12.png",
+            img: "/hello/14.png",
             text: "Статистика цен мастхев! Позволяет быстро сориентировать клиента",
         },
         {
-            img: "/hello/12.png",
-            text: "Мы используем ля ведения всей базы нашего агентства. Всё в одном месте",
+            img: "/hello/15.png",
+            text: "Удивило количество предложений. Уже во время разговора с клиентом предлагаю десятки вариантов.",
         },
         {
-            img: "/hello/12.png",
-            text: "Мы используем ля ведения всей базы нашего агентства. Всё в одном месте",
+            img: "/hello/16.png",
+            text: "Создала подборки по частым запросам: с видом на море, предсдача и тд. и сразу скидываю клиентам.",
         },
         {
-            img: "/hello/12.png",
-            text: "Мы используем для ведения всей базы нашего агентства. Всё в одном месте",
+            img: "/hello/17.png",
+            text: "Наконец-то удобно искать не только заезженные ЖК, а просто по нужным параметрам.",
         },
     ];
 
@@ -165,8 +165,8 @@ export default function GuestPage() {
             <section className="w-full mx-auto text-center bg-[#1479F5]/10 rounded-b-[30px] md:rounded-b-[100px]">
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex justify-center md:justify-between items-center py-5">
-                        <Logo className="w-[120px] max-w-[120px] mt-5 md:mt-0" />
-
+                        <Logo className="w-[200px] max-w-[200px] mt-5 mx-auto" />
+{/* 
                         <div className="items-center gap-2 hidden md:flex">
                             <button
                                 className="bg-[#1479F5] text-white px-5 py-3 rounded-xl"
@@ -179,36 +179,20 @@ export default function GuestPage() {
                                     Войти в браузере
                                 </button>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className="h-[20px] md:h-[50px]"></div>
+                    <div className="h-[20px] md:h-[30px]"></div>
 
-                    <div className="flex-wrap justify-center gap-2 mb-[20px] hidden md:flex text-[14px]">
-                        <div className="bg-white rounded-full px-4 py-2">
-                            Размещение и поиск объектов
-                        </div>
-                        <div className="bg-white rounded-full px-4 py-2">
-                            Подборки
-                        </div>
-                        <div className="bg-white rounded-full px-4 py-2">
-                            Статистика цен
-                        </div>
-                        <div className="bg-white rounded-full px-4 py-2">
-                            Каталог ЖК
-                        </div>
-                        <div className="bg-white rounded-full px-4 py-2">
-                            Шахматки
-                        </div>
-                    </div>
+                   
 
                     <h1 className="text-[32px] md:text-[64px] leading-[95%] tracking-[-1.3px] font-extrabold">
-                        Бесплатный онлайн-инструмент риелтора
+                        Онлайн-инструмент риелтора
                     </h1>
 
-                    <div className="h-[20px] md:h-[0px]"></div>
+                    <div className="h-[20px] md:h-[30px]"></div>
 
-                    <div className="flex md:hidden flex-wrap justify-center gap-2">
+                    <div className="flex flex-wrap justify-center gap-2">
                         <div className="bg-white rounded-full px-4 py-2">
                             Размещение и поиск объектов
                         </div>
@@ -233,7 +217,7 @@ export default function GuestPage() {
                             className="bg-[#1479F5] text-white px-6 py-4 rounded-xl hidden md:block"
                             onClick={() => setIsOpen(true)}
                         >
-                            Весь функционал в приложении
+                            Скачать приложение
                         </button>
                         <button
                             className="bg-[#1479F5] text-white px-6 py-4 rounded-xl md:hidden"
@@ -250,11 +234,11 @@ export default function GuestPage() {
 
                     <div className="h-[40px]"></div>
 
-                    <div className="relative h-[450px] hidden md:block">
+                    <div className="relative h-[450px] hidden md:flex">
                         <Image
                             src="/hello/1.png"
                             alt="hero"
-                            className="w-full h-auto object-contain"
+                            className="w-full h-auto object-cover"
                             layout="fill"
                         />
                     </div>
@@ -275,11 +259,11 @@ export default function GuestPage() {
             <div className="h-[60px] md:h-[140px]"></div>
 
             <section className="max-w-[1200px] px-[10px] md:px-0 mx-auto text-center">
-                <h2 className="text-[32px] md:text-[64px] leading-[100%] tracking-[-1.3px] font-bold mb-[20px]">
+                <h2 className="text-[32px] md:text-[64px] leading-[100%] tracking-[-1.3px] font-extrabold mb-[30px]">
                     Весь необходимый функционал для эффективной работы
                 </h2>
 
-                <p className="text-[16px] md:text-[24px] tracking-[-0.8px] mb-[30px] font-medium">
+                <p className="text-[16px] md:text-[24px] tracking-[-0.8px] mb-[60px] font-medium">
                     Ведите базу агентства, собирайте статистику и закрывайте
                     сделки
                 </p>
@@ -288,20 +272,24 @@ export default function GuestPage() {
                     {functions.map((item, index) => (
                         <div
                             key={index}
-                            className={`rounded-[30px] p-10 ${item.bgClassName}`}
+                            className={`rounded-[30px] ${item.bgClassName}`}
                         >
+                            
                             <Image
                                 src={item.img}
                                 alt={item.title}
                                 width={500}
                                 height={400}
                             />
-                            <h3 className="text-[24px] md:text-[32px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[15px]">
-                                {item.title}
-                            </h3>
-                            <p className="text-[16px] tracking-[-0.8px] font-medium">
-                                {item.text}
-                            </p>
+
+                            <div className="px-10 pb-10">
+                                <h3 className="text-[24px] md:text-[32px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[15px]">
+                                    {item.title}
+                                </h3>
+                                <p className="text-[16px] font-medium">
+                                    {item.text}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -311,7 +299,7 @@ export default function GuestPage() {
 
             <section className="w-full mx-auto text-center bg-[#1479F5]/10 rounded-[30px] md:rounded-[100px] py-[60px] md:py-[120px]">
                 <div className="max-w-[1200px] px-[10px] md:px-0 mx-auto text-center">
-                    <h2 className="text-[32px] md:text-[64px] leading-[95%] tracking-[-1.3px] font-bold mb-[40px]">
+                    <h2 className="text-[32px] md:text-[64px] leading-[95%] tracking-[-1.3px] font-extrabold mb-[40px]">
                         Больше функционала в мобильном приложении
                     </h2>
 
@@ -347,8 +335,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/6.png"
                                 alt="browser"
-                                width={130}
-                                height={130}
+                                width={230}
+                                height={230}
                             />
 
                             <h3 className="text-[28px] leading-[100%] tracking-[-0.8px] font-bold mb-[30px]">
@@ -356,10 +344,10 @@ export default function GuestPage() {
                             </h3>
 
                             <div className="flex flex-wrap justify-center gap-3">
-                                <div className="bg-white text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-white px-4 py-2 rounded-full">
                                     Размещение
                                 </div>
-                                <div className="bg-white text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-white px-4 py-2 rounded-full">
                                     Поиск
                                 </div>
                             </div>
@@ -368,8 +356,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/7.png"
                                 alt="browser"
-                                width={130}
-                                height={130}
+                                width={230}
+                                height={230}
                             />
 
                             <h3 className="text-[28px] leading-[100%] tracking-[-0.8px] font-bold mb-[30px]">
@@ -377,22 +365,22 @@ export default function GuestPage() {
                             </h3>
 
                             <div className="flex flex-wrap justify-center gap-3">
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1479F5]/10 px-4 py-2 rounded-full">
                                     Размещение
                                 </div>
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1479F5]/10 px-4 py-2 rounded-full">
                                     Поиск
                                 </div>
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1A1F25] text-white px-4 py-2 rounded-full">
                                     Подборки
                                 </div>
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1A1F25] text-white px-4 py-2 rounded-full">
                                     Статистика цен
                                 </div>
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1A1F25] text-white px-4 py-2 rounded-full">
                                     Каталог ЖК
                                 </div>
-                                <div className="bg-[#1479F5]/10 text-[#1479F5] px-4 py-2 rounded-full">
+                                <div className="bg-[#1A1F25] text-white px-4 py-2 rounded-full">
                                     Моё агентство
                                 </div>
                             </div>
@@ -404,8 +392,8 @@ export default function GuestPage() {
             <div className="h-[60px] md:h-[140px]"></div>
 
             <section className="max-w-[1200px] px-[10px] md:px-0 mx-auto text-center">
-                <h2 className="text-[32px] md:text-[64px] leading-[95%] tracking-[-1.3px] font-bold mb-[40px] md:mb-[80px]">
-                    Flate бесплатен
+                <h2 className="text-[32px] md:text-[64px] leading-[95%] tracking-[-1.3px] font-extrabold mb-[40px] md:mb-[80px]">
+                    Чем полезен Flate
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-[10px] md:gap-[30px]">
@@ -457,42 +445,52 @@ export default function GuestPage() {
 
                 <div className="bg-[#14B367]/10 rounded-3xl grid md:grid-cols-2 gap-10">
                     <div className="pt-[40px] px-[20px] md:p-10 my-auto">
-                        <h2 className="text-[36px] leading-[95%] tracking-[-1.3px] font-bold mb-[30px]">
+                        <h2 className="text-[36px] leading-[95%] tracking-[-1.3px] font-extrabold mb-[30px]">
                             Вступайте в закрытое сообщество коллег
                         </h2>
 
-                        <div className="bg-white rounded-[20px] md:rounded-full p-3 flex flex-col md:flex-row items-center gap-4 mb-5 w-fit">
-                            <div className="flex items-center">
-                                <Image
-                                    src="/hello/12.png"
-                                    alt="browser"
-                                    width={70}
-                                    height={70}
-                                />
-                                <Image
-                                    src="/hello/12.png"
-                                    alt="browser"
-                                    width={70}
-                                    height={70}
-                                />
-                                <Image
-                                    src="/hello/12.png"
-                                    alt="browser"
-                                    width={70}
-                                    height={70}
-                                />
-                                <Image
-                                    src="/hello/12.png"
-                                    alt="browser"
-                                    width={70}
-                                    height={70}
-                                />
-                                <Image
-                                    src="/hello/12.png"
-                                    alt="browser"
-                                    width={70}
-                                    height={70}
-                                />
+                        <div className="bg-white w-full md:w-fit rounded-[20px] md:rounded-full p-3 flex flex-col md:flex-row items-center gap-4 mb-5">
+                            <div className="flex items-center h-[70px]">
+                                <div>
+                                    <Image
+                                        src="/hello/13.png"
+                                        alt="browser"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
+                                <div className="ml-[-10px] border border-white rounded-full">
+                                    <Image
+                                        src="/hello/14.png"
+                                        alt="browser"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
+                                <div className="ml-[-10px] border border-white rounded-full">
+                                    <Image
+                                        src="/hello/15.png"
+                                        alt="browser"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
+                                <div className="ml-[-10px] border border-white rounded-full">
+                                    <Image
+                                        src="/hello/16.png"
+                                        alt="browser"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
+                                <div className="ml-[-10px] border border-white rounded-full">
+                                    <Image
+                                        src="/hello/17.png"
+                                        alt="browser"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
                             </div>
 
                             <p className="md:text-left">
@@ -519,7 +517,7 @@ export default function GuestPage() {
                         <Image
                             src="/hello/11.1.png"
                             alt="browser"
-                            className="md:object-contain"
+                            className="object-contain"
                             width={0}
                             height={0}
                             layout="fill"
@@ -539,35 +537,45 @@ export default function GuestPage() {
                     <div className="h-[20px] md:h-[30px]"></div>
 
                     <p className="text-[16px] md:text-[24px] leading-[100%] tracking-[-0.8px] font-medium">
-                        Ведите базу агентства, собирайте статистику и закрывайте
-                        сделки
+                        Фидбек пользователей
                     </p>
 
                     <div className="h-[30px] md:h-[40px]"></div>
 
-                    {/* <div className="grid md:grid-cols-2 gap-[10px] md:gap-6">
+                    <div className="grid md:grid-cols-2 gap-[10px] md:gap-6">
                         {feedbacks.map((item, index) => (
-                            <div className="bg-white p-3 rounded-2xl flex items-center gap-3">
-                                <Image
-                                    src={item.img}
-                                    alt="browser"
-                                    width={60}
-                                    height={60}
-                                />
+                            <div
+                                key={index}
+                                className={`bg-white p-3 rounded-2xl flex items-center gap-3 ${
+                                    index === feedbacks.length - 1 &&
+                                    feedbacks.length % 2 !== 0
+                                        ? "md:col-span-2 md:justify-center md:max-w-[50%] md:mx-auto"
+                                        : ""
+                                }`}
+                            >
+                                <div className="w-[60px] h-[60px] min-w-[60px] min-h-[60px] max-w-[60px] max-h-[60px]">
+                                    <Image
+                                        src={item.img}
+                                        alt="Отзыв"
+                                        width={60}
+                                        height={60}
+                                        className="rounded-full"
+                                    />
+                                </div>
                                 <p className="text-left">{item.text}</p>
                             </div>
                         ))}
                     </div>
 
-                    <div className="h-[60px] md:h-[80px]"></div> */}
+                    <div className="h-[60px] md:h-[80px]"></div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                         <div className="rounded-3xl border bg-white p-10">
                             <Image
                                 src="/hello/7.png"
                                 alt="browser"
-                                width={130}
-                                height={130}
+                                width={230}
+                                height={230}
                             />
 
                             <h3 className="text-[24px] md:text-[28px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[30px]">
@@ -585,8 +593,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/6.png"
                                 alt="browser"
-                                width={130}
-                                height={130}
+                                width={230}
+                                height={230}
                             />
 
                             <h3 className="text-[24px] md:text-[28px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[30px]">

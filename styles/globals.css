@@ -608,3 +608,7 @@ input[type="file"] {
 .text-white {
   color: #fff;
 }
+
+.bg-white {
+  background-color: #fff;
+}

@@ -275,14 +275,19 @@ export default function GuestPage() {
                             className={`rounded-[30px] ${item.bgClassName}`}
                         >
                             
-                            <Image
-                                src={item.img}
-                                alt={item.title}
-                                width={500}
-                                height={400}
-                            />
+                            <div className="relative h-[200px] md:h-[400px]">
+                                <Image
+                                    src={item.img}
+                                    alt={item.title}
+                                    width={0}
+                                    height={0}
+                                    layout="fill"
+                                    className="object-contain"
+                                    sizes="100vw"
+                                />
+                            </div>
 
-                            <div className="px-10 pb-10">
+                            <div className="mt-5 px-10 pb-10">
                                 <h3 className="text-[24px] md:text-[32px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[15px]">
                                     {item.title}
                                 </h3>
@@ -335,8 +340,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/6.png"
                                 alt="browser"
-                                width={230}
-                                height={230}
+                                width={380}
+                                height={380}
                             />
 
                             <h3 className="text-[28px] leading-[100%] tracking-[-0.8px] font-bold mb-[30px]">
@@ -356,8 +361,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/7.png"
                                 alt="browser"
-                                width={230}
-                                height={230}
+                                width={380}
+                                height={380}
                             />
 
                             <h3 className="text-[28px] leading-[100%] tracking-[-0.8px] font-bold mb-[30px]">
@@ -574,8 +579,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/7.png"
                                 alt="browser"
-                                width={230}
-                                height={230}
+                                width={380}
+                                height={380}
                             />
 
                             <h3 className="text-[24px] md:text-[28px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[30px]">
@@ -593,8 +598,8 @@ export default function GuestPage() {
                             <Image
                                 src="/hello/6.png"
                                 alt="browser"
-                                width={230}
-                                height={230}
+                                width={380}
+                                height={380}
                             />
 
                             <h3 className="text-[24px] md:text-[28px] leading-[100%] tracking-[-0.8px] font-extrabold mb-[30px]">

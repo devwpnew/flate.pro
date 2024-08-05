@@ -37,13 +37,13 @@ export default function LoginFormStepTwo({
       </div>
 
       <div className="text-sm mb-2 text-center">
-        <span className="text-grey">{retrySmsSended ? "Отправили смс на " : "Звоним на "}</span>
-        <span className="text-primary font-semibold">{userPhone}</span>
+        <span className="text-white">{retrySmsSended ? "Отправили смс на " : "Звоним на "}</span>
+        <span className="text-white font-semibold">{userPhone}</span>
       </div>
 
       <div className="mb-[10px] text-center">
         <span
-          className="text-grey hover:text-blue cursor-pointer text-xs"
+          className="text-white hover:text-white/60 cursor-pointer text-xs"
           onClick={() => setUserId(false)}
         >
           Изменить номер
@@ -51,7 +51,7 @@ export default function LoginFormStepTwo({
       </div>
 
       <div className={`md:w-[230px] mx-auto flex justify-center ${retrySmsSended ? 'lg:justify-center': 'lg:justify-start'} flex-row items-center mb-[26px] gap-2`}>
-      {retrySmsSended ? "" : <span className="text-[14px] text-grey whitespace-nowrap">+7(•••) •••</span>}
+      {retrySmsSended ? "" : <span className="text-[14px] text-white whitespace-nowrap">+7(•••) •••</span>}
 
         <ReactCodeInput
           type="number"
@@ -74,7 +74,7 @@ export default function LoginFormStepTwo({
       </div>
 
       <div className="md:w-2/3 mx-auto">
-        <Button>
+        <Button type="white">
           <div
             className="py-2.5 font-bold"
             onClick={() => {
@@ -92,7 +92,7 @@ export default function LoginFormStepTwo({
         {isRetry ? (
           !retrySmsSended && (
             <span
-              className="text-grey text-sm hover:text-blue cursor-pointer"
+              className="text-white text-sm hover:text-white cursor-pointer"
               onClick={() => {
                 setRetrySmsSended(true);
                 if(isRetry) {
@@ -104,7 +104,7 @@ export default function LoginFormStepTwo({
             </span>
           )
         ) : (
-          <span className="text-grey text-sm hover:text-blue cursor-pointer">
+          <span className="text-white text-sm hover:text-white cursor-pointer">
             Мне не позвонили ({seconds} сек.)
           </span>
         )}

@@ -14,7 +14,7 @@ import StoryCard from "@modules/hero/components/heroStoryCard";
 import { FaApple } from "react-icons/fa";
 import { BsGooglePlay } from "react-icons/bs";
 
-export default function Hero({ productsAmount, desktop = false }) {
+export default function Hero({ productsAmount, desktop = false, showLinks = true }) {
     const activeCity = useSelector((state) => state.userCity.value);
 
     const productsCount = useProductsCount(
@@ -95,9 +95,17 @@ export default function Hero({ productsAmount, desktop = false }) {
                     </h1>
 
                     <div className="flex justify-end items-center gap-5 px-[20px] md:px-0">
-                        <div className="md:max-w-[250px]">
-                            <p className="text-[14px] md:text-[20px] mb-3 max-w-[300px] md:max-w-[200px]md:max-w-auto">
-                                Больше функций в мобильном приложении
+                        <div className="md:max-w-[270px]">
+                            <p className="text-[14px] md:text-[19px] mb-3 max-w-[300px] md:max-w-[200px]md:max-w-auto">
+                                Больше функций в мобильном приложении: 
+                                {/* шахматки, каталог ЖК, аналитика цен, подборки */}
+
+                                <div className="flex gap-1.5 flex-wrap text-sm my-4">
+                                    <div className="bg-white/15 py-[4px] px-3  rounded-full">шахматки</div>
+                                    <div className="bg-white/15 py-[4px] px-3  rounded-full">каталог ЖК</div>
+                                    <div className="bg-white/15 py-[4px] px-3  rounded-full">аналитика цен</div>
+                                    <div className="bg-white/15 py-[4px] px-3  rounded-full">подборки</div>
+                                </div>
                             </p>
 
                             <div className="flex gap-3">
@@ -158,7 +166,7 @@ export default function Hero({ productsAmount, desktop = false }) {
                 {/* Меню карточек mobile */}
 
                 {/* Меню карточек desktop */}
-                {desktop && (
+                {desktop && showLinks && (
                     <div className="grid md:grid-cols-5 gap-[10px] lg:gap-[10px]">
                         {menuCards.map((card) => (
                             <MenuCard

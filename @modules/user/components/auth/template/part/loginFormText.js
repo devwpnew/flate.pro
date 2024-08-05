@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function LoginFormText() {
   return (
-    <div className="text-xs mt-[10px] mx-auto text-center text-grey hidden md:block text-exs">
+    <div className="mt-[10px] mx-auto text-center text-grey hidden md:block text-xs text-white">
       <p>
         Нажимая продолжить Вы принимаете условия
         <br />

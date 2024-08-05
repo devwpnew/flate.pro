@@ -9,6 +9,7 @@ module.exports = {
                 2: "2 2 0%",
             },
             colors: {
+                white: "#fff",
                 transparent: "transparent",
                 inherit: "inherit",
                 blue: "#1479F5",

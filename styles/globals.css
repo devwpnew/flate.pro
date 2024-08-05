@@ -604,11 +604,3 @@ ymaps[class*="balloon"] {
 input[type="file"] {
     display: none;
 }
-
-.text-white {
-  color: #fff;
-}
-
-.bg-white {
-  background-color: #fff;
-}

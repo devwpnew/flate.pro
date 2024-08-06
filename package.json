@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
-    "@headlessui/react": "^1.6.1",
+    "@headlessui/react": ">1.6.1",
     "@heroicons/react": "^1.0.6",
     "@mux/mux-node": "^8.8.0",
     "@nextui-org/react": "^2.4.6",
@@ -23,7 +23,7 @@
     "dotenv": "^16.0.0",
     "form-data": "^4.0.0",
     "formidable": "^2.0.1",
-    "framer-motion": "^6.5.1",
+    "framer-motion": ">6.5.1",
     "fs": "^0.0.1-security",
     "fslightbox": "^3.3.1",
     "fslightbox-react": "^1.6.2-2",
@@ -58,7 +58,7 @@
     "react-photoswipe-gallery": "^2.2.2",
     "react-redux": "^8.0.1",
     "react-sortablejs": "^6.1.4",
-    "react-yandex-maps": "^4.6.0",
+    "react-yandex-maps": ">=4.6.0",
     "request-ip": "^3.3.0",
     "serverless-mysql": "^1.5.4",
     "sharp": "^0.33.4",
@@ -80,8 +80,8 @@
   },
   "overrides": {
     "react-yandex-maps": {
-      "react": "18.1.0",
-      "react-dom": "18.1.0"
+      "react": ">=18.1.0",
+      "react-dom": ">=18.1.0"
     }
   }
 }

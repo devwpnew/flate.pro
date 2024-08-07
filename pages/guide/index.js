@@ -3,7 +3,7 @@ import MotionContainer from "@modules/common/components/container/motionContaine
 import H1 from "@modules/common/components/heading/h1";
 import SEO from "@modules/common/components/seo/seo";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import iosimg1 from "public/guide/ios/1.jpeg";
 import iosimg2 from "public/guide/ios/2.jpeg";
 import iosimg3 from "public/guide/ios/3.jpeg";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Container from "@modules/common/components/container/container";
 import H2 from "@modules/common/components/heading/h2";

@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LinkWrap from "@modules/common/components/link/linkWrap";
 import activeIcon from "public/icons/heart-blue-filled.svg";
 import Tooltip from "@modules/common/components/tooltip/tooltip";

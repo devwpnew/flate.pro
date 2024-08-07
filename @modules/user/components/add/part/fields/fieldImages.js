@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FileUploader } from "react-drag-drop-files";
 import { ReactSortable } from "react-sortablejs";
 

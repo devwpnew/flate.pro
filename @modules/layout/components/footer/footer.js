@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Container from "@modules/common/components/container/container";
 
 import SearchButton from "@modules/search/components/searchButton";

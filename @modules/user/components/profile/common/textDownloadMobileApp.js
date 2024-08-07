@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import googlePlayImage from "public/d-google.jpg";
 import appStoreImage from "public/d-appstore.jpg";
 import downloadImage from "public/d-app.jpg";

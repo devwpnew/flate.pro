@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Preloader from "@modules/common/components/preloader/preloader";
 import Tooltip from "../tooltip/tooltip";
 import favoriteIconGrey from "public/icons/heart-grey.svg";

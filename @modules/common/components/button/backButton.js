@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import slideArrowBack from "public/icons/slide-arrow-left.svg";
 import { useEffect } from "react";

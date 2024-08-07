@@ -1,7 +1,7 @@
 import api from "pages/api/service/api";
 import { useState, useEffect } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import H2 from "@modules/common/components/heading/h2";
 import Preloader from "@modules/common/components/preloader/preloader";

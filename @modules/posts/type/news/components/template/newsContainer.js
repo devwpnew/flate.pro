@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NewsItem from "../item/newsItem";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 import tmpPhoto1 from "public/news-photo1.jpeg";

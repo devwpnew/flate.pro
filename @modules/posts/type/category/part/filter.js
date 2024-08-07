@@ -1,5 +1,5 @@
 import API from "pages/api/service/api";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

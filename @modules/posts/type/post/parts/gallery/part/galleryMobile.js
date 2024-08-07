@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";

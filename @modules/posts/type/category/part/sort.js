@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import OutsideAlerter from "hooks/useOutsideAlerter";
 import SelectNoAutocomplete from "@modules/common/components/select/listBox/selectNoAutocomplete";

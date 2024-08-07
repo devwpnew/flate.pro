@@ -2,7 +2,7 @@ import api from "pages/api/service/api";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import cameraIcon from "public/icons/camera-icon-2.svg";
 

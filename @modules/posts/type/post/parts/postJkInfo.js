@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Preloader from "@modules/common/components/preloader/preloader";
 

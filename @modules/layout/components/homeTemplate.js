@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useSelector } from "react-redux";
 import { useState, useEffect, useMemo, useLayoutEffect } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import MotionContainer from "@modules/common/components/container/motionContainer";
 import Hero from "@modules/hero/components/hero";

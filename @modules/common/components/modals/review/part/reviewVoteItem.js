@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Tooltip from "@modules/common/components/tooltip/tooltip";
 

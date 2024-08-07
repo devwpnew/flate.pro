@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import H1 from "@modules/common/components/heading/h1";
 import PostViewed from "./postViewed";
 import OutsideAlerter from "hooks/useOutsideAlerter";

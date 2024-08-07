@@ -1,5 +1,5 @@
 import API from "pages/api/service/api";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

@@ -1,5 +1,5 @@
 import Logo from "@modules/layout/components/common/logo";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";

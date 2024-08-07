@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useEffect, useState } from "react";
 
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import UserAvatar from "../../profile/common/userAvatar";
 
 import thumb from "public/662.jpg";

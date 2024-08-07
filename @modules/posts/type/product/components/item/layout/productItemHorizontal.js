@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import thumb from 'public/post-image.jpg';
 import ButtonFavorite from "@modules/common/components/button/buttonFavorite";

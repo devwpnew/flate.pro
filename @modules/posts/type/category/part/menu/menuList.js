@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import randomInteger from "helpers/randomInteger";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

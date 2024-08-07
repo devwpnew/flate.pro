@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import thumb from "public/detail/news-1.jpg";
 import { formateDate } from "helpers/formateDate";
 

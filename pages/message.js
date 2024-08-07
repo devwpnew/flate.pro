@@ -8,7 +8,7 @@ import useUser from "hooks/useUser";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import tmpPhoto1 from "public/news-photo1.jpeg";
 
 export default function Message({ data }) {

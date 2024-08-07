@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Button from "@modules/common/components/button/button";
 import Input from "@modules/common/components/input/input";

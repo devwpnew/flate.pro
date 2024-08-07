@@ -29,38 +29,38 @@ export default function Hero({ productsAmount, desktop = false, showLinks = true
     // console.log(productsCount);
 
 
-	const menuCards = [
-		{
-			link: "/posts/flats",
-			title: "Квартиры",
-			backgroundImage: "/cards/flat.png",
-		},
-		{
-			link: "/posts/houses",
-			title: "Дома",
-			backgroundImage: "/cards/house.png",
-		},
-		{
-			link: "/posts/land",
-			title: "Земля",
-			backgroundImage: "/cards/land.png",
-		},
-		{
-			link: "/posts/commertion",
-			title: "Коммерция",
-			backgroundImage: "/cards/commerce.png",
-		},
-		{
-			link: "/posts/parking",
-			title: "Паркинг",
-			backgroundImage: "/cards/parking.png",
-		},
-	]
+    const menuCards = [
+        {
+            link: "/posts/flats",
+            title: "Квартиры",
+            backgroundImage: "/cards/flat.png",
+        },
+        {
+            link: "/posts/houses",
+            title: "Дома",
+            backgroundImage: "/cards/house.png",
+        },
+        {
+            link: "/posts/land",
+            title: "Земля",
+            backgroundImage: "/cards/land.png",
+        },
+        {
+            link: "/posts/commertion",
+            title: "Коммерция",
+            backgroundImage: "/cards/commerce.png",
+        },
+        {
+            link: "/posts/parking",
+            title: "Паркинг",
+            backgroundImage: "/cards/parking.png",
+        },
+    ]
 
     return (
         <div>
             <Container className="bg-red-300">
-        
+
                 <h1
                     className="
 						md:hidden
@@ -96,8 +96,8 @@ export default function Hero({ productsAmount, desktop = false, showLinks = true
 
                     <div className="flex justify-end items-center gap-5 px-[20px] md:px-0">
                         <div className="md:max-w-[270px]">
-                            <p className="text-[14px] md:text-[19px] mb-3 max-w-[300px] md:max-w-[200px]md:max-w-auto">
-                                Больше функций в мобильном приложении: 
+                            <div className="text-[14px] md:text-[19px] mb-3 max-w-[300px] md:max-w-[200px]md:max-w-auto">
+                                Больше функций в мобильном приложении:
                                 {/* шахматки, каталог ЖК, аналитика цен, подборки */}
 
                                 <div className="flex gap-1.5 flex-wrap text-sm my-4">
@@ -106,7 +106,7 @@ export default function Hero({ productsAmount, desktop = false, showLinks = true
                                     <div className="bg-white/15 py-[4px] px-3  rounded-full">аналитика цен</div>
                                     <div className="bg-white/15 py-[4px] px-3  rounded-full">подборки</div>
                                 </div>
-                            </p>
+                            </div>
 
                             <div className="flex gap-3">
                                 <a

@@ -14,7 +14,6 @@
     "@headlessui/react": ">1.6.1",
     "@heroicons/react": "^1.0.6",
     "@mux/mux-node": "^8.8.0",
-    "@nextui-org/react": "^2.4.6",
     "@reduxjs/toolkit": "^1.8.1",
     "async-busboy": "^1.1.0",
     "axios": "^0.26.1",
@@ -63,15 +62,15 @@
     "serverless-mysql": "^1.5.4",
     "sharp": "^0.33.4",
     "sortablejs": "^1.15.0",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
     "cross-env": "^7.0.3",
-    "eslint": "8.13.0",
-    "eslint-config-next": "12.1.5",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24"
+    "eslint": "^8.13.0",
+    "eslint-config-next": "^12.1.5",
+    "postcss": "^8.4.12"
   },
   "browser": {
     "fs": false,

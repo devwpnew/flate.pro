@@ -5,7 +5,7 @@ import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import Head from "next/head";
 
-export default function Hello() {
+export default function GuestPage() {
     const [isOpen, setIsOpen] = useState(false);
 
     const functions = [
@@ -101,7 +101,7 @@ export default function Hello() {
                     className="fixed z-10 inset-0 overflow-y-auto"
                 >
                     <div className="flex items-end justify-center min-h-screen  p-10 text-center sm:block">
-                        <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                        {/* <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" /> */}
 
                         <span
                             className="hidden sm:inline-block sm:align-middle sm:h-screen"

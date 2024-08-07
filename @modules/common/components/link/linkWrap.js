@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 
 export default function LinkWrap({ children, href, className = "", style, onClick, ...params }) {
   return (
-    <Link href={href}>
+    // <Link href={href}>
       <motion.a
         // whileTap={{ scale: 0.95 }}
+        href={href}
         className={className}
         style={style}
         onClick={onClick}
@@ -13,6 +14,6 @@ export default function LinkWrap({ children, href, className = "", style, onClic
       >
         {children}
       </motion.a>
-    </Link>
+    // </Link>
   );
 }

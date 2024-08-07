@@ -61,7 +61,6 @@ export default function PostJkInfo({ rc_link, building_link }) {
           <>
             {isShowLink() ? (
               <Link href={href}>
-                <a>
                   <div className="w-[70px] h-[70px]">
                     <div className="flex items-center justify-center w-full h-full rounded-full overflow-hidden">
                       {rc_link.images ? (
@@ -82,7 +81,6 @@ export default function PostJkInfo({ rc_link, building_link }) {
                       )}
                     </div>
                   </div>
-                </a>
               </Link>
             ) : (
               <span>
@@ -114,9 +112,7 @@ export default function PostJkInfo({ rc_link, building_link }) {
         <div className="flex flex-col gap-1">
           {isShowLink() ? (
             <Link href={href}>
-              <a>
-                <span className="font-bold">«{link.name}»</span>
-              </a>
+              <span className="font-bold">«{link.name}»</span>
             </Link>
           ) : (
             <span className="font-bold">«{link.name}»</span>

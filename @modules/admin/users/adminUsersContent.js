@@ -60,16 +60,16 @@ export default function AdminUsersContent({ onlyAdmins, title }) {
           "ID": (
             <div id="id" data-col="ID">
               <Link href={`/user/admin/users/${user.id}`}>
-                <a>{user.id}</a>
+                {user.id}
               </Link>
             </div>
           ),
           "Имя Фамилия": (
             <div id="user_name" data-col="Имя Фамилия">
               <Link href={`/user/admin/users/${user.id}`}>
-                <a>{`${user?.user_name ? user?.user_name : "Не указано"} ${
+                {`${user?.user_name ? user?.user_name : "Не указано"} ${
                   user?.user_last_name ? user?.user_last_name : ""
-                }`}</a>
+                }`}
               </Link>
             </div>
           ),
@@ -97,10 +97,8 @@ export default function AdminUsersContent({ onlyAdmins, title }) {
           "Количество объявлений": (
             <div id="count_product" data-col="Количество объявлений">
               <Link href={`/user/admin/items?user=${user.id}`}>
-                <a>
-                  {user.count_product ? user.count_product : 0}
-                  {/* <UserProductsAmount userId={user.id} /> */}
-                </a>
+                {user.count_product ? user.count_product : 0}
+                {/* <UserProductsAmount userId={user.id} /> */}
               </Link>
             </div>
           ),

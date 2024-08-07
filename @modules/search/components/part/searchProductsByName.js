@@ -126,12 +126,9 @@ export default function SearchProductsByName({
                       >
                         <Link
                           href={`posts/${option.section_relation[0].slug}/${option.slug}`}
+                          className={`inset-y-0 flex items-center text-primary hover:text-blue`}
                         >
-                          <a
-                            className={`inset-y-0 flex items-center text-primary hover:text-blue`}
-                          >
-                            {option.name}
-                          </a>
+                          {option.name}
                         </Link>
                       </div>
                     );

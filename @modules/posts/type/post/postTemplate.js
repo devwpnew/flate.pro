@@ -539,25 +539,21 @@ export default function PostTemplate({ product }) {
                                             product.user_id.sef_code ||
                                             product.user_id.id
                                         }`}
+                                        className="text-sm hover:underline cursor-pointer"
                                     >
-                                        <a
-                                            // target={!MOBILE && "_blank"}
-                                            className="text-sm hover:underline cursor-pointer"
-                                        >
-                                            {userProductsCount.products.count &&
-                                                `${
-                                                    userProductsCount.products
-                                                        .count
-                                                } ${declension(
-                                                    userProductsCount.products
-                                                        .count,
-                                                    [
-                                                        "объявление",
-                                                        "объявления",
-                                                        "объявлений",
-                                                    ]
-                                                )}`}
-                                        </a>
+                                        {userProductsCount.products.count &&
+                                            `${
+                                                userProductsCount.products
+                                                    .count
+                                            } ${declension(
+                                                userProductsCount.products
+                                                    .count,
+                                                [
+                                                    "объявление",
+                                                    "объявления",
+                                                    "объявлений",
+                                                ]
+                                            )}`}
                                     </Link>
                                 )}
                             </div>

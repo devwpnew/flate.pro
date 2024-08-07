@@ -37,48 +37,43 @@ export default function UserActions({ isAdmin }) {
     return (
         <div className="flex flex-col bg-[#ECF2F8] md:bg-transparent rounded-[20px]">
             <div className="px-[10px] pt-[20px] pb-[10px] border-b-[1px] border-white">
-                <Link href="/user/profile/items">
-                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
-                        <div className="flex items-center gap-2.5">
-                            <UserItemsButton icon={itemsIcon} />
-                            <span className="text-sm cursor-pointer">
-                                Все объявления
-                            </span>
-                        </div>
+                <Link href="/user/profile/items" className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                    <div className="flex items-center gap-2.5">
+                        <UserItemsButton icon={itemsIcon} />
+                        <span className="text-sm cursor-pointer">
+                            Все объявления
+                        </span>
+                    </div>
 
-                        {MOBILE && (
-                            <Image
-                                src={rightArrowIcon.src}
-                                width={rightArrowIcon.width}
-                                height={rightArrowIcon.height}
-                            />
-                        )}
-                    </a>
+                    {MOBILE && (
+                        <Image
+                            src={rightArrowIcon.src}
+                            width={rightArrowIcon.width}
+                            height={rightArrowIcon.height}
+                        />
+                    )}
                 </Link>
             </div>
 
             <div className="px-[10px] py-[10px] border-b-[1px] border-white">
-                <Link href="/user/profile/favorites">
-                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
-                        <div className="flex items-center gap-2.5">
-                            <UserFavoriteButton icon={favoriteIcon} />
-                            <span className="text-sm cursor-pointer">
-                                Избранное
-                            </span>
-                        </div>
-                        {MOBILE && (
-                            <Image
-                                src={rightArrowIcon.src}
-                                width={rightArrowIcon.width}
-                                height={rightArrowIcon.height}
-                            />
-                        )}
-                    </a>
+                <Link href="/user/profile/favorites" className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+                    <div className="flex items-center gap-2.5">
+                        <UserFavoriteButton icon={favoriteIcon} />
+                        <span className="text-sm cursor-pointer">
+                            Избранное
+                        </span>
+                    </div>
+                    {MOBILE && (
+                        <Image
+                            src={rightArrowIcon.src}
+                            width={rightArrowIcon.width}
+                            height={rightArrowIcon.height}
+                        />
+                    )}
                 </Link>
             </div>
 
-            {/* <Link href="/user/profile/messages">
-        <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+            {/* <Link href="/user/profile/messages" className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
           <div className="flex items-center gap-2.5">
             <UserMessagesButton icon={messagesIcon} />
             <span className="text-sm cursor-pointer">Сообщения</span>
@@ -90,15 +85,14 @@ export default function UserActions({ isAdmin }) {
               height={rightArrowIcon.height}
             />
           )}
-        </a>
       </Link> */}
 
             <div className="px-[10px] py-[10px] border-b-[1px] border-white">
                 <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
                     <div className="flex items-center gap-2.5">
                         <GoBell className="text-[20px]" />
-                        <Link href="/user/profile/messages?notifications=1">
-                            <a className="text-sm cursor-pointer">Уведомления</a>
+                        <Link href="/user/profile/messages?notifications=1" className="text-sm cursor-pointer">
+                            Уведомления
                         </Link>
                     </div>
                     {MOBILE && (
@@ -115,8 +109,8 @@ export default function UserActions({ isAdmin }) {
                 <div className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
                     <div className="flex items-center gap-2.5">
                         <UserHelpButton icon={helpIcon} />
-                        <Link href="/help">
-                            <a className="text-sm cursor-pointer">Помощь</a>
+                        <Link href="/help" className="text-sm cursor-pointer">
+                            Помощь
                         </Link>
                     </div>
                     {MOBILE && (
@@ -161,8 +155,7 @@ export default function UserActions({ isAdmin }) {
         </div>
       </Link> */}
 
-            {/* <Link href="/user/profile/subscribe">
-        <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
+            {/* <Link href="/user/profile/subscribe" className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight">
           <div className="flex items-center gap-2.5">
             <UserSubscribeButton icon={subscribeIcon} />
             <span className="text-sm cursor-pointer">Платные услуги</span>
@@ -174,30 +167,27 @@ export default function UserActions({ isAdmin }) {
               height={rightArrowIcon.height}
             />
           )}
-        </a>
       </Link> */}
 
             <div className="px-[10px] py-[10px] border-b-[1px] border-white">
-                <Link href="/user/profile/settings">
-                    <a className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight cursor-pointer">
-                        <div className="flex items-center gap-2.5">
-                            <UserSettingsButton
-                                icon={settingsIcon}
-                                activeIcon={settingsActiveIcon}
-                                onClick={() => setIsOpen((isOpen) => !isOpen)}
-                            />
-                            <span className="text-sm cursor-pointer">
-                                Настройки
-                            </span>
-                        </div>
-                        {MOBILE && (
-                            <Image
-                                src={rightArrowIcon.src}
-                                width={rightArrowIcon.width}
-                                height={rightArrowIcon.height}
-                            />
-                        )}
-                    </a>
+                <Link href="/user/profile/settings" className="flex items-center justify-between gap-2.5 p-1 rounded hover:text-blue text-grey hover:bg-greylight cursor-pointer">
+                    <div className="flex items-center gap-2.5">
+                        <UserSettingsButton
+                            icon={settingsIcon}
+                            activeIcon={settingsActiveIcon}
+                            onClick={() => setIsOpen((isOpen) => !isOpen)}
+                        />
+                        <span className="text-sm cursor-pointer">
+                            Настройки
+                        </span>
+                    </div>
+                    {MOBILE && (
+                        <Image
+                            src={rightArrowIcon.src}
+                            width={rightArrowIcon.width}
+                            height={rightArrowIcon.height}
+                        />
+                    )}
                 </Link>
             </div>
 

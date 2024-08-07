@@ -44,27 +44,27 @@ export default function ProductItemGrid({ user, product }) {
                         )}
                     </div>
 
-                    <Link href={getProductUrl(product)}>
-                        <a
-                            // target={!MOBILE && "_blank"}
-                            target={"_blank"}
-                            className={`rounded-xl flex flex-col cursor-pointer group h-full transition-all`}
-                        >
-                            <div className="block">
-                                <div className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full">
-                                    <Image
-                                        className="object-cover object-center h-full w-full"
-                                        src={getProductImageSrc(product)}
-                                        width={220}
-                                        height={160}
-                                        layout="responsive"
-                                        quality={50}
-                                        onError={(e) =>
-                                            console.error(e.target.id)
-                                        }
-                                    />
-                                </div>
-                                {/* <div
+                    <Link href={getProductUrl(product)}
+                        // target={!MOBILE && "_blank"}
+                        target={"_blank"}
+                        className={`rounded-xl flex flex-col cursor-pointer group h-full transition-all`}
+                    >
+                        <div className="block">
+                            <div className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full">
+                                <Image
+                                    alt={product?.name}
+                                    className="object-cover object-center h-full w-full"
+                                    src={getProductImageSrc(product)}
+                                    width={220}
+                                    height={160}
+                                    layout="responsive"
+                                    quality={50}
+                                    onError={(e) =>
+                                        console.error(e.target.id)
+                                    }
+                                />
+                            </div>
+                            {/* <div
                                     className="rounded-[10px] rounded-bl-[0px] overflow-hidden w-full h-[160px]"
                                     style={{
                                         backgroundImage: `url(${getProductImageSrc(
@@ -76,81 +76,60 @@ export default function ProductItemGrid({ user, product }) {
                                     onError={(e) => console.error(e.target.id)}
                                 ></div> */}
 
-                                <div className="text-primary text-[18px] tracking-tight font-bold block mt-[5px] md:mt-[10px]">
-                                    {getProductPrice(product)} ₽
-                                </div>
+                            <div className="text-primary text-[18px] tracking-tight font-bold block mt-[5px] md:mt-[10px]">
+                                {getProductPrice(product)} ₽
                             </div>
-                            <div className="flex flex-col md:flex-row md:flex-wrap cursor-pointer gap-0.5">
-                                {/* <span
-                  className="block text-xs text-grey ellipsis ellipsis-clamp-2"
-                  style={{
-                    minHeight: "34px",
-                    maxHeight: "34px",
-                    height: "34px",
-                  }}
-                >
-                  {getProductAddress(product)}
-                </span> */}
+                        </div>
+                        <div className="flex flex-col md:flex-row md:flex-wrap cursor-pointer gap-0.5">
 
-                                <span className="text-grey w-full">
-                                    <div className="text-[12px] font-bold grid grid-cols-2 gap-1">
-                                        {/* {getProductPriceSquares(product)} руб. за{" "}
-                    {slug && slug === "land" ? "сотку" : "м2"} */}
+                            <span className="text-grey w-full">
+                                <div className="text-[12px] font-bold grid grid-cols-2 gap-1">
 
-                                        {/* <p>{JSON.stringify(product)}</p> */}
-
-                                        {product.statusValue && (
-                                            <div className="flex gap-[4px]">
-                                                <p className="text-backdrop/40">
-                                                    Вид
-                                                </p>
-                                                <p className="truncate">
-                                                    {product.statusValue}
-                                                </p>
-                                            </div>
-                                        )}
-
+                                    {product.statusValue && (
                                         <div className="flex gap-[4px]">
                                             <p className="text-backdrop/40">
-                                                Этаж
-                                            </p>
-                                            <p>{getProductFloor(product)}</p>
-                                        </div>
-
-                                        {/* {getProductPriceSquares(product)} руб. за{" "}
-                    {slug && slug === "land" ? "сотку" : "м2"} */}
-
-                                        <div className="flex gap-[4px]">
-                                            <p className="text-backdrop/40">
-                                                S=
-                                            </p>
-                                            <p>
-                                                {getProductSquare(product)} м²
-                                            </p>
-                                        </div>
-
-                                        <div className="flex gap-[4px]">
-                                            <p className="text-backdrop/40 whitespace-nowrap">
-                                                ₽/м²
+                                                Вид
                                             </p>
                                             <p className="truncate">
-                                                {getProductPriceSquares(
-                                                    product
-                                                )}
+                                                {product.statusValue}
                                             </p>
                                         </div>
+                                    )}
+
+                                    <div className="flex gap-[4px]">
+                                        <p className="text-backdrop/40">
+                                            Этаж
+                                        </p>
+                                        <p>{getProductFloor(product)}</p>
                                     </div>
 
-                                    {/* <span className="block text-[0.70rem] sm:text-xs">
-                    {getProductDate(product)}
-                  </span> */}
-                                </span>
+                                    <div className="flex gap-[4px]">
+                                        <p className="text-backdrop/40">
+                                            S=
+                                        </p>
+                                        <p>
+                                            {getProductSquare(product)} м²
+                                        </p>
+                                    </div>
 
-                                <div className="truncate block text-[12px] font-medium md:w-full md:leading-[18px] group-hover:text-bluelight">
-                                    {product.name}
+                                    <div className="flex gap-[4px]">
+                                        <p className="text-backdrop/40 whitespace-nowrap">
+                                            ₽/м²
+                                        </p>
+                                        <p className="truncate">
+                                            {getProductPriceSquares(
+                                                product
+                                            )}
+                                        </p>
+                                    </div>
                                 </div>
+
+                            </span>
+
+                            <div className="truncate block text-[12px] font-medium md:w-full md:leading-[18px] group-hover:text-bluelight">
+                                {product.name}
                             </div>
-                        </a>
+                        </div>
                     </Link>
 
                     <AdminToolsButton

@@ -395,10 +395,8 @@ export default function CategoryOutput({
                     <>
                         <SearchResultEmpty isCentered={true} />
                         <div className="text-center mt-5">
-                            <Link href="/user/profile/add">
-                                <a className="text-blue text-xl font-semibold hover:text-bluedeep">
-                                    Разместить объявление →
-                                </a>
+                            <Link href="/user/profile/add" className="text-blue text-xl font-semibold hover:text-bluedeep">
+                                Разместить объявление →
                             </Link>
                         </div>
                     </>

@@ -85,18 +85,16 @@ export default function ProductItemSettings({
             <div className="grid gap-3">
                 <>
 
-                    <Link href={productUrl} key={product.id}>
-                        <a className="cursor-pointer">
-                            <div className="rounded-[10px] overflow-hidden h-[200px] relative">
-                                <Image
-                                    className="object-cover object-center h-full w-full"
-                                    src={getProductImageSrc(product)}
-                                    width={thumb.width}
-                                    height={thumb.height}
-                                    layout="fill"
-                                />
-                            </div>
-                        </a>
+                    <Link href={productUrl} key={product.id} className="cursor-pointer">
+                        <div className="rounded-[10px] overflow-hidden h-[200px] relative">
+                            <Image
+                                className="object-cover object-center h-full w-full"
+                                src={getProductImageSrc(product)}
+                                width={thumb.width}
+                                height={thumb.height}
+                                layout="fill"
+                            />
+                        </div>
                     </Link>
 
                     <div className="block">
@@ -106,10 +104,8 @@ export default function ProductItemSettings({
                                     {getProductPrice(product)} руб.
                                 </span>
 
-                                <Link href={productUrl} key={product.id}>
-                                    <a className="text-blue text-xs md:text-sm font-bold md:w-full block product-hover:underline underline-offset-2 cursor-pointer">
-                                        {product.name}
-                                    </a>
+                                <Link href={productUrl} key={product.id} className="text-blue text-xs md:text-sm font-bold md:w-full block product-hover:underline underline-offset-2 cursor-pointer">
+                                    {product.name}
                                 </Link>
 
                                 <span className="text-grey text-exs md:text-xs hidden md:block w-full">

@@ -26,7 +26,7 @@ export default function Sidebar({
 
       <aside
         className="lg:p-2 rounded-[20px] border border-greyborder"
-        //style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
+      //style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
       >
         {children}
         {/* {!hideFooter && (
@@ -34,28 +34,20 @@ export default function Sidebar({
             <p className="block my-5 text-grey text-sm">
               © 2011—{curYear} flate.pro — сделано в России. Жильё с гарантией.
             </p>
-            <Link href="/agree/">
-              <a className="mb-1.5 underline text-grey block text-sm">
+            <Link href="/agree/" className="mb-1.5 underline text-grey block text-sm">
                 Пользовательское соглашение
-              </a>
             </Link>
-            <Link href="/rules/">
-              <a className="mb-1.5 underline text-grey block text-sm">
+            <Link href="/rules/" className="mb-1.5 underline text-grey block text-sm">
                 Правила пользования
-              </a>
             </Link>
-            <Link href="/oferta/">
-              <a className="mb-1.5 underline text-grey block text-sm">
+            <Link href="/oferta/" className="mb-1.5 underline text-grey block text-sm">
                 Оплачивая услуги на сайте, вы принимаете оферту
-              </a>
             </Link>
-            <Link href="/marketing/">
-              <a className="lg:block text-primary text-sm mb-1">
+            <Link href="/marketing/" className="lg:block text-primary text-sm mb-1">
                 Реклама на сайте
-              </a>
             </Link>
-            <Link href="/help">
-              <a className="lg:block text-primary text-sm ">Помощь</a>
+            <Link href="/help" className="lg:block text-primary text-sm ">
+              Помощь
             </Link>
           </div>
         )} */}

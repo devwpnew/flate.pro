@@ -69,61 +69,58 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
                   )}
                 </div>
 
-                <Link href={getProductUrl(product)} key={product.id}>
-                  <a
-                    // target={!MOBILE && "_blank"}
-                    target={"_blank"}
-                    className="block min-w-[220px]"
-                  >
-                    <Image
-                      className="object-cover object-center"
-                      src={getProductImageSrc(product)}
-                      width={thumb.width}
-                      height={thumb.height}
-                      layout="responsive"
-                      quality={50}
-                    />
-                  </a>
+                <Link href={getProductUrl(product)} key={product.id}
+                  // target={!MOBILE && "_blank"}
+                  target={"_blank"}
+                  className="block min-w-[220px]"
+                >
+                  <Image
+                    className="object-cover object-center"
+                    src={getProductImageSrc(product)}
+                    width={thumb.width}
+                    height={thumb.height}
+                    layout="responsive"
+                    quality={50}
+                  />
                 </Link>
               </div>
 
-              <Link href={getProductUrl(product)}>
-                <a
-                  // target={!MOBILE && "_blank"}
-                  target={"_blank"}
-                  className="block md:max-w-[313px] lg:max-w-[480px]"
-                >
-                  <div className="flex flex-col h-full">
-                    <div className="block">
-                      <div
-                        className="ellipsis ellipsis-clamp-2"
-                        style={{
-                          minHeight: "55px",
-                          maxHeight: "55px",
-                          height: "55px",
-                        }}
-                      >
-                        <span className="text-primary text-sm lg:text-lg font-bold md:w-full block underline-offset-2 mb-[4px] group-hover:text-bluelight">
-                          {product.name}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-primary text-base font-bold whitespace-nowrap">
-                          {getProductPrice(product)} руб.
-                        </span>
-                        <span className="text-primary text-xs md:text-sm lg:text-lg whitespace-nowrap">
-                          {getProductPriceSquares(product)} руб. за{" "}
-                          {slug && slug === "land"
-                            ? "сотку"
-                            : "м2"}
-                        </span>
-                      </div>
-                      <span className="block w-full text-primary text-xs mb-1">
-                        {getProductAddress(product)}
+              <Link href={getProductUrl(product)}
+                // target={!MOBILE && "_blank"}
+                target={"_blank"}
+                className="block md:max-w-[313px] lg:max-w-[480px]"
+              >
+                <div className="flex flex-col h-full">
+                  <div className="block">
+                    <div
+                      className="ellipsis ellipsis-clamp-2"
+                      style={{
+                        minHeight: "55px",
+                        maxHeight: "55px",
+                        height: "55px",
+                      }}
+                    >
+                      <span className="text-primary text-sm lg:text-lg font-bold md:w-full block underline-offset-2 mb-[4px] group-hover:text-bluelight">
+                        {product.name}
                       </span>
                     </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-primary text-base font-bold whitespace-nowrap">
+                        {getProductPrice(product)} руб.
+                      </span>
+                      <span className="text-primary text-xs md:text-sm lg:text-lg whitespace-nowrap">
+                        {getProductPriceSquares(product)} руб. за{" "}
+                        {slug && slug === "land"
+                          ? "сотку"
+                          : "м2"}
+                      </span>
+                    </div>
+                    <span className="block w-full text-primary text-xs mb-1">
+                      {getProductAddress(product)}
+                    </span>
+                  </div>
 
-                    {/* {product?.product_description && (
+                  {/* {product?.product_description && (
                       <div className="block w-full mb-1">
                         <div className="ellipsis">
                           <span className="text-grey text-xs block w-full">
@@ -133,11 +130,10 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
                       </div>
                     )} */}
 
-                    <span className="text-grey text-xs block mt-auto">
-                      <div>{getProductDate(product)}</div>
-                    </span>
-                  </div>
-                </a>
+                  <span className="text-grey text-xs block mt-auto">
+                    <div>{getProductDate(product)}</div>
+                  </span>
+                </div>
               </Link>
             </div>
 
@@ -164,23 +160,17 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
                       ) : (
                         user && (
                           <Link
-                            href={`/users/${
-                              product.user_id.sef_code || product.user_id.id
-                            }`}
+                            href={`/users/${product.user_id.sef_code || product.user_id.id}`}
+                            // target={!MOBILE && "_blank"}
+                            target={"_blank"}
+                            className="text-sm block cursor-pointer hover:text-bluelight leading-5"
                           >
-                            <a
-                              // target={!MOBILE && "_blank"}
-                              target={"_blank"}
-                              className="text-sm block cursor-pointer hover:text-bluelight leading-5"
-                            >
-                              {userProductsCount.products.count &&
-                                `${
-                                  userProductsCount.products.count
-                                } ${declension(
-                                  userProductsCount.products.count,
-                                  ["объявление", "объявления", "объявлений"]
-                                )}`}
-                            </a>
+                            {userProductsCount.products.count &&
+                              `${userProductsCount.products.count
+                              } ${declension(
+                                userProductsCount.products.count,
+                                ["объявление", "объявления", "объявлений"]
+                              )}`}
                           </Link>
                         )
                       )}
@@ -230,8 +220,9 @@ export default function ProductItemRow({ product, user, hideUserInfo }) {
             product={product}
             className="absolute top-0 right-[10px] cursor-pointer z-1"
           />
-        </div>
-      )}
+        </div >
+      )
+      }
     </>
   );
 }

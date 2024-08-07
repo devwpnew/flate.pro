@@ -64,22 +64,20 @@ export default function MenuNoIconsItem({ name, id, slug, href, featured }) {
     return (
         <>
             <Link href={href ? href : "/posts/" + slug} id={id}>
-                <a>
-                    <li
-                        onMouseOver={hoverHandler}
-                        onMouseLeave={hoverHandler}
-                        ref={containerEl}
-                        className={itemClassName}
-                    >
-                        <span ref={element} className={textClassName}>
-                            {name}
-                            <span
-                                //style={{ width: lineWidth, left: `-${lineLeftPos}px` }}
-                                className={lineClassName}
-                            ></span>
-                        </span>
-                    </li>
-                </a>
+                <li
+                    onMouseOver={hoverHandler}
+                    onMouseLeave={hoverHandler}
+                    ref={containerEl}
+                    className={itemClassName}
+                >
+                    <span ref={element} className={textClassName}>
+                        {name}
+                        <span
+                            //style={{ width: lineWidth, left: `-${lineLeftPos}px` }}
+                            className={lineClassName}
+                        ></span>
+                    </span>
+                </li>
             </Link>
         </>
     );

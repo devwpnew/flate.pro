@@ -254,11 +254,7 @@ export default function UserEditTemplate({ userId }) {
                                                 <Link
                                                     href={`/user/admin/items?user=${user.id}`}
                                                 >
-                                                    <a>
-                                                        {
-                                                            userProductsAmout.count
-                                                        }
-                                                    </a>
+                                                    {userProductsAmout.count}
                                                 </Link>
                                             </>
                                         ) : (

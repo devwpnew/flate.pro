@@ -80,16 +80,16 @@ export default function AdminBannedContent({ user, moderation, rejected }) {
             ID: (
               <div id="id" data-col="ID">
                 <Link href={`/user/admin/users/${user.id}`}>
-                  <a>{user.id}</a>
+                  {user.id}
                 </Link>
               </div>
             ),
             "Имя Фамилия": (
               <div id="user_name" data-col="Имя Фамилия">
                 <Link href={`/user/admin/users/${user.id}`}>
-                  <a>{`${user?.user_name ? user?.user_name : "Не указано"} ${
+                  {`${user?.user_name ? user?.user_name : "Не указано"} ${
                     user?.user_last_name ? user?.user_last_name : ""
-                  }`}</a>
+                  }`}
                 </Link>
               </div>
             ),
@@ -121,9 +121,7 @@ export default function AdminBannedContent({ user, moderation, rejected }) {
             "Количество объявлений": (
               <div>
                 <Link href={`/user/admin/items?user=${user.id}`}>
-                  <a>
-                    <UserProductsAmount userId={user.id} />
-                  </a>
+                  <UserProductsAmount userId={user.id} />
                 </Link>
               </div>
             ),

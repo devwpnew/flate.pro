@@ -56,16 +56,14 @@ export default function MenuList({ item, icon }) {
           </div>
         )}
 
-        <Link href={topLvlItemLink}>
-          <a className={`text-sm ${activeMenu ? "text-blue" : ""}`}>
-            <div className="flex items-center gap-2.5">
-              <div className="w-[30px] h-[30px]">
-                <Image src={icon.src} width={icon.width} height={icon.height} />
-              </div>
-
-              {item.name}
+        <Link href={topLvlItemLink} className={`text-sm ${activeMenu ? "text-blue" : ""}`}>
+          <div className="flex items-center gap-2.5">
+            <div className="w-[30px] h-[30px]">
+              <Image src={icon.src} width={icon.width} height={icon.height} />
             </div>
-          </a>
+
+            {item.name}
+          </div>
         </Link>
       </div>
 

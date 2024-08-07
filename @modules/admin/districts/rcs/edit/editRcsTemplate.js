@@ -335,7 +335,7 @@ export default function EditRcsTemplate({ rcId }) {
 
         // console.log({docType: selectedIds})
 
-        
+
         // const formattedIds = `{${selectedIds.join(',')}}`;
 
         setFields((prevFields) => ({
@@ -372,7 +372,7 @@ export default function EditRcsTemplate({ rcId }) {
 
     const checkPlaybackStatus = async () => {
 
-        
+
         try {
 
 
@@ -409,11 +409,11 @@ export default function EditRcsTemplate({ rcId }) {
                     method: 'DELETE',
                 }
             );
-    
+
             if (!response.ok) {
                 throw new Error(`Failed to delete video: ${response.statusText}`);
             }
-    
+
             const data = await response.json();
 
             // Удаляем видео из состояния
@@ -433,18 +433,18 @@ export default function EditRcsTemplate({ rcId }) {
     useEffect(() => {
         const fetchVideos = async () => {
             const videosResponse = await checkPlaybackStatus();
-            setVideos(videosResponse); 
+            setVideos(videosResponse);
 
             // Добавляем videos в fields только в случае, если создается новый ЖК
             console.log(rc?.id === undefined)
             console.log(videosResponse)
             console.log(videosResponse.length > 0)
-            if(rcId === 'add') {
+            if (rcId === 'add') {
                 setFields({
                     ...fields,
                     rc_temp_id: rcTempId,
                 });
-            }       
+            }
         };
         fetchVideos();
     }, [uploadId]);
@@ -478,7 +478,7 @@ export default function EditRcsTemplate({ rcId }) {
     return (
         <>
             <div className="w-full">
-                
+
                 {rc || rcId == "add" ? (
                     <Container>
                         <div className="pt-3 pb-2.5 lg:border-b-[1px] lg:border-greyborder mb-2.5">
@@ -510,27 +510,23 @@ export default function EditRcsTemplate({ rcId }) {
                                             </span>
                                             {rc.last_edited_by ? (
                                                 <Link
+                                                    className="text-blue cursor-pointer hover:underline underline-offset-2"
                                                     href={`/user/admin/users/${rc.last_edited_by.id}`}
                                                 >
-                                                    <a
-                                                        className="text-blue cursor-pointer hover:underline underline-offset-2"
-                                                        href={`/user/admin/users/${rc.last_edited_by.id}`}
-                                                    >
-                                                        <div>
-                                                            ID:{" "}
-                                                            {`${rc.last_edited_by.id} `}
-                                                        </div>
-                                                        <div>
-                                                            {rc.last_edited_by
+                                                    <div>
+                                                        ID:{" "}
+                                                        {`${rc.last_edited_by.id} `}
+                                                    </div>
+                                                    <div>
+                                                        {rc.last_edited_by
+                                                            .name
+                                                            ? rc
+                                                                .last_edited_by
                                                                 .name
-                                                                ? rc
-                                                                      .last_edited_by
-                                                                      .name
-                                                                : rc
-                                                                      .last_edited_by
-                                                                      .phone}
-                                                        </div>
-                                                    </a>
+                                                            : rc
+                                                                .last_edited_by
+                                                                .phone}
+                                                    </div>
                                                 </Link>
                                             ) : (
                                                 ""
@@ -625,7 +621,7 @@ export default function EditRcsTemplate({ rcId }) {
                                             </div>
 
                                             {areasParentsList &&
-                                            areasParentsList.length ? (
+                                                areasParentsList.length ? (
                                                 <div className="my-2.5">
                                                     <div className="font-bold mb-2.5 text-sm">
                                                         Район
@@ -657,7 +653,7 @@ export default function EditRcsTemplate({ rcId }) {
                                             )}
 
                                             {microAreasList &&
-                                            microAreasList.length ? (
+                                                microAreasList.length ? (
                                                 <div className="my-2.5">
                                                     <div className="font-bold mb-2.5 text-sm">
                                                         Микрорайон
@@ -881,7 +877,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                             </div>
                                                         </div>
 
-                                                        
+
                                                     </>
                                                 )}
                                             </div>
@@ -889,19 +885,19 @@ export default function EditRcsTemplate({ rcId }) {
 
 
                                             <div className="mt-2 flex items-center gap-2">
-                                                            <input
-                                                                type="checkbox"
-                                                                checked={
-                                                                    fields.fz214
-                                                                }
-                                                                onChange={
-                                                                    handleFz214Change
-                                                                }
-                                                            />
-                                                            <label className="font-bold text-sm">
-                                                                ФЗ 214
-                                                            </label>
-                                                        </div>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={
+                                                        fields.fz214
+                                                    }
+                                                    onChange={
+                                                        handleFz214Change
+                                                    }
+                                                />
+                                                <label className="font-bold text-sm">
+                                                    ФЗ 214
+                                                </label>
+                                            </div>
 
 
 
@@ -1167,12 +1163,11 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     }
                                                                     className={`
                                                                     py-1.5 px-4 rounded-lg 
-                                                                    ${
-                                                                        fields.published ===
-                                                                        val.id
+                                                                    ${fields.published ===
+                                                                            val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
-                                                                    }
+                                                                        }
                                                                 `}
                                                                 >
                                                                     {val.name}
@@ -1206,12 +1201,11 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     }
                                                                     className={`
                                                                     py-1.5 px-4 rounded-lg 
-                                                                    ${
-                                                                        fields.type_id ===
-                                                                        val.id
+                                                                    ${fields.type_id ===
+                                                                            val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
-                                                                    }
+                                                                        }
                                                                 `}
                                                                 >
                                                                     {val.name}
@@ -1245,12 +1239,11 @@ export default function EditRcsTemplate({ rcId }) {
                                                                     }
                                                                     className={`
                                                                     py-1.5 px-4 rounded-lg 
-                                                                    ${
-                                                                        fields.class_id ===
-                                                                        val.id
+                                                                    ${fields.class_id ===
+                                                                            val.id
                                                                             ? "bg-blue text-white"
                                                                             : "bg-backdrop/5"
-                                                                    }
+                                                                        }
                                                                 `}
                                                                 >
                                                                     {val.name}
@@ -1309,12 +1302,11 @@ export default function EditRcsTemplate({ rcId }) {
                                                             }}
                                                             className={`
                                                                     py-1.5 px-4 rounded-lg 
-                                                                    ${
-                                                                        rating ===
-                                                                        val.id
-                                                                            ? "bg-blue text-white"
-                                                                            : "bg-backdrop/5"
-                                                                    }
+                                                                    ${rating ===
+                                                                    val.id
+                                                                    ? "bg-blue text-white"
+                                                                    : "bg-backdrop/5"
+                                                                }
                                                                 `}
                                                         >
                                                             {val.name}
@@ -1347,7 +1339,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                 <VideoUpload
                                                     rcId={rcId}
                                                     tempId={rcTempId}
-                                                    onUploadSuccess={( uploadId ) => {
+                                                    onUploadSuccess={(uploadId) => {
                                                         setUploadId(uploadId);
                                                     }}
                                                 />
@@ -1355,7 +1347,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                 {/* {uploadId ? 1 : 0}
                                                 {videosEncoded ? 1 : 0} */}
 
-                                                
+
 
                                                 {/* {JSON.stringify(fields)} */}
 
@@ -1365,7 +1357,7 @@ export default function EditRcsTemplate({ rcId }) {
                                                     </div>
                                                 )} */}
 
-                                                
+
                                                 {videos && videos.length > 0 && (
                                                     <div className="mt-5 grid grid-cols-3 gap-4">
                                                         {videos.map((val) => (

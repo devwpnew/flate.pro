@@ -43,14 +43,13 @@ export default function PostUserInfo({ product }) {
             ) : (
               <Link
                 href={`/users/${product.user_id.sef_code || product.user_id.id}`}
+                className="text-sm block cursor-pointer text-[#1479F5] bg-[#ECF2F8] hover:bg-[#1479F5]/20 py-1 px-3  rounded-full"
               >
-                <a className="text-sm block cursor-pointer text-[#1479F5] bg-[#ECF2F8] hover:bg-[#1479F5]/20 py-1 px-3  rounded-full">
-                  {userProductsCount.products.count &&
-                    `${userProductsCount.products.count} ${declension(
-                      userProductsCount.products.count,
-                      ["объявление", "объявления", "объявлений"]
-                    )}`}
-                </a>
+                {userProductsCount.products.count &&
+                  `${userProductsCount.products.count} ${declension(
+                    userProductsCount.products.count,
+                    ["объявление", "объявления", "объявлений"]
+                  )}`}
               </Link>
             )}
 
@@ -60,7 +59,7 @@ export default function PostUserInfo({ product }) {
               {product.user_id.user_agency}
             </span>
           )} */}
-          
+
         </div>
       </div>
     </div>

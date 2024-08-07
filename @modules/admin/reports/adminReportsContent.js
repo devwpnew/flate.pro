@@ -82,7 +82,7 @@ export default function AdminReportsContent({ user }) {
             ID: (
               <>{item.id}</>
               // <Link href={`/user/admin/users/${item?.user_id?.id}`}>
-              //   <a>{item.id}</a>
+              //   {item.id}
               // </Link>
             ),
 
@@ -93,16 +93,15 @@ export default function AdminReportsContent({ user }) {
                     ? `/posts/${section?.slug}/${item?.product.slug}`
                     : "#"
                 }
+                target="_blank"
               >
-                <a target="_blank">{item?.product?.name}</a>
+                {item?.product?.name}
               </Link>
             ),
             Пользователь: (
               <Link href={`/user/admin/users/${item?.user_id?.id}`}>
-                <a>
-                  {item?.user_id?.user_name}{" "}
-                  {item?.user_id?.id && "(ID): " + item?.user_id?.id}
-                </a>
+                {item?.user_id?.user_name}{" "}
+                {item?.user_id?.id && "(ID): " + item?.user_id?.id}
               </Link>
             ),
             Сообщение: <span>{item.text}</span>,

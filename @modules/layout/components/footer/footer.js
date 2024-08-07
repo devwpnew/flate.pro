@@ -172,12 +172,9 @@ export default function Footer() {
                                                                 index +
                                                                 randomInteger()
                                                             }
+                                                            className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
                                                         >
-                                                            <a
-                                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                                            >
-                                                                {name}
-                                                            </a>
+                                                            {name}
                                                         </Link>
                                                     );
                                                 }
@@ -193,40 +190,20 @@ export default function Footer() {
                                 <div className="flex flex-col gap-5">
                                    
                                     <div className="flex flex-col gap-[10px] items-start">
-                                        <Link href={"/about"}>
-                                            <a
-                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                            >
-                                                О компании
-                                            </a>
+                                        <Link href={"/about"} className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}>
+                                            О компании
                                         </Link>
-                                        <Link href={"/contacts"}>
-                                            <a
-                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                            >
-                                                Контакты
-                                            </a>
+                                        <Link href={"/contacts"} className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}>
+                                            Контакты
                                         </Link>
-                                        <Link href={"/help"}>
-                                            <a
-                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                            >
-                                                Помощь
-                                            </a>
+                                        <Link href={"/help"} className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}>
+                                            Помощь
                                         </Link>
-                                        <Link href={"/documents"}>
-                                            <a
-                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                            >
-                                                Юридические документы
-                                            </a>
+                                        <Link href={"/documents"} className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}>
+                                            Юридические документы
                                         </Link>
-                                        <Link href={"/rules"}>
-                                            <a
-                                                className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}
-                                            >
-                                                Правила использования
-                                            </a>
+                                        <Link href={"/rules"} className={`hover:text-blue cursor-pointer relative text-grey text-sm inline`}>
+                                            Правила использования
                                         </Link>
                                     </div>
                                 </div>

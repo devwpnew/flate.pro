@@ -25,9 +25,8 @@ export default function ProductItemFavorite({ user, product }) {
     return (
         <>
             <div
-                className={`${
-                    product.premium === 3 ? "bg-premium" : "bg-greylight"
-                } shadow-md mb-2 group hover:shadow-lg`}
+                className={`${product.premium === 3 ? "bg-premium" : "bg-greylight"
+                    } shadow-md mb-2 group hover:shadow-lg`}
             >
                 <div className="p-2">
                     <span
@@ -70,57 +69,52 @@ export default function ProductItemFavorite({ user, product }) {
                                     >
                                         Написать в WhatsApp
                                     </ButtonMessage>
-                                    // <Link href={"/user/profile/messages/" + product.user_id}>
-                                    //   <a className="hidden lg:flex lg:flex-col lg:w-[165px]">
+                                    // <Link href={"/user/profile/messages/" + product.user_id} className="hidden lg:flex lg:flex-col lg:w-[165px]">
                                     //     <div className="h-9 mb-1.5">
                                     //       <Button type={"white"} className={"px-2.5"}>
                                     //         Написать
                                     //       </Button>
                                     //     </div>
-                                    //   </a>
                                     // </Link>
                                 )}
                             </div>
                         </div>
 
-                        <Link href={isCanView ? getProductUrl(product) : "#"}>
-                            <a
-                                className={`flex flex-col md:items-between w-full md:flex-row gap-5 cursor-pointer ${
-                                    product.date_banned && "opacity-50"
+                        <Link href={isCanView ? getProductUrl(product) : "#"}
+                            className={`flex flex-col md:items-between w-full md:flex-row gap-5 cursor-pointer ${product.date_banned && "opacity-50"
                                 }`}
-                                target={isCanView && MOBILE ? "_blank" : ""}
-                            >
-                                <div className="md:w-[410px] md:min-w-[220px] md:max-w-[220px]">
+                            target={isCanView && MOBILE ? "_blank" : ""}
+                        >
+                            <div className="md:w-[410px] md:min-w-[220px] md:max-w-[220px]">
+                                <Image
+                                    className="object-cover object-center"
+                                    src={getProductImageSrc(product)}
+                                    width={thumb.width}
+                                    height={thumb.height}
+                                />
+                            </div>
+
+                            <div className="cursor-pointer relative max-w-[360px] mb-1">
+                                <span className="text-blue text-sm font-bold md:w-full block group-hover:text-bluedeep underline-offset-2 mb-1">
+                                    {product.name}
+                                </span>
+                                <span className="text-primary text-base font-bold block mb-1">
+                                    {getProductPrice(product)} руб.
+                                </span>
+                                <span className="text-grey text-xs md:w-full block mb-1">
+                                    {getProductAddress(product)}
+                                </span>
+                                <span className="text-grey text-xs md:items-center md:justify-end block">
+                                    {getProductDate(product)}
+                                </span>
+                                <div className="absolute bottom-1/2 right-0 md:top-1 md:bottom-auto lg:hidden">
                                     <Image
-                                        className="object-cover object-center"
-                                        src={getProductImageSrc(product)}
-                                        width={thumb.width}
-                                        height={thumb.height}
+                                        src={moreIcon.src}
+                                        width={moreIcon.width}
+                                        height={moreIcon.height}
                                     />
                                 </div>
-
-                                <div className="cursor-pointer relative max-w-[360px] mb-1">
-                                    <span className="text-blue text-sm font-bold md:w-full block group-hover:text-bluedeep underline-offset-2 mb-1">
-                                        {product.name}
-                                    </span>
-                                    <span className="text-primary text-base font-bold block mb-1">
-                                        {getProductPrice(product)} руб.
-                                    </span>
-                                    <span className="text-grey text-xs md:w-full block mb-1">
-                                        {getProductAddress(product)}
-                                    </span>
-                                    <span className="text-grey text-xs md:items-center md:justify-end block">
-                                        {getProductDate(product)}
-                                    </span>
-                                    <div className="absolute bottom-1/2 right-0 md:top-1 md:bottom-auto lg:hidden">
-                                        <Image
-                                            src={moreIcon.src}
-                                            width={moreIcon.width}
-                                            height={moreIcon.height}
-                                        />
-                                    </div>
-                                </div>
-                            </a>
+                            </div>
                         </Link>
                     </span>
                 </div>

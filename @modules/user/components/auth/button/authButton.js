@@ -7,7 +7,7 @@ import { useState } from "react";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import LinkWrap from "@modules/common/components/link/linkWrap";
 

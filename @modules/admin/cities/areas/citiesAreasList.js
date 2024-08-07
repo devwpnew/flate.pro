@@ -78,10 +78,8 @@ export default function CitiesAreasList({ cityId }) {
                 <div className="text-center">
                   Районы отсутствуют...
                   <br />
-                  <Link href={"/user/admin/districts/areas/add"}>
-                    <a className="text-blue hover:underline ring-offset-2">
+                  <Link href={"/user/admin/districts/areas/add"} className="text-blue hover:underline ring-offset-2">
                       Добавить новый район?
-                    </a>
                   </Link>
                 </div>
               )

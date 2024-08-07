@@ -24,11 +24,9 @@ export default function FavoritesEmpty() {
         </svg>
       </div>
       <Link href="/">
-        <a>
-          <Button className={"mt-2.5 w-auto px-4 py-2"}>
-            Перейти в каталог
-          </Button>
-        </a>
+        <Button className={"mt-2.5 w-auto px-4 py-2"}>
+          Перейти в каталог
+        </Button>
       </Link>
     </div>
   );

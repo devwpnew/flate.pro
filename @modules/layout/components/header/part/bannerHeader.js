@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { setCookie } from "cookies-next";
 
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { motion } from "framer-motion";
 
 import Close from "@modules/common/components/button/close";

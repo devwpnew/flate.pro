@@ -95,22 +95,20 @@ export default function PostRelated({
                     </div>
 
                     {!related?.isOther && (
-                      <Link href={href}>
-                        <a className="block lg:mb-2.5 lg:pb-2.5 lg:mx-2">
-                          <Button
-                            type={"white"}
-                            className={"mt-2.5 p-2.5 max-w-full w-full"}
-                          >
-                            <span className="font-bold">
-                              Посмотреть {relatedCount.products.count}{" "}
-                              {declension(relatedCount.products.count, [
-                                "объявление",
-                                "объявления",
-                                "объявлений",
-                              ])}
-                            </span>
-                          </Button>
-                        </a>
+                      <Link href={href} className="block lg:mb-2.5 lg:pb-2.5 lg:mx-2">
+                        <Button
+                          type={"white"}
+                          className={"mt-2.5 p-2.5 max-w-full w-full"}
+                        >
+                          <span className="font-bold">
+                            Посмотреть {relatedCount.products.count}{" "}
+                            {declension(relatedCount.products.count, [
+                              "объявление",
+                              "объявления",
+                              "объявлений",
+                            ])}
+                          </span>
+                        </Button>
                       </Link>
                     )}
                   </div>

@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import H2 from "@modules/common/components/heading/h2";
 import SelectNoAutocomplete from "@modules/common/components/select/listBox/selectNoAutocomplete";

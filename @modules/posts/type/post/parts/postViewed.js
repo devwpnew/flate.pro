@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import viewedIcon from "public/icons/viewed-icon.svg";
 
 export default function PostViewed({ product }) {

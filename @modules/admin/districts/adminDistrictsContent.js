@@ -76,12 +76,12 @@ export default function AdminDistrictsContent({ user, type }) {
         const productObject = {
           ID: (
             <Link href={`/user/admin/rcs/${rc.id}?moderation=1`}>
-              <a>{rc.id}</a>
+              {rc.id}
             </Link>
           ),
           Название: (
             <Link href={`/user/admin/rcs/${rc.id}?moderation=1`}>
-              <a>{rc.name}</a>
+              {rc.name}
             </Link>
           ),
           Опубликован: <span>{publishedStatus[rc?.published]}</span>,

@@ -183,18 +183,14 @@ export default function EditItemTemplate({ newsId }) {
                     {news.last_edited_by ? (
                       <Link
                         href={`/user/admin/users/${news.last_edited_by.id}`}
+                        className="text-blue cursor-pointer hover:underline underline-offset-2"
                       >
-                        <a
-                          className="text-blue cursor-pointer hover:underline underline-offset-2"
-                          href={`/user/admin/users/${news.last_edited_by.id}`}
-                        >
-                          <div>ID: {`${news.last_edited_by.id} `}</div>
-                          <div>
-                            {news.last_edited_by.name
-                              ? news.last_edited_by.name
-                              : news.last_edited_by.phone}
-                          </div>
-                        </a>
+                        <div>ID: {`${news.last_edited_by.id} `}</div>
+                        <div>
+                          {news.last_edited_by.name
+                            ? news.last_edited_by.name
+                            : news.last_edited_by.phone}
+                        </div>
                       </Link>
                     ) : (
                       ""

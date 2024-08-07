@@ -6,11 +6,8 @@ export default function PaginationItem({ pageIndex, pagesCount, curPageIndex }) 
   const curItemClass = pageIndex === curPageIndex ? "text-blue pointer-events-none cursor-copy" : "";
 
   return (
-    <Link href={`?page=${pageIndex}`}>
-      <a
-        className={`inline-block pl-2 pr-2 border-l-[1px] ${lastItemClass} ${curItemClass}`}>
-        {pageIndex}
-      </a>
+    <Link href={`?page=${pageIndex}`} className={`inline-block pl-2 pr-2 border-l-[1px] ${lastItemClass} ${curItemClass}`}>
+      {pageIndex}
     </Link>
   );
 }

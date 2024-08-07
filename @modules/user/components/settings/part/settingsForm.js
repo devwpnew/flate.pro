@@ -5,7 +5,7 @@ import { phoneMask, phoneMaskV2 } from "lib/tools/mask";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Button from "@modules/common/components/button/button";
 import Input from "@modules/common/components/input/input";
 import Textarea from "@modules/common/components/textarea/textarea";

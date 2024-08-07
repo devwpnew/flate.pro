@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Button from "../button/button";
 import GalleryOutput from "./part/galleryOutput";

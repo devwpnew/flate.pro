@@ -54,12 +54,12 @@ export default function AdminNewsContent({ user }) {
         const newsObject = {
           ID: (
             <Link href={`/user/admin/news/${item.id}${item.variant == 1 ? "?banner=1" : "" }`}>
-              <a>{item.id}</a>
+              {item.id}
             </Link>
           ),
           Название: (
             <Link href={`/user/admin/news/${item.id}${item.variant == 1 ? "?banner=1" : "" }`}>
-              <a>{item.name}</a>
+              {item.name}
             </Link>
           ),
           "Дата создания": (

@@ -24,50 +24,48 @@ export default function ButtonCall({ children, phone, showIcon, ...other }) {
     }
   }
 
-  return (
-    <>
-      {/* <a href={`tel:${phone}`}> */}
-      <ButtonWithIcon
-        onClick={showPhoneHandler}
-        icon={showIcon && <Icon />}
-        {...other}
-      >
-        {children ? children : "Показать телефон"}
-      </ButtonWithIcon>
-      {/* </a> */}
+  return <>
+    {/* <a href={`tel:${phone}`}> */}
+    <ButtonWithIcon
+      onClick={showPhoneHandler}
+      icon={showIcon && <Icon />}
+      {...other}
+    >
+      {children ? children : "Показать телефон"}
+    </ButtonWithIcon>
+    {/* </a> */}
 
-      <Dialog open={openCallModal} onClose={() => setCallModal(false)}>
-        <DialogWrapper>
-          <Dialog.Panel
-            className={`bg-white p-5 ${
-              user.user_group?.id !== 6 ? "max-w-[400px]" : "max-w-[600px]"
-            } rounded-[10px] relative mx-[16px]`}
-          >
-            <DialogMessage
-              className={" "}
-              isShow={openCallModal}
-              onClose={() => setCallModal(false)}
-              title={
-                user.user_group?.id !== 6 ? (
-                  <a href={`tel:${phone && phone.replace(/[^0-9]/g, "")}`}>
-                    {getProductPhone(phone)}
-                  </a>
-                ) : (
-                  "Ваш аккаунт на модерации"
-                )
-              }
-              subtitle={
-                user.user_group?.id !== 6
-                  ? "Скажите продавцу, что нашли это объявление на FLATE.PRO."
-                  : "После одобрения, вам будут доступны все возможности и функции. Обычно это занимает не более часа."
-              }
-              isOffTimeout={true}
-            />
-          </Dialog.Panel>
-        </DialogWrapper>
-      </Dialog>
-    </>
-  );
+    <Dialog open={openCallModal} onClose={() => setCallModal(false)}>
+      <DialogWrapper>
+        <Dialog.Panel
+          className={`bg-white p-5 ${
+            user.user_group?.id !== 6 ? "max-w-[400px]" : "max-w-[600px]"
+          } rounded-[10px] relative mx-[16px]`}
+        >
+          <DialogMessage
+            className={" "}
+            isShow={openCallModal}
+            onClose={() => setCallModal(false)}
+            title={
+              user.user_group?.id !== 6 ? (
+                <a href={`tel:${phone && phone.replace(/[^0-9]/g, "")}`}>
+                  {getProductPhone(phone)}
+                </a>
+              ) : (
+                "Ваш аккаунт на модерации"
+              )
+            }
+            subtitle={
+              user.user_group?.id !== 6
+                ? "Скажите продавцу, что нашли это объявление на FLATE.PRO."
+                : "После одобрения, вам будут доступны все возможности и функции. Обычно это занимает не более часа."
+            }
+            isOffTimeout={true}
+          />
+        </Dialog.Panel>
+      </DialogWrapper>
+    </Dialog>
+  </>;
 }
 
 export function Icon() {

@@ -34,16 +34,16 @@ export default function Pagination({ itemsAmount, itemsLimit }) {
         <div className="text-center mt-2.5">
           <span className="inline-block font-bold mr-[23px]">Страницы:</span>
           {prevPageIndex && (
-            <Link href={`?page=${prevPageIndex}`}>
-              <a className="pl-2 pr-2">Пред.</a>
+            <Link href={`?page=${prevPageIndex}`} className="pl-2 pr-2">
+              Пред.
             </Link>
           )}
 
           {pages}
 
           {nextPageIndex && (
-            <Link href={`?page=${nextPageIndex}`}>
-              <a className="pl-2 pr-2">След.</a>
+            <Link className="pl-2 pr-2" href={`?page=${nextPageIndex}`}>
+              След.
             </Link>
           )}
         </div>

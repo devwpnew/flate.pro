@@ -8,7 +8,7 @@ import useUser from "hooks/useUser";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import tmpPhoto1 from "public/news-photo1.jpeg";
 
 export default function Message({ data }) {
@@ -113,16 +113,16 @@ export default function Message({ data }) {
             вбиваете параметры и за 1 минуту получаете все предложения по
             запросу. Все. Другой вариант: вместо ежедневных рассылок вы один раз
             разместили объекты на{" "}
-            <Link href="https://flate.pro/">
-              <a className="text-blue hover:text-bluelight">FLATE.PRO</a>
+            <Link href="https://flate.pro/" className="text-blue hover:text-bluelight">
+              FLATE.PRO
             </Link>{" "}
             и забыли об этом, лишь периодически подтверждая актуальность. Именно
             этого мы хотели, упростить жизнь агента – и получили.
             <br />
             <br />
             Сегодня мы готовы представить вам базовый функционал{" "}
-            <Link href="https://flate.pro/">
-              <a className="text-blue hover:text-bluelight">FLATE.PRO</a>
+            <Link href="https://flate.pro/" className="text-blue hover:text-bluelight">
+              FLATE.PRO
             </Link>{" "}
             (ФЛЭЙТ.ПРО) – это решение задачи эффективного поиска всех доступных
             вариантов в пару кликов. Вам больше не нужно тратить дни на поиск,
@@ -162,17 +162,15 @@ export default function Message({ data }) {
             похитители вашего времени. Теперь можно просто зайти на ФЛЭЙТ,
             добавить объект один раз и иногда подтверждать актуальность
             предложения. Начните прямо сейчас -{" "}
-            <Link href="/user/profile/add">
-              <a className="text-blue hover:text-bluelight">
-                РАЗМЕСТИТЕ ВАШЕ ПЕРВОЕ ОБЪЯВЛЕНИЕ →
-              </a>
+            <Link href="/user/profile/add" className="text-blue hover:text-bluelight">
+              РАЗМЕСТИТЕ ВАШЕ ПЕРВОЕ ОБЪЯВЛЕНИЕ →
             </Link>
             <br />
             <br />
             <i>
               Был с вами максимально честен и открыт. Олег, один из основателей{" "}
-              <Link href="https://flate.pro/">
-                <a className="text-blue hover:text-bluelight">FLATE.PRO</a>
+              <Link href="https://flate.pro/" className="text-blue hover:text-bluelight">
+                FLATE.PRO
               </Link>
               <br />
               <br />

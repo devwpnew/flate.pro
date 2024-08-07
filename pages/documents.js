@@ -26,32 +26,20 @@ export default function Documents({ data }) {
           </div>
           <ul className="mt-5 list-decimal pl-2.5">
             <li className="ml-2 mt-1 text-grey text-sm">
-              <Link href={"/policy"}>
-                <a
-                  className={`hover:text-blue cursor-pointer relative`}
-                >
-                  Политика конфиденциальности
-                </a>
+              <Link href={"/policy"} className={`hover:text-blue cursor-pointer relative`}>
+                Политика конфиденциальности
               </Link>
             </li>
 
             <li className="ml-2 mt-1 text-grey text-sm">
-              <Link href={"/agree"}>
-                <a
-                  className={`hover:text-blue cursor-pointer relative`}
-                >
-                  Пользовательское соглашение
-                </a>
+              <Link href={"/agree"} className={`hover:text-blue cursor-pointer relative`}>
+                Пользовательское соглашение
               </Link>
             </li>
 
             <li className="ml-2 mt-1 text-grey text-sm">
-              <Link href={"/oferta"}>
-                <a
-                  className={`hover:text-blue cursor-pointer relative`}
-                >
-                  Оферта
-                </a>
+              <Link href={"/oferta"} className={`hover:text-blue cursor-pointer relative`}>
+                Оферта
               </Link>
             </li>
           </ul>

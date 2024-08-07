@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 
 import LinkWrap from "@modules/common/components/link/linkWrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Tooltip from "@modules/common/components/tooltip/tooltip";
 
 export default function UserNotificationsButton({

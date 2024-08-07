@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Button from "@modules/common/components/button/button";
 import Preloader from "@modules/common/components/preloader/preloader";
 import CitySelect from "@modules/location/components/button/select";

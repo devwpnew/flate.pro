@@ -100,10 +100,8 @@ export default function AdminTools({
 
 
                     {editLink && (
-                        <Link href={`items/${editLinkId}`}>
-                            <a className="inline-block text-blue hover:text-bluedeep text-sm cursor-pointer whitespace-nowrap group mb-[15px]">
-                                <span className="relative">Редактировать</span>
-                            </a>
+                        <Link href={`items/${editLinkId}`} className="inline-block text-blue hover:text-bluedeep text-sm cursor-pointer whitespace-nowrap group mb-[15px]">
+                            <span className="relative">Редактировать</span>
                         </Link>
                     )}
 

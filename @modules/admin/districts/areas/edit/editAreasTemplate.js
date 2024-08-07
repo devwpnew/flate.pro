@@ -153,19 +153,15 @@ export default function EditAreasTemplate({ areaId }) {
                     </span>
                     {area.last_edited_by ? (
                       <Link
+                        className="text-blue cursor-pointer hover:underline underline-offset-2"
                         href={`/user/admin/users/${area.last_edited_by.id}`}
                       >
-                        <a
-                          className="text-blue cursor-pointer hover:underline underline-offset-2"
-                          href={`/user/admin/users/${area.last_edited_by.id}`}
-                        >
                           <div>ID: {`${area.last_edited_by.id} `}</div>
                           <div>
                             {area.last_edited_by.name
                               ? area.last_edited_by.name
                               : area.last_edited_by.phone}
                           </div>
-                        </a>
                       </Link>
                     ) : (
                       ""

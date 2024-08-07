@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LinkWrap from "@modules/common/components/link/linkWrap";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";

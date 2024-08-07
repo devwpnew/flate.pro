@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { motion } from "framer-motion";
 
 import logo from "public/logo.svg";
 
 export default function Logo({ className = "" }) {
   return (
-    <Link href="/">
+    // <Link href="/">
       <motion.a
         href="/"
         whileTap={{ scale: 0.95 }}
@@ -15,6 +15,6 @@ export default function Logo({ className = "" }) {
       >
         <Image src={logo.src} width={logo.width} height={logo.height} />
       </motion.a>
-    </Link>
+    // </Link>
   );
 }

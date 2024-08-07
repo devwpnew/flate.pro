@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function createAvatar(name) {
     if (name) {

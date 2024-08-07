@@ -15,7 +15,7 @@ import appPreviewBanner from "public/appPreviewBanner.png";
 import appstore from "public/appstore.png";
 import googleplay from "public/googleplay.png";
 import H2 from "@modules/common/components/heading/h2";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Contacts({ data }) {
   const { DESKTOP, DESK_VARIANTS } = getLayout();

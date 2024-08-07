@@ -1,5 +1,5 @@
 import { YMaps, Map, Placemark } from "react-yandex-maps";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Container from "@modules/common/components/container/container";
 
 import yamapPlacehodler from "public/yamap-placeholder.jpg";

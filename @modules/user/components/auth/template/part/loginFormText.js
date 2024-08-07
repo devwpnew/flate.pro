@@ -6,16 +6,12 @@ export default function LoginFormText() {
       <p>
         Нажимая продолжить Вы принимаете условия
         <br />
-        <Link href="/rules/">
-          <a className="underline underline-offset-1">
+        <Link href="/rules/" className="underline underline-offset-1">
             Пользовательского соглашения
-          </a>
         </Link>{" "}
         и{" "}
-        <Link href="/policy/">
-          <a className="underline underline-offset-1">
-            Политики конфиденциальности
-          </a>
+        <Link href="/policy/" className="underline underline-offset-1">
+          Политики конфиденциальности
         </Link>
       </p>
     </div>

@@ -81,8 +81,8 @@ export default function Rules({ data }) {
           использования Программ для ЭВМ и Базы данных flate.pro в соответствии
           с условиями лицензионного соглашения, расположенного в сети Интернет
           по сетевому адресу (доменному имени):{" "}
-          <Link href="/agree">
-            <a className="underline">https://flate.pro/agree</a>
+          <Link href="/agree" className="underline">
+            https://flate.pro/agree
           </Link>
           . Указанные цены являются ориентировочными, окончательный размер
           лицензионного вознаграждения определяется при оформлении карточки
@@ -184,8 +184,8 @@ export default function Rules({ data }) {
           2.5. Настоящие Правила являются открытым и общедоступным документом.
           Действующая редакция Правил размещается в сети Интернет по сетевому
           адресу (доменному имени):{" "}
-          <Link href="/">
-            <a className="underline">flate.pro</a>
+          <Link href="/" className="underline">
+            flate.pro
           </Link>
           . Пользователь обязуется регулярно самостоятельно проверять условия
           настоящих Правил на предмет их изменения и/или дополнения. Продолжение
@@ -254,8 +254,8 @@ export default function Rules({ data }) {
           5.2.1. После корректного заполнения и отправки электронной формы
           регистрации Пользователя, размещенной в сети Интернет по сетевому
           адресу (доменному имени):{" "}
-          <Link href="/user/profile/auth">
-            <a className="underline">flate.pro/user/profile/auth</a>
+          <Link href="/user/profile/auth" className="underline">
+            flate.pro/user/profile/auth
           </Link>
           ; последующего совершения Пользователем действий по активации своего
           пользовательского Аккаунта путем заполнения полей активации Аккаунта
@@ -438,16 +438,16 @@ export default function Rules({ data }) {
           6.1.4. публиковать в сети Интернет все изменения и/или дополнения
           настоящих Правил и Лицензионного соглашения не менее чем за 3 (три)
           календарных дня до начала их действия по ссылке{" "}
-          <Link href="/policy">
-            <a className="underline">www.flate.pro/policy</a>
+          <Link href="/policy" className="underline">
+            www.flate.pro/policy
           </Link>
           .<br />
           <br />
           6.1.5. публиковать в сети Интернет все изменения и/или дополнения в
           Списке тарифов не менее чем за 3 (три) календарных дня до начала их
           действия по ссылке{" "}
-          <Link href="/tariff">
-            <a className="underline">www.flate.pro/tariff</a>
+          <Link href="/tariff" className="underline">
+            www.flate.pro/tariff
           </Link>
           .<br />
           <br />
@@ -896,8 +896,8 @@ export default function Rules({ data }) {
           9.8. Сведения о порядке обработки и обеспечения безопасности
           персональных данных Администрацией приведены в документе «Политика
           конфиденциальности», размещенном на Сайте flate.pro по адресу:{" "}
-          <Link href="/policy">
-            <a className="underline">www.flate.pro/policy</a>
+          <Link href="/policy" className="underline">
+            www.flate.pro/policy
           </Link>
           .<br />
           <br />

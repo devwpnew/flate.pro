@@ -47,7 +47,7 @@ export default function TaskItem({ task, color, sections, type }) {
           <br />
           Обращение от пользователя <br />
           <Link href={`/user/admin/users/${task?.user_id.id}`}>
-            <a>{userName}</a>
+            {userName}
           </Link>
         </div>
         <div className="text-sm text-grey">{task?.user_id.text}</div>
@@ -81,7 +81,7 @@ export default function TaskItem({ task, color, sections, type }) {
                   Обращение <br />
                   от{" "}
                   <Link href={`/user/admin/users/${task?.user_id.id}`}>
-                    <a>{userName}</a>
+                    {userName}
                   </Link>
                 </H1>
               </div>
@@ -109,10 +109,9 @@ export default function TaskItem({ task, color, sections, type }) {
                       href={`/posts/${getSection()?.slug}/${
                         task?.product.slug
                       }`}
+                      className="bg-white max-w-1/2 w-full block"
                     >
-                      <a className="bg-white max-w-1/2 w-full block">
                         {task.product?.name}
-                      </a>
                     </Link>
 
                     <AdminToolsButton

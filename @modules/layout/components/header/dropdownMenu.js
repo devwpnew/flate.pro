@@ -1,6 +1,6 @@
 import api from "pages/api/service/api";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -32,14 +32,12 @@ export default function DropdownMenu() {
   const DropdownLink = forwardRef((props, ref) => {
     let { href, children, ...rest } = props;
     return (
-      <Link href={href}>
-        <a
-          ref={ref}
-          {...rest}
-          className={`whitespace-nowrap text-sm block mb-[13px]`}
-        >
-          {children}
-        </a>
+      <Link href={href}
+        ref={ref}
+        {...rest}
+        className={`whitespace-nowrap text-sm block mb-[13px]`}
+      >
+        {children}
       </Link>
     );
   });
@@ -64,15 +62,12 @@ export default function DropdownMenu() {
       <div onMouseOver={hoverHandler} onMouseLeave={hoverHandler}>
         <OutsideAlerter action={() => setIsShow(false)}>
           <div
-            className={`flex items-center group rounded transition-all truncate justify-end ${
-              isShow
+            className={`flex items-center group rounded transition-all truncate justify-end ${isShow
                 ? "bg-bluelighter shadow"
                 : "hover:bg-bluelighter hover:shadow"
-            }`}
+              }`}
           >
-            <Link href={"/user/profile/items"}>
-              <a className="flex flex-row items-center gap-2">
-                
+            <Link href={"/user/profile/items"} className="flex flex-row items-center gap-2">
                 <div className="w-fit overflow-hidden text-sm pr-1">
                   <UserName name={user.user_name} />
                 </div>
@@ -91,7 +86,6 @@ export default function DropdownMenu() {
                     }}
                   />
                 </div>
-              </a>
             </Link>
           </div>
 

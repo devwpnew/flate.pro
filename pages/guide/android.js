@@ -3,7 +3,7 @@ import MotionContainer from "@modules/common/components/container/motionContaine
 import H1 from "@modules/common/components/heading/h1";
 import SEO from "@modules/common/components/seo/seo";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import andrimg1 from "public/guide/andr/1.jpeg";
 import andrimg2 from "public/guide/andr/2.jpeg";
 import andrimg3 from "public/guide/andr/3.jpeg";

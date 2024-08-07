@@ -132,19 +132,15 @@ export default function EditCitiesTemplate({ cityId }) {
                     </span>
                     {city.last_edited_by ? (
                       <Link
+                        className="text-blue cursor-pointer hover:underline underline-offset-2"
                         href={`/user/admin/users/${city.last_edited_by.id}`}
                       >
-                        <a
-                          className="text-blue cursor-pointer hover:underline underline-offset-2"
-                          href={`/user/admin/users/${city.last_edited_by.id}`}
-                        >
                           <div>ID: {`${city.last_edited_by.id} `}</div>
                           <div>
                             {city.last_edited_by.name
                               ? city.last_edited_by.name
                               : city.last_edited_by.phone}
                           </div>
-                        </a>
                       </Link>
                     ) : (
                       ""

@@ -98,14 +98,14 @@ export default function AdminModerationContent({ isModeration, isArchive }) {
           ID: (
             <div id="id" data-col="ID">
               <Link href={`/user/admin/items/${product.id}`}>
-                <a>{product.id}</a>
+                {product.id}
               </Link>
             </div>
           ),
           Название: (
             <div id="name" data-col="Название">
-              <Link href={getProductUrl(product)}>
-                <a target="_blank">{product.name}</a>
+              <Link href={getProductUrl(product)} target="_blank">
+                {product.name}
               </Link>
             </div>
           ),
@@ -127,7 +127,7 @@ export default function AdminModerationContent({ isModeration, isArchive }) {
           "Пользователь (ID)": (
             <div id="user_id" data-col="Пользователь (ID)">
               <Link href={`/users/${product?.user_id?.id}`}>
-                <a>{product?.user_id?.id}</a>
+                {product?.user_id?.id}
               </Link>
             </div>
           ),

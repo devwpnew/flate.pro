@@ -10,28 +10,26 @@ export default function TextAbout() {
         </p>
       </div>
       <div className="mb-8 text-sm">
-        <Link href="/agree/">
-          <a className="text-grey underline mb-1 block">
-            Пользовательское соглашение
-          </a>
+        <Link href="/agree/" className="text-grey underline mb-1 block">
+          Пользовательское соглашение
         </Link>
-        <Link href="/rules/">
-          <a className="text-grey underline mb-1 block">Правила пользования</a>
+        <Link href="/rules/" className="text-grey underline mb-1 block">
+          Правила пользования
         </Link>
 
         <p className="text-grey">
           Оплачивая услуги на сайте, вы принимаете{" "}
-          <Link href="/oferta/">
-            <a className="text-grey">оферту</a>
+          <Link href="/oferta/" className="text-grey">
+            оферту
           </Link>
         </p>
       </div>
       <div className="mb-8 text-sm flex flex-col gap-1">
         <Link href="/marketing/">
-          <a>Реклама на сайте</a>
+          Реклама на сайте
         </Link>
         <Link href="/help">
-          <a>Помощь</a>
+          Помощь
         </Link>
       </div>
       <TextDownloadMobileApp />

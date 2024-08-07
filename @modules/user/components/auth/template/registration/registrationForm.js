@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Button from "@modules/common/components/button/button";
 import Input from "@modules/common/components/input/input";
@@ -235,10 +235,8 @@ export default function RegistrationForm({
                 {/* - Ссылка на: YouTube, Vkontakte <br/>
                 - Ссылка на кабинет: Циан, Авито, Domclick <br/>
                 - Ссылка на профиль на сайте Агентства Недвижимости <br/> */}
-                <Link href="/">
-                  <a className="text-bluelight hover:text-blue transition-all">
-                    FLATE.PRO
-                  </a>
+                <Link href="/" className="text-bluelight hover:text-blue transition-all">
+                  FLATE.PRO
                 </Link>{" "}
                 - ресурс только для агентов, нам важно сохранить его уникальным.
                 Пожалуйста, пришлите как можно больше информации о себе, чтобы

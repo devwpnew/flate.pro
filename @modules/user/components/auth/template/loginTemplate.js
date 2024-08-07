@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Container from "@modules/common/components/container/container";
 import LoginContent from "./loginContent";
 

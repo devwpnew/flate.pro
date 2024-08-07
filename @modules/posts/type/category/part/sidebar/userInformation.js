@@ -73,14 +73,12 @@ export default function UserInformation({ userId }) {
                     <Preloader />
                   </div>
                 ) : (
-                  <Link href={`/users/${(user && user.sef_code) || user.id}`}>
-                    <a className="text-sm block cursor-pointer hover:underline leading-5">
-                      {userProductsCount?.products?.count &&
-                        `${userProductsCount?.products?.count} ${declension(
-                          userProductsCount?.products?.count,
-                          ["объявление", "объявления", "объявлений"]
-                        )}`}
-                    </a>
+                  <Link href={`/users/${(user && user.sef_code) || user.id}`} className="text-sm block cursor-pointer hover:underline leading-5">
+                    {userProductsCount?.products?.count &&
+                      `${userProductsCount?.products?.count} ${declension(
+                        userProductsCount?.products?.count,
+                        ["объявление", "объявления", "объявлений"]
+                      )}`}
                   </Link>
                 )}
               </div>

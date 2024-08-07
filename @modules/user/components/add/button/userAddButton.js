@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Button from "@modules/common/components/button/button";
 import LinkWrap from "@modules/common/components/link/linkWrap";
 import { useState } from "react";

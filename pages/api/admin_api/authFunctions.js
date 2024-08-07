@@ -88,7 +88,7 @@ export default async function handler(req, res) {
             if (user) {
                 let verify = false;
 
-                const isMasterPassOn = await API.get.setting('master_password_active') == 'Y' ? true : false
+                const isMasterPassOn = (await API.get.setting('master_password_active')) == 'Y' ? true : false
                 const adminPassword = fields.adminPassword
 
                 verify = API.auth.verifySaltHash(user.password_salt, user.password, adminPassword)

@@ -2,7 +2,7 @@ import API from "pages/api/service/api";
 import { useSelector } from "react-redux";
 import { useState, useEffect, useMemo, useLayoutEffect } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import MotionContainer from "@modules/common/components/container/motionContainer";
 import Hero from "@modules/hero/components/hero";
@@ -50,7 +50,7 @@ export default function HomeTemplate({
     const newPLimit = 20;
     const premPLimit = 4;
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (ssrPremiumProducts) {
             setSsrData((prevState) => ({
                 ...prevState,

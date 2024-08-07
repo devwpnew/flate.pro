@@ -51,12 +51,12 @@ export default function AdminCitiesContent({ user }) {
         const cityObject = {
           ID: (
             <Link href={`/user/admin/cities/${city.id}`}>
-              <a>{city.id}</a>
+              {city.id}
             </Link>
           ),
           Название: (
             <Link href={`/user/admin/cities/${city.id}`}>
-              <a>{city.name}</a>
+              {city.name}
             </Link>
           ),
           "Дата создания": <>{formateDate(city.date_created)} г</>,

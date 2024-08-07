@@ -50,7 +50,7 @@ export default function HomeTemplate({
     const newPLimit = 20;
     const premPLimit = 4;
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (ssrPremiumProducts) {
             setSsrData((prevState) => ({
                 ...prevState,

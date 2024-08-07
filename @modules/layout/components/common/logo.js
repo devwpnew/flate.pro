@@ -6,7 +6,7 @@ import logo from "public/logo.svg";
 
 export default function Logo({ className = "" }) {
   return (
-    <Link href="/">
+    // <Link href="/">
       <motion.a
         href="/"
         whileTap={{ scale: 0.95 }}
@@ -15,6 +15,6 @@ export default function Logo({ className = "" }) {
       >
         <Image src={logo.src} width={logo.width} height={logo.height} />
       </motion.a>
-    </Link>
+    // </Link>
   );
 }

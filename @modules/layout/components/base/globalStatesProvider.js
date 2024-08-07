@@ -7,15 +7,20 @@ import {
 import useWindowDimensions from "hooks/useWindowDimensions";
 
 import { setCity } from "store/global/user/userCity";
+import useUser from "hooks/useUser";
 
 export default function GlobalStatesProvider({ children }) {
   const { width } = useWindowDimensions();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userLogin.value);
+  
+  const user = useSelector((state) => {
+    console.log({state})
+    return state.userLogin.value
+  });
 
   useEffect(() => {
     dispatch(setWindowWidth(width));
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     if (user?.default_city) {

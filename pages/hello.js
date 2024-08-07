@@ -5,7 +5,7 @@ import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import Head from "next/head";
 
-export default function GuestPage() {
+export default function Hello() {
     const [isOpen, setIsOpen] = useState(false);
 
     const functions = [

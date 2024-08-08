@@ -7,7 +7,7 @@ const nextConfig = {
     domains: ["flate.pro", "myflat.pro"],
   },
   crossOrigin: "anonymous",
-  infrastructureLogging: { debug: /PackFileCache/ },
+  // infrastructureLogging: { debug: /PackFileCache/ },
   devIndicators: {
     buildActivity: false,
   },

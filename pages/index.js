@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 
 export default function Home({ data }) {
     const router = useRouter();
-    const user = useUser(data?.user, "/hello");
+    const user = useUser(data.user, "/hello");
     const dispatch = useDispatch();
 
     useEffect(() => {

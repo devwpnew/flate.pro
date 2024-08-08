@@ -11,7 +11,7 @@ import WelcomeModal from "@modules/common/components/modals/welcomeModal";
 export default function SettingsTemplate({customUser}) {
   const { MOBILE } = getLayout();
   const router = useRouter();
-  const user = customUser ? customUser : useSelector((state) => state.userLogin.value);
+  const user = customUser ? customUser : useSelector((state) => state?.userLogin?.value);
 
   return (
     <>

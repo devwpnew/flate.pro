@@ -33,7 +33,7 @@ import { BsX } from "react-icons/bs";
 export default function addForm({ product }) {
     const router = useRouter();
 
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const isAdmin = user.user_group?.id === 1 || user.user_group?.id === 5;
     const productSectionId = product?.section_relation[0].id;

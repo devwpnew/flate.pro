@@ -19,7 +19,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 export default function AdminUsersAddContent({ user }) {
-  const userCurrent = useSelector((state) => state.userLogin.value);
+  const userCurrent = useSelector((state) => state?.userLogin?.value);
 
   const [error, setError] = useState(false);
 

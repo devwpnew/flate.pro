@@ -34,7 +34,7 @@ export default function ButtonMessage({
   const router = useRouter();
   const [openUserModerationModal, setOpenUserModerationModal] = useState(false);
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [message, setMessage] = useState("");
 

@@ -17,7 +17,7 @@ export default function UserAddButton({
     button,
     buttonText,
 }) {
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
     const [openUserModerationModal, setOpenUserModerationModal] =
         useState(false);
 

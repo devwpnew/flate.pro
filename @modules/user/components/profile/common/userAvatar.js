@@ -20,7 +20,7 @@ export default function UserAvatar({
 }) {
     const user = userOwner
         ? userOwner
-        : useSelector((state) => state.userLogin.value);
+        : useSelector((state) => state?.userLogin?.value);
     const name = userName ? userName : user.user_name;
 
     return (

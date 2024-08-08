@@ -8,7 +8,7 @@ import getLayout from "helpers/getLayout";
 import Sidebar from "@modules/sidebar/components/sidebar";
 export default function ProfileSidebarTemplate() {
     const { MOBILE } = getLayout();
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
     return (
         <>
             {MOBILE ? (

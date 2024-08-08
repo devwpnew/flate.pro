@@ -8,7 +8,7 @@ import MessageItem from "../item/messageItem";
 import Preloader from "@modules/common/components/preloader/preloader";
 
 export default function MessagesContent() {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [isLoading, setIsLoading] = useState(null);
   const [dialogues, setDialogues] = useState(null);

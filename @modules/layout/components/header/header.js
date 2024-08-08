@@ -30,7 +30,7 @@ import Preloader from "@modules/common/components/preloader/preloader";
 import { useEffect, useState } from "react";
 
 export default function Header({ hideTopBar, ssrUser }) {
-    const selectedUser = useSelector((state) => state.userLogin.value);
+    const selectedUser = useSelector((state) => state?.userLogin?.value);
     const [user, setUser] = useState(ssrUser);
     const isPageLoading = useIsPageLoaded();
 

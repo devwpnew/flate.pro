@@ -16,7 +16,7 @@ export default function EditCitiesTemplate({ cityId }) {
   const router = useRouter();
   const { MOBILE, DESKTOP, VARIANTS } = getLayout();
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const [city, setCity] = useState(null);
 
   const formRef = useRef(null);

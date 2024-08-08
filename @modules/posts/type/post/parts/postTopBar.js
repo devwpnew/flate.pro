@@ -12,7 +12,7 @@ import useIsPageLoaded from "hooks/useIsPageLoaded";
 
 export default function PostTopBar({ product_name, rcLink, product_id }) {
   const isLoading = useIsPageLoaded();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   return (
     <div className="flex justify-between items-center gap-2.5">

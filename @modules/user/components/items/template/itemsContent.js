@@ -23,7 +23,7 @@ export default function itemsContent({
     setProductsModerated,
     setSort,
 }) {
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const { MOBILE } = getLayout();
     const [selectedIndex, setSelectedIndex] = useState(0);

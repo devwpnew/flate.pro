@@ -10,7 +10,7 @@ import Tooltip from "@modules/common/components/tooltip/tooltip";
 export default function UserMessagesButton({ icon, width, height, title }) {
   const href = "/user/profile/messages";
   const router = useRouter();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const [unreadMessages, setUnreadMessages] = useState(null);
   const [isShowText, setIsShowText] = useState(false);
 

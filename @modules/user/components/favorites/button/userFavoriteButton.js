@@ -16,7 +16,7 @@ import { setFavorites, getFavorites } from "store/global/user/userFavorites";
 
 export default function UserFavoriteButton({ icon, width, height, title }) {
   // const href = "/user/favorites";
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const fav = useSelector((state) => state.userFavorites.value);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function UserFavoriteButton({ icon, width, height, title }) {
   //   router.push(href);
   // };
 
-  // const user = useSelector((state) => state.userLogin.value);
+  // const user = useSelector((state) => state?.userLogin?.value);
 
   const [favoritesList, setFavoritesList] = useState([]);
   const [isShowText, setIsShowText] = useState(false);

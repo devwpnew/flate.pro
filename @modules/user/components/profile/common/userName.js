@@ -8,7 +8,7 @@ export default function UserName({
   isFeatured,
   className,
 }) {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   let username = "Пользователь";
 

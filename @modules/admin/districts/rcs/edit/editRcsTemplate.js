@@ -33,7 +33,7 @@ import { BsX } from "react-icons/bs";
 export default function EditRcsTemplate({ rcId }) {
     const router = useRouter();
     const { MOBILE, DESKTOP, VARIANTS } = getLayout();
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const [isLoading, setIsLoading] = useState(false);
 

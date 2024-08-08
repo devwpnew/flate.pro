@@ -23,7 +23,7 @@ export default function ButtonFavorite({
 }) {
   const router = useRouter();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const favoritesList = useSelector((state) => state.userFavorites.value);
 
   const [isShowTooltip, setShowTooltip] = useState(false);

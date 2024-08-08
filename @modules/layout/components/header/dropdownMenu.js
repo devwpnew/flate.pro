@@ -27,7 +27,7 @@ export default function DropdownMenu() {
   const [isShowDialog, setIsShowDialog] = useState(false);
   const [isShow, setIsShow] = useState(false);
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const DropdownLink = forwardRef((props, ref) => {
     let { href, children, ...rest } = props;

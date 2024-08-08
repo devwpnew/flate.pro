@@ -36,7 +36,7 @@ const getReportText = (id) => {
 };
 
 export default function ReportItem({ report, section }) {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [isSuccess, setIsSuccess] = useState(false);
 

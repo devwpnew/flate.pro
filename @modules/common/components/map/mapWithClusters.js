@@ -14,7 +14,7 @@ export default function MapWithClusters({
   zoom,
   className = "",
 }) {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const [product, setProduct] = useState([]);
 
   const [isLoadingSpinner, setIsLoadingSpinner] = useState(false);

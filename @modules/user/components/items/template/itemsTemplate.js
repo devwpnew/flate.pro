@@ -13,7 +13,7 @@ import sortProducts from "helpers/products/sortProducts";
 
 export default function ItemsTemplate({ editTemplate, productId }) {
     const fetchState = useSelector((state) => state.fetchTrigger.value);
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const { MOBILE } = getLayout();
 

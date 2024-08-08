@@ -22,7 +22,7 @@ export default function AdminTools({
 
     const dispatch = useDispatch();
     const fetchState = useSelector((state) => state.fetchTrigger.value);
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const isAdmin = user.user_group?.id === 1 || user.user_group?.id === 5;
 

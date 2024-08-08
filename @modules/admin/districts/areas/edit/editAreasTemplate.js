@@ -19,7 +19,7 @@ export default function EditAreasTemplate({ areaId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCity, setSelectedCity] = useState(false);
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const [area, setArea] = useState(null);
 
   const formRef = useRef(null);

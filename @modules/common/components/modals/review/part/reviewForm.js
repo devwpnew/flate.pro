@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import TextareaRequired from "@modules/common/components/textarea/textareaRequired";
 
 export default function ReviewForm({ onClose }) {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);

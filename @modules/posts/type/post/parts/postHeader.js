@@ -24,7 +24,7 @@ import getLayout from "helpers/getLayout";
 export default function PostHeaderButtons({ product }) {
   const { MOBILE } = getLayout();
   const router = useRouter();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const isLoading = useIsPageLoaded();
 

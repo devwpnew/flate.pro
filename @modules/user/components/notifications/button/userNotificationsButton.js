@@ -16,7 +16,7 @@ export default function UserNotificationsButton({
 }) {
   const href = "/user/profile/messages?notifications=1";
   const router = useRouter();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [isShowText, setIsShowText] = useState(false);
 

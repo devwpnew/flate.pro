@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 export default function ButtonCall({ children, phone, showIcon, ...other }) {
   const router = useRouter();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [openCallModal, setCallModal] = useState(false);
 

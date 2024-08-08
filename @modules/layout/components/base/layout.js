@@ -21,7 +21,7 @@ export default function Layout({ children, layoutParams, ...props }) {
     const [isRegistrationModalShow, setIsRegistrationModalShow] =
         useState(false);
 
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
     const ssrUser = props?.data?.user ? props.data.user : false;
 
     useEffect(() => {

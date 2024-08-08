@@ -4,7 +4,7 @@ import UserName from "../../../user/components/profile/common/userName";
 import UserSubscribeExpiration from "@modules/user/components/subscribe/userSubscribeExpiration";
 import AdminActions from "./adminActions";
 export default function AdminInfo() {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
  
   return (
     <>

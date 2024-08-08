@@ -52,7 +52,7 @@ export default function MessagesChat({ dialogue }) {
   const [messagesUpdate, setMessagesUpdate] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentUser = useSelector((state) => state.userLogin.value);
+  const currentUser = useSelector((state) => state?.userLogin?.value);
 
   const scrollBlock = useRef(null);
 

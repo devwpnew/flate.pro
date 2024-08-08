@@ -15,7 +15,7 @@ import SelectCheckBox from "@modules/common/components/select/checkBox/selectChe
 import PreloaderSpinner from "@modules/common/components/preloader/preloaderSpinner";
 
 export default function ButtonReport({ product }) {
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     const [reportMsg, setReportMsg] = useState("");
 

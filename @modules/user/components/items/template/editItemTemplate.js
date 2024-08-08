@@ -21,7 +21,7 @@ import DialogTitle from "@modules/common/components/dialog/dialogTitle";
 import TextareaRequired from "@modules/common/components/textarea/textareaRequired";
 import { formateDate } from "helpers/formateDate";
 export default function EditItemTemplate({ productId }) {
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [fieldsArray, setFieldsArray] = useState(null);

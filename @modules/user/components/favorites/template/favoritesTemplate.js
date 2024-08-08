@@ -12,7 +12,7 @@ import sortProducts from "helpers/products/sortProducts";
 export default function FavoritesTemplate() {
   const { MOBILE } = getLayout();
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [sort, setSort] = useState(null);
   const [favoritesList, setFavoritesList] = useState(null);

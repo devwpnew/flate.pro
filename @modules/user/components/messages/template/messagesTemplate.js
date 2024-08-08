@@ -22,7 +22,7 @@ export default function MessagesTemplate({ chatTemplate, dialogue }) {
   const { MOBILE, DESKTOP, VARIANTS } = getLayout();
   const router = useRouter();
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [notifications, setNotifications] = useState(null);
   const [unreadNotificationsCount, setUnreadNotificationsCount] =

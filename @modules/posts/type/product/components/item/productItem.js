@@ -14,7 +14,7 @@ export default function ProductItem({
     hideUserInfo,
     isArchive,
 }) {
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
 
     if (layout === "horisontal") {
         return <ProductItemHorizontal user={user} product={product} />;

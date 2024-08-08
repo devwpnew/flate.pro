@@ -23,7 +23,7 @@ export default function EditItemTemplate({ newsId }) {
   const isBanner = router.query.banner;
   const { MOBILE, DESKTOP, VARIANTS } = getLayout();
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
   const [news, setNews] = useState(null);
   const formRef = useRef(null);
 

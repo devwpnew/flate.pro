@@ -17,7 +17,7 @@ import DialogWrapper from "@modules/common/components/dialog/dialogWrapper";
 
 export default function AuthButton({ icon, width, height }) {
   const router = useRouter();
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const [isShowDialog, setIsShowDialog] = useState(false);
 

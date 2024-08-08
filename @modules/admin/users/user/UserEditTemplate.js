@@ -16,7 +16,7 @@ import { formateDate } from "helpers/formateDate";
 
 export default function UserEditTemplate({ userId }) {
     const router = useRouter();
-    const userCurrent = useSelector((state) => state.userLogin.value);
+    const userCurrent = useSelector((state) => state?.userLogin?.value);
     const [user, setUser] = useState(null);
     const [userProductsAmout, setUserProductsAmout] = useState(null);
     const [changingRole, setChangingRole] = useState(false);
@@ -32,7 +32,7 @@ export default function UserEditTemplate({ userId }) {
 
     const selectRoleRef = useRef();
 
-    const currentUser = useSelector((state) => state.userLogin.value);
+    const currentUser = useSelector((state) => state?.userLogin?.value);
 
     useEffect(() => {
         (async function fetchUserGroups() {

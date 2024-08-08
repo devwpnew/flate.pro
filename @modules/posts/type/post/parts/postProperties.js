@@ -7,7 +7,7 @@ export default function PostProperties({ product }) {
 
 
     const [displayProperties, setDisplayProperties] = useState(false);
-    const user = useSelector((state) => state.userLogin.value);
+    const user = useSelector((state) => state?.userLogin?.value);
     const router = useRouter();
     const slug = router.query.section_slug;
 

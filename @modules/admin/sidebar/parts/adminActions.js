@@ -23,7 +23,7 @@ import bannersIcon from "public/icons/admin-sidebar/banners.svg";
 export default function AdminActions() {
   const router = useRouter();
 
-  const user = useSelector((state) => state.userLogin.value);
+  const user = useSelector((state) => state?.userLogin?.value);
 
   const mainPage = "/user/admin";
   const usersPage = "/user/admin/users";

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export default function getLayout() {
-  const userWindowWidth = useSelector((state) => state.userWindowWidth.value);
+  const userWindowWidth = useSelector((state) => state?.userWindowWidth?.value);
   
   let MOBILE = false;
   let DESKTOP = false;

@@ -15,18 +15,21 @@ export default function GlobalStatesProvider({ children }) {
   
   const user = useSelector((state) => {
     console.log({state})
-    return state.userLogin.value
+    return state?.userLogin?.value
   });
 
   useEffect(() => {
-    dispatch(setWindowWidth(width));
+    console.log({width})
+    if(width) {
+      dispatch(setWindowWidth(width));  
+    }
   }, [width]);
 
   useEffect(() => {
     if (user?.default_city) {
       const userDefaultCity = {
-        name: user.default_city.name,
-        id: user.default_city.id,
+        name: user.default_city?.name,
+        id: user.default_city?.id,
       };
 
       dispatch(setCity(userDefaultCity));

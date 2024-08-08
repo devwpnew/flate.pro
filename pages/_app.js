@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps, router }) {
         <StrictMode>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
                 <Provider store={store}>
-                    {/* <GlobalStatesProvider> */}
+                    <GlobalStatesProvider>
                         <Head>
                             <title>flate.pro</title>
                             <meta
@@ -52,11 +52,11 @@ function MyApp({ Component, pageProps, router }) {
                         ) : r.asPath === "/hello" ? (
                             <Component {...pageProps} key={router.pathname} />
                         ) : (
-                            <Layout {...pageProps}>
+                            // <Layout {...pageProps}>
                                 <Component {...pageProps} key={router.pathname} />
-                            </Layout>
+                            // </Layout>
                         )}
-                    {/* </GlobalStatesProvider> */}
+                    </GlobalStatesProvider>
                 </Provider>
             </ErrorBoundary>
         </StrictMode>

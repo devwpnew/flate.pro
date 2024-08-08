@@ -10,7 +10,7 @@ export const userLogin = createSlice({
   initialState,
   reducers: {
     getLogin: (state) => {
-      state.value ? state.value : false
+      state?.value ? state.value : false
     },
     setLogedIn: (state, action) => {
       state.value = action.payload.id ? action.payload : false

@@ -36,6 +36,7 @@ export default function ProductContainerInfinite({
     isHideSort,
     sortCallback,
 }) {
+    console.log({products, title})
     const router = useRouter();
 
     const queryId = router.query?.id;
@@ -107,7 +108,9 @@ export default function ProductContainerInfinite({
             Array.isArray(newProducts) &&
             newProducts.length !== 0
         ) {
-            callback([...products, ...newProducts]);
+            if(products) {
+                callback([...products, ...newProducts]);
+            }
 
             if (newProducts.length < limit) {
                 setHasMore(false);

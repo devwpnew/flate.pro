@@ -52,9 +52,9 @@ function MyApp({ Component, pageProps, router }) {
                         ) : r.asPath === "/hello" ? (
                             <Component {...pageProps} key={router.pathname} />
                         ) : (
-                            // <Layout {...pageProps}>
+                            <Layout {...pageProps}>
                                 <Component {...pageProps} key={router.pathname} />
-                            // </Layout>
+                            </Layout>
                         )}
                     </GlobalStatesProvider>
                 </Provider>

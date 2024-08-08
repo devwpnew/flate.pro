@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export default function useUser(user, redirectBefore, redirectAfter) {
     const router = useRouter();
     const dispatch = useDispatch();
-    const userSettled = useSelector((state) => state.userLogin.value);
+    const userSettled = useSelector((state) => state?.userLogin?.value);
 
     useEffect(() => {
         const noUser = !user || Object.entries(user).length === 0;

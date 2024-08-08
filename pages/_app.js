@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps, router }) {
         <StrictMode>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
                 <Provider store={store}>
-                    <GlobalStatesProvider>
+                    {/* <GlobalStatesProvider> */}
                         <Head>
                             <title>flate.pro</title>
                             <meta
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps, router }) {
                                 <Component {...pageProps} key={router.pathname} />
                             </Layout>
                         )}
-                    </GlobalStatesProvider>
+                    {/* </GlobalStatesProvider> */}
                 </Provider>
             </ErrorBoundary>
         </StrictMode>
